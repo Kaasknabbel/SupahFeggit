@@ -51,7 +51,7 @@ var commands = {
   },
   '!personal': {
     execute: personalQuote,
-    description: 'Get your own personal quote :)'
+    description: 'Get your own personal message'
   },
   '!clear': {
     execute: clearQueue
