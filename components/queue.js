@@ -121,7 +121,7 @@ Queue.prototype.remove = function(message) {
   }
 }
 
-Queue.prototype.clearQueue = function() {
+Queue.prototype.clearQueue = function(message) {
    var vm = this;
    if (vm.admins.includes(message.member.user.id)) {
     vm.queue = [];
