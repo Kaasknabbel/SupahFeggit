@@ -16,7 +16,7 @@ var commands = {
   },
   '!weather': {
     execute: getWeather,
-    description: 'Get current weather for the given city, defaults to Stockholm'
+    description: 'Get current weather for the given city, defaults to Asten'
   },
   '!roll': {
     execute: roll,
