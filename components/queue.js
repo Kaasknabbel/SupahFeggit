@@ -22,10 +22,10 @@ module.exports = Queue = function() {
 Queue.prototype.add = function(track, message, info) {
   this.queue.push(track);
 
-  if (info == true) message.reply(Helper.wrap('Added ' + track.title + ' to the queue. (number ' + (this.queue.indexOf(track) + 1) + ')'));
+  if (info) message.reply(Helper.wrap('Added ' + track.title + ' to the queue. (number ' + (this.queue.indexOf(track) + 1) + ')'));
 
   if (this.queue.length == 1) {
-    this.play(message);
+    this.play(message, info);
   }
 }
 
@@ -33,7 +33,7 @@ Queue.prototype.isFull = function() {
   return this.queue.length >= this.maxlen;
 }
 
-Queue.prototype.play = function(message) {
+Queue.prototype.play = function(message, info) {
   var vm = this;
   var channel = getAuthorVoiceChannel(message);
 
@@ -44,7 +44,7 @@ Queue.prototype.play = function(message) {
 
   var toPlay = vm.queue[0];
   if (!toPlay) {
-    return message.reply(Helper.wrap('No songs in queue.'));
+    if (info) return message.reply(Helper.wrap('No songs in queue.'));
   }
 
   channel.join().then(connection => {
@@ -56,15 +56,15 @@ Queue.prototype.play = function(message) {
     });
 
     vm.currentDispatcher.on('end', event => {
-      vm.remove(message);
+      vm.remove(message, info);
     });
 
     vm.currentDispatcher.on('error', err => {
-      vm.remove(message);
+      vm.remove(message, info);
     });
 
     vm.skipVotes = [];
-    message.channel.sendMessage(Helper.wrap('Now playing: ' + toPlay.title));
+    if (info) message.channel.sendMessage(Helper.wrap('Now playing: ' + toPlay.title));
   }).catch(console.error);
 }
 
@@ -88,7 +88,7 @@ Queue.prototype.voteSkip = function(message) {
 
   if (vm.admins.includes(message.member.user.id)) {
     this.currentDispatcher.end();
-    return message.reply(Helper.wrap('Of course, sir.'));
+    return message.reply(Helper.wrap('Of course sir.'));
   }
 
   if (!channel) {
@@ -111,13 +111,13 @@ Queue.prototype.voteSkip = function(message) {
   }
 }
 
-Queue.prototype.remove = function(message) {
+Queue.prototype.remove = function(message, info) {
   this.queue.shift();
 
   if (this.queue.length > 0) {
-    this.play(message);
+    this.play(message, info);
   } else {
-    message.channel.sendMessage(Helper.wrap('No more songs in queue.'));
+    if (info) message.channel.sendMessage(Helper.wrap('No more songs in queue.'));
   }
 }
 
@@ -128,7 +128,7 @@ Queue.prototype.clearQueue = function(message) {
      if (vm.currentDispatcher) {
        vm.currentDispatcher.end();  
      }
-     return message.reply(Helper.wrap('Of course, sir.'));
+     return message.reply(Helper.wrap('Of course sir.'));
   }
   else return message.reply(Helper.wrap('Only admins can clear the queue.'));
 }
