@@ -6,8 +6,6 @@ var TrackHelper = require('./components/trackhelper.js');
 var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 
-var info = true;
-
 var commands = {
   '!video': {
     execute: getVideo,
@@ -29,7 +27,7 @@ var commands = {
     description: 'Get the most popular words for user of the given username, defaults to your username'
   },
   '!queue': {
-    execute: doQueue,
+    execute: doQueue(args, message, true),
     description: 'Queue your song'
   },
   '!voteskip': {
@@ -71,10 +69,10 @@ function clearQueue(args, message) {
 
 function skraa(args, message) {
   Queue.clearQueue(message);
-  doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message);
+  doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
 }
 
-function doQueue(args, message) {
+function doQueue(args, message, info) {
   if (args.length <= 0) {
     return message.reply(Helper.wrap('Type of music need to be specified.'));
   }
