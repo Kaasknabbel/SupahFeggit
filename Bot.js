@@ -9,38 +9,41 @@ var WeatherService = require('./components/weatherservice.js');
 var commands = {
   '!video': {
     execute: getVideo,
-    description: 'get a youtube video by search word'
+    description: 'Get a youtube video by search word'
   },
   '!weather': {
     execute: getWeather,
-    description: 'get current weather for the given city, defaults to Stockholm'
+    description: 'Get current weather for the given city, defaults to Stockholm'
   },
   '!roll': {
     execute: roll,
-    description: 'roll from 1-100'
+    description: 'Roll from 1-100'
   },
   '!help': {
     execute: showHelp
   },
   '!words': {
     execute: countWordsByUser,
-    description: 'get the most popular words for user of the given username, defaults to your username'
+    description: 'Get the most popular words for user of the given username, defaults to your username'
   },
   '!queue': {
     execute: doQueue,
-    description: 'queue your song'
+    description: 'Queue your song'
   },
   '!voteskip': {
     execute: voteSkip,
-    description: 'vote to skip the current song'
+    description: 'Vote to skip the current song'
   },
   '!song': {
     execute: showSong,
-    description: 'get the current song'
+    description: 'Get the current song'
+  },
+  '!skraa': {
+    execute: skraa,
+    description: 'THE THING GOES SKRAA'
   },
   '!clear': {
-    execute: clearQueue,
-    description: 'clear the current queue'
+    execute: clearQueue
   }
 };
 
@@ -62,6 +65,11 @@ function voteSkip(args, message) {
 
 function clearQueue(args, message) {
   Queue.clearQueue(message); 
+}
+
+function skraa(args, message) {
+  Queue.clearQueue(message);
+  doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message);
 }
 
 function doQueue(args, message) {
