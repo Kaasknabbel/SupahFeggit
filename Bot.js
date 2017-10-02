@@ -9,6 +9,8 @@ var WeatherService = require('./components/weatherservice.js');
 var jh = '235065709011533826';
 var rv = '199234428709502976';
 var gv = '260387356761260033';
+var tg = '226669570629435392';
+var nve = '160357117721706496';
 
 var commands = {
   '!video': {
@@ -44,11 +46,11 @@ var commands = {
   },
   '!skraa': {
     execute: skraa,
-    description: 'THE THING GOES SKRAA'
+    description: 'THE THING GOES SKRAA!'
   },
   '!whatislove': {
     execute: whatislove,
-    description: 'WHAT IS LOVE'
+    description: 'What is love?'
   },
   '!personal': {
     execute: personalQuote,
@@ -91,7 +93,7 @@ function whatislove(args, message) {
 
 function personalQuote(args, message) {
   if (message.member.user.id == jh) { 
-    return message.reply(Helper.wrap('Jasper is the most amazing person of the world <3')); 
+    return message.reply(Helper.wrap('Jasper is the most amazing person of the world <3 Please give him all your cookies')); 
   }
   if (message.member.user.id == rv) { 
     return message.reply(Helper.wrap('Ronnie is a feggit <3')); 
@@ -100,6 +102,12 @@ function personalQuote(args, message) {
      if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=ZLZ89GBFxP8", message, false);
      else return message.reply(Helper.wrap('Sorry giel, you can only use this command when no song is playing.'));
     return;
+  }
+  if (message.member.user.id == tg) {
+    return message.reply(Helper.wrap('Teun is secretly in love with juffrouw Ellen <3')); 
+  }
+  if (message.member.user.id == nve) {
+    return message.reply(Helper.wrap('No cookies for you. Donate them to Jasper!')); 
   }
   return message.reply(Helper.wrap('Who the fuck are you?'));
 }
