@@ -99,6 +99,7 @@ function personalQuote(args, message) {
   if (message.member.user.id == gv) { 
      if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=ZLZ89GBFxP8", message, false);
      else return message.reply(Helper.wrap('Sorry giel, you can only use this command when no song is playing.'));
+    return;
   }
   return message.reply(Helper.wrap('Who the fuck are you?'));
 }
