@@ -19,10 +19,10 @@ module.exports = Queue = function() {
   });
 }
 
-Queue.prototype.add = function(track, message) {
+Queue.prototype.add = function(track, message, info) {
   this.queue.push(track);
 
-  message.reply(Helper.wrap('Added ' + track.title + ' to the queue. (number ' + (this.queue.indexOf(track) + 1) + ')'));
+  if (info == true) message.reply(Helper.wrap('Added ' + track.title + ' to the queue. (number ' + (this.queue.indexOf(track) + 1) + ')'));
 
   if (this.queue.length == 1) {
     this.play(message);
