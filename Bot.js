@@ -37,7 +37,10 @@ var commands = {
   '!song': {
     execute: showSong,
     description: 'get the current song'
-  }
+  },
+  '!clear': {
+    execute: clearQueue,
+    description: 'clear the current queue'
 };
 
 Bot.on('message', message => {
@@ -54,6 +57,10 @@ function showSong(args, message) {
 
 function voteSkip(args, message) {
   Queue.voteSkip(message);
+}
+
+function clearQueue() {
+  Queue.clearQueue(); 
 }
 
 function doQueue(args, message) {
