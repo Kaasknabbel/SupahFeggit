@@ -60,8 +60,8 @@ function voteSkip(args, message) {
   Queue.voteSkip(message);
 }
 
-function clearQueue() {
-  Queue.clearQueue(); 
+function clearQueue(args, message) {
+  Queue.clearQueue(message); 
 }
 
 function doQueue(args, message) {
