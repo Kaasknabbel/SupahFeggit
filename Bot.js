@@ -6,6 +6,10 @@ var TrackHelper = require('./components/trackhelper.js');
 var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 
+this.jh = '235065709011533826';
+this.rv = '199234428709502976';
+
+
 var commands = {
   '!video': {
     execute: getVideo,
@@ -42,6 +46,10 @@ var commands = {
     execute: skraa,
     description: 'THE THING GOES SKRAA'
   },
+  '!personal': {
+    execute: personalQuote,
+    description: 'Get your own personal quote :)'
+  },
   '!clear': {
     execute: clearQueue
   }
@@ -70,6 +78,16 @@ function clearQueue(args, message) {
 function skraa(args, message) {
   Queue.clearQueue(message);
   doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
+}
+
+function personal(args, message) {
+  if (this.jh.includes(message.member.user.id)) { 
+    return message.reply(Helper.wrap('Jasper is the most amazing person of the world <3')); 
+  }
+  if (this.rv.includes(message.member.user.id)) { 
+    return message.reply(Helper.wrap('Ronnie is a feggit <3')); 
+  }
+  return message.reply(Helper.wrap('Who the fuck are you?'));
 }
 
 function doQueueInfo(args, message) {
