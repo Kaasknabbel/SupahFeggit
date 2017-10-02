@@ -12,7 +12,7 @@ module.exports = Queue = function() {
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
     vm.maxlen = values.maxlen;
     vm.skipmajority = values.skipmajority;
-    vm.admins = ['234272258934308864'];
+    vm.admins = ['235065709011533826'];
   }).catch(err => {
     console.log(err);
     vm.hasUnmetDepedencies = true;
@@ -119,6 +119,11 @@ Queue.prototype.remove = function(message) {
   } else {
     message.channel.sendMessage(Helper.wrap('No more songs in queue.'));
   }
+}
+
+Queue.prototype.clearQueue = function() {
+   this.queue = [];
+   this.currentDispatcher.end();
 }
 
 function getAmountOfVotesNeeded(members, skipVotes, skipMajority) {
