@@ -60,11 +60,10 @@ var commands = {
 };
 
 Bot.on('message', message => {
-  var msg = message.toLowerCase();
-  WordService.registerMessage(msg);
+  WordService.registerMessage(message);
 
-  if (isBotCommand(msg)) {
-    execute(msg.content, msg);
+  if (isBotCommand(message)) {
+    execute(message.content, message);
   }
 });
 
@@ -178,7 +177,7 @@ function isBotCommand(message) {
 
 function execute(content, message) {
   var args = content.split(" ");
-  var command = commands[args[0]];
+  var command = commands[args[0].toLowerCase()];
   if (command) executeCommand(command, message, args);
 }
 
