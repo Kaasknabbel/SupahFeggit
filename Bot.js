@@ -27,7 +27,7 @@ var commands = {
     description: 'Get the most popular words for user of the given username, defaults to your username'
   },
   '!queue': {
-    execute: doQueue(args, message, true),
+    execute: doQueueInfo,
     description: 'Queue your song'
   },
   '!voteskip': {
@@ -70,6 +70,10 @@ function clearQueue(args, message) {
 function skraa(args, message) {
   Queue.clearQueue(message);
   doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
+}
+
+function doQueueInfo(args, message) {
+  doQueue(args, message, true);
 }
 
 function doQueue(args, message, info) {
@@ -117,7 +121,7 @@ function showHelp(args, message) {
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available commands:\n';
     for (var command in commands) {
-      if (command != '!help') {
+      if (command != '!help' || command != '!clear') {
         data = commands[command];
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
