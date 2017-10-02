@@ -17,7 +17,7 @@ WeatherService.prototype.getWeather = function(city, message) {
   if (city.length > 1) {
     this.getWeatherForCity(city, message);
   } else {
-    this.getWeatherForCity('Stockholm', message);
+    this.getWeatherForCity('Asten', message);
   }
 }
 
