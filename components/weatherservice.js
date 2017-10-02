@@ -31,8 +31,8 @@ WeatherService.prototype.getWeatherForCity = function(city, message) {
 
 function buildWeather(city, weather) {
   var toReturn = '\nWeather in ' + capitalizeFirstLetter(city);
-  toReturn += '\n' + weather.weather[0].main + ', ' + weather.weather[0].description;
-  toReturn += '\n' + weather.main.temp + 'C';
+  toReturn += '\nStatus: ' + weather.weather[0].main + ', ' + weather.weather[0].description;
+  toReturn += '\nCurrent temperature: ' + weather.main.temp + 'C';
   return toReturn;
 }
 
