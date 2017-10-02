@@ -80,13 +80,13 @@ function clearQueue(args, message) {
 }
 
 function skraa(args, message) {
-  Queue.clearQueue(message);
-  doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
+  if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
+  else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
 }
 
 function whatislove(args, message) {
-  Queue.clearQueue(message);
-  doQueue("https://www.youtube.com/watch?v=W-1USI_uXho", message, false);
+  if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=W-1USI_uXho", message, false);
+  else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
 }
 
 function personalQuote(args, message) {
