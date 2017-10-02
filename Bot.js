@@ -8,6 +8,7 @@ var WeatherService = require('./components/weatherservice.js');
 
 var jh = '235065709011533826';
 var rv = '199234428709502976';
+var gv = '260387356761260033';
 
 var commands = {
   '!video': {
@@ -94,6 +95,10 @@ function personalQuote(args, message) {
   }
   if (message.member.user.id == rv) { 
     return message.reply(Helper.wrap('Ronnie is a feggit <3')); 
+  }
+  if (message.member.user.id == gv) { 
+     if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=ZLZ89GBFxP8", message, false);
+     else return message.reply(Helper.wrap('Sorry giel, you can only use this command when no song is playing.'));
   }
   return message.reply(Helper.wrap('Who the fuck are you?'));
 }
