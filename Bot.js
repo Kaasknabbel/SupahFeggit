@@ -5,6 +5,7 @@ var Queue = require('./components/queue.js');
 var TrackHelper = require('./components/trackhelper.js');
 var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
+var Dumpert = require('./components/dumpert.js');
 
 var jh = '235065709011533826';
 var rv = '199234428709502976';
@@ -55,6 +56,10 @@ var commands = {
   '!personal': {
     execute: personalQuote,
     description: 'Get your own personal message'
+  },
+  '!dumpert': {
+    execute: dumpert,
+    description: 'Get the current top 5 of Dumpert'
   },
   '!clear': {
     execute: clearQueue
@@ -110,6 +115,10 @@ function personalQuote(args, message) {
     return message.reply(Helper.wrap('No cookies for you. Donate them to Jasper!')); 
   }
   return message.reply(Helper.wrap('Who the fuck are you?'));
+}
+
+function dumpert(args,message) {
+  Dumpert.getTop5(message);
 }
 
 function doQueueInfo(args, message) {
