@@ -88,7 +88,7 @@ Queue.prototype.voteSkip = function(message) {
 
   if (vm.admins.includes(message.member.user.id)) {
     this.currentDispatcher.end();
-    return message.reply(Helper.wrap('Of course sir.'));
+    return message.reply(Helper.wrap('Of course, sir.'));
   }
 
   if (!channel) {
@@ -122,8 +122,13 @@ Queue.prototype.remove = function(message) {
 }
 
 Queue.prototype.clearQueue = function() {
-   this.queue = [];
-   this.currentDispatcher.end();
+   var vm = this;
+   if (vm.admins.includes(message.member.user.id)) {
+    vm.queue = [];
+    vm.currentDispatcher.end();
+    return message.reply(Helper.wrap('Of course, sir.'));
+  }
+  else return message.reply(Helper.wrap('Only admins can clear the queue.'));
 }
 
 function getAmountOfVotesNeeded(members, skipVotes, skipMajority) {
