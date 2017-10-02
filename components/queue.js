@@ -13,7 +13,6 @@ module.exports = Queue = function() {
     vm.maxlen = values.maxlen;
     vm.skipmajority = values.skipmajority;
     vm.admins = ['235065709011533826'];
-    vm.ronnie = ['199234428709502976'];
   }).catch(err => {
     console.log(err);
     vm.hasUnmetDepedencies = true;
