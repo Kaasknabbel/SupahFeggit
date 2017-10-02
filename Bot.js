@@ -46,6 +46,10 @@ var commands = {
     execute: skraa,
     description: 'THE THING GOES SKRAA'
   },
+  '!whatislove': {
+    execute: whatislove,
+    description: 'WHAT IS LOVE'
+  },
   '!personal': {
     execute: personalQuote,
     description: 'Get your own personal quote :)'
@@ -56,10 +60,11 @@ var commands = {
 };
 
 Bot.on('message', message => {
-  WordService.registerMessage(message);
+  var msg = message.toLowerCase();
+  WordService.registerMessage(msg);
 
-  if (isBotCommand(message)) {
-    execute(message.content, message);
+  if (isBotCommand(msg)) {
+    execute(msg.content, msg);
   }
 });
 
@@ -78,6 +83,11 @@ function clearQueue(args, message) {
 function skraa(args, message) {
   Queue.clearQueue(message);
   doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
+}
+
+function whatislove(args, message) {
+  Queue.clearQueue(message);
+  doQueue("https://www.youtube.com/watch?v=W-1USI_uXho", message, false);
 }
 
 function personalQuote(args, message) {
