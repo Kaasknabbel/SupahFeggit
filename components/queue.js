@@ -33,6 +33,10 @@ Queue.prototype.isFull = function() {
   return this.queue.length >= this.maxlen;
 }
 
+Queue.prototype.isEmpty = function() {
+  return this.queue.length == 0;
+}
+
 Queue.prototype.play = function(message, info) {
   var vm = this;
   var channel = getAuthorVoiceChannel(message);
