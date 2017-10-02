@@ -80,7 +80,7 @@ function skraa(args, message) {
   doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
 }
 
-function personal(args, message) {
+function personalQuote(args, message) {
   if (this.jh.includes(message.member.user.id)) { 
     return message.reply(Helper.wrap('Jasper is the most amazing person of the world <3')); 
   }
