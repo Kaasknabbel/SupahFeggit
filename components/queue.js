@@ -124,9 +124,11 @@ Queue.prototype.remove = function(message) {
 Queue.prototype.clearQueue = function(message) {
    var vm = this;
    if (vm.admins.includes(message.member.user.id)) {
-    vm.queue = [];
-    vm.currentDispatcher.end();
-    return message.reply(Helper.wrap('Of course, sir.'));
+     vm.queue = [];
+     if (vm.currentDispatcher) {
+       vm.currentDispatcher.end();  
+     }
+     return message.reply(Helper.wrap('Of course, sir.'));
   }
   else return message.reply(Helper.wrap('Only admins can clear the queue.'));
 }
