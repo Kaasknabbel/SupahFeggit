@@ -6,9 +6,8 @@ var TrackHelper = require('./components/trackhelper.js');
 var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 
-this.jh = '235065709011533826';
-this.rv = '199234428709502976';
-
+var jh = '235065709011533826';
+var rv = '199234428709502976';
 
 var commands = {
   '!video': {
@@ -90,10 +89,10 @@ function whatislove(args, message) {
 }
 
 function personalQuote(args, message) {
-  if (this.jh.includes(message.member.user.id)) { 
+  if (message.member.user.id == jh) { 
     return message.reply(Helper.wrap('Jasper is the most amazing person of the world <3')); 
   }
-  if (this.rv.includes(message.member.user.id)) { 
+  if (message.member.user.id == rv) { 
     return message.reply(Helper.wrap('Ronnie is a feggit <3')); 
   }
   return message.reply(Helper.wrap('Who the fuck are you?'));
