@@ -64,6 +64,7 @@ Queue.prototype.play = function(message, info) {
     });
 
     vm.currentDispatcher.on('error', err => {
+      message.channel.sendMessage(Helper.wrap('An error occured while playing the song.'));
       vm.remove(message, info);
     });
 
