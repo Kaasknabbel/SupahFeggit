@@ -36,8 +36,8 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
       //result.items.forEach(function(item) {
       for (var i in results) {
         var item = results[i];
-        if (item.id.videoId) {
-          var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
+        if (item.id) {
+          var url = 'https://www.youtube.com/watch?v=' + item.id;
           trackList.push(new Track(buildTrack(item, url)));
         }
       };
