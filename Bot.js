@@ -6,6 +6,8 @@ var TrackHelper = require('./components/trackhelper.js');
 var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 
+var info = true;
+
 var commands = {
   '!video': {
     execute: getVideo,
@@ -83,13 +85,13 @@ function doQueue(args, message) {
 
   if (args.startsWith('http')) {
     TrackHelper.getVideoFromUrl(args).then(track => {
-      Queue.add(track, message);
+      Queue.add(track, message, info);
     }).catch(err => {
       message.reply(Helper.wrap(err));
     });
   } else {
     TrackHelper.getRandomTrack(args, 5).then(track => {
-      Queue.add(track, message);
+      Queue.add(track, message, info);
     }).catch(err => {
       message.reply(Helper.wrap(err));
     });
