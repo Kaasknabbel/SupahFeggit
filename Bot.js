@@ -41,6 +41,7 @@ var commands = {
   '!clear': {
     execute: clearQueue,
     description: 'clear the current queue'
+  }
 };
 
 Bot.on('message', message => {
