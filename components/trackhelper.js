@@ -33,7 +33,7 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
     youTube.search(searchWord, amount, function(error, result) {
       if (error) reject('No videos found.');
 
-      result.item.forEach(function(item) {
+      result.items.forEach(function(item) {
         if (item.id.videoId) {
           var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
           trackList.push(new Track(buildTrack(item, url)));
