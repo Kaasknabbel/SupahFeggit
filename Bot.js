@@ -58,7 +58,7 @@ var commands = {
     description: 'Get your own personal message'
   },
   '!dumpert': {
-    execute: dumpert,
+    execute: dumpertTop5,
     description: 'Get the current top 5 of Dumpert'
   },
   '!clear': {
@@ -117,7 +117,7 @@ function personalQuote(args, message) {
   return message.reply(Helper.wrap('Who the fuck are you?'));
 }
 
-function dumpert(args, message) {
+function dumpertTop5(args, message) {
   Dumpert.getTop5(args, message);
 }
 
@@ -243,9 +243,9 @@ function init() {
 
     Queue = registerService(Queue, ['!queue', '!voteskip', '!song']);
     TrackHelper = registerService(TrackHelper, ['!queue', '!video']);
-    WordService = registerService(WordService, ['!words']);
+    WordService = registerService(WordService, ['!words', '!dumpert']);
     WeatherService = registerService(WeatherService, ['!weather']);
-    Dumpert = registerService(Dumpert, ['!dumpert']);
+    Dumpert = registerService(Dumpert, ['!dumpert', '!weather']);
   }).catch(console.error);
 }
 
