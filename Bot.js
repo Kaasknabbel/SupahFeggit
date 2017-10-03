@@ -118,7 +118,8 @@ function personalQuote(args, message) {
 }
 
 function dumpertTop5(args, message) {
-  Dumpert.getTop5(args, message);
+  //Dumpert.getTop5(args, message);
+  return message.reply(Helper.wrap('Dumpert executed.'));
 }
 
 function doQueueInfo(args, message) {
