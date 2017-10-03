@@ -117,8 +117,8 @@ function personalQuote(args, message) {
   return message.reply(Helper.wrap('Who the fuck are you?'));
 }
 
-function dumpert(args,message) {
-  Dumpert.getTop5(message);
+function dumpert(args, message) {
+  Dumpert.getTop5(args, message);
 }
 
 function doQueueInfo(args, message) {
