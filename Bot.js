@@ -243,7 +243,7 @@ function init() {
 
     Queue = registerService(Queue, ['!queue', '!voteskip', '!song']);
     TrackHelper = registerService(TrackHelper, ['!queue', '!video']);
-    WordService = registerService(WordService, ['!words', '!dumpert']);
+    WordService = registerService(WordService, ['!words']);
     WeatherService = registerService(WeatherService, ['!weather']);
     Dumpert = registerService(Dumpert, ['!dumpert', '!weather']);
   }).catch(console.error);
