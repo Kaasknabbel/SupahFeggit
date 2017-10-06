@@ -12,5 +12,5 @@ Dumpert.prototype.getTop5 = function(args, message) {
   //request('http://www.dumpert.nl/toppers/', (error, response, body) => {
   //message.reply(Helper.wrap(body));
   //});
-  message.reply(Helper.wrap('Done');
+  message.reply(Helper.wrap('Done'));
 }
