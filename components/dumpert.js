@@ -10,5 +10,6 @@ module.exports = Dumpert = function() {
 Dumpert.prototype.getTop5 = function(args, message) {
   request('http://www.dumpert.nl/toppers/', (error, response, body) => {
   //message.reply(Helper.wrap(body));
+  console.log('body:', body);
   });
 }
