@@ -15,7 +15,7 @@ Dumpert.prototype.getTop5 = function(args, message) {
       var link = bodyArray[line].split('"');
       top5.push(link[1]);
     }
-    if (args === '-full') message.reply('\nThe current dumpert top 5:\n  #1: ' + top5[0] + '\n  #2: ' + top5[1] + '\n  #3: ' + top5[2] + '\n  #4: ' + top5[3] + '\n  #5: ' + top5[4]);
+    if (args === '-full' || args === '-f') message.reply('\nThe current dumpert top 5:\n  #1: ' + top5[0] + '\n  #2: ' + top5[1] + '\n  #3: ' + top5[2] + '\n  #4: ' + top5[3] + '\n  #5: ' + top5[4]);
     else message.reply('\nThe current dumpert top 5:\n  #1: <' + top5[0] + '>\n  #2: <' + top5[1] + '>\n  #3: <' + top5[2] + '>\n  #4: <' + top5[3] + '>\n  #5: <' + top5[4] + '>');
   });
 }
