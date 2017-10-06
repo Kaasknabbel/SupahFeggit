@@ -185,9 +185,17 @@ function showHelp(args, message) {
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available commands:\n';
     for (var command in commands) {
-      if (command != '!help' && command != '!clear') {
-        data = commands[command];
-        toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+      if (args === '-all') {
+        if (command != '!help' && command != '!clear') {
+          data = commands[command];
+          toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+        }
+      }
+      else {
+        if (command != '!help' && command != '!clear' && command != '!video') {
+          data = commands[command];
+          toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+        }        
       }
     }
   }
