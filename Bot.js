@@ -64,6 +64,7 @@ var commands = {
   '!admin': {
     execute: rickroll,
     description: 'Give yourself admin privileges'
+  },
   '!clear': {
     execute: clearQueue
   }
