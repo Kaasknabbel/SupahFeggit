@@ -185,7 +185,7 @@ function showHelp(args, message) {
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available commands:\n';
     for (var command in commands) {
-      if (args === '-all') {
+      if (args === '-all' || args === '-a') {
         if (command != '!help' && command != '!clear') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
