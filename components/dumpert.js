@@ -9,7 +9,12 @@ module.exports = Dumpert = function() {
 
 Dumpert.prototype.getTop5 = function(args, message) {
   request('http://www.dumpert.nl/toppers/', (error, response, body) => {
-    var lines = body.split('\n');
-    console.log('body:', lines[152]);
+    var bodyArray = body.split('\n');
+    var top5 = [];
+    for (var line = 151; line < 191; line += 10) {
+      var link = bodyArray.split('"');
+      top5.push(link);
+    }
+    console.log(top5);
   });
 }
