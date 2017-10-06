@@ -12,7 +12,7 @@ Dumpert.prototype.getTop5 = function(args, message) {
     var bodyArray = body.split('\n');
     var top5 = [];
     for (var line = 151; line < 191; line += 10) {
-      var link = bodyArray.split('"');
+      var link = bodyArray[line].split('"');
       top5.push(link);
     }
     console.log(top5);
