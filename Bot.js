@@ -101,6 +101,9 @@ function whatislove(args, message) {
 }
 
 function rickroll(args, message) {
+  if (message.member.user.id == jh) { 
+    return message.reply(Helper.wrap('Ofcourse, admin priviliges granted.')); 
+  }
   if (Queue.isEmpty()) {
     doQueue("https://www.youtube.com/watch?v=PirBWXzL0Xs", message, false);
     message.reply(Helper.wrap('Nice try. You just got rick rolled, feggit!'));
