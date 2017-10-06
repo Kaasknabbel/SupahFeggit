@@ -61,6 +61,9 @@ var commands = {
     execute: dumpertTop5,
     description: 'Get the current top 5 of Dumpert'
   },
+  '!admin': {
+    execute: rickroll,
+    description: 'Give yourself admin privileges'
   '!clear': {
     execute: clearQueue
   }
@@ -94,6 +97,14 @@ function skraa(args, message) {
 function whatislove(args, message) {
   if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=W-1USI_uXho", message, false);
   else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+}
+
+function rickroll(args, message) {
+  if (Queue.isEmpty()) {
+    doQueue("https://www.youtube.com/watch?v=PirBWXzL0Xs", message, false);
+    message.reply(Helper.wrap('Nice try. You just got rick rolled, feggit!'));
+  }
+  else return message.reply(Helper.wrap('Bot is currently in use. Please try again when bot is done with its current task.'));
 }
 
 function personalQuote(args, message) {
