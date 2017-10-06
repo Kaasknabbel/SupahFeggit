@@ -102,7 +102,7 @@ function whatislove(args, message) {
 
 function rickroll(args, message) {
   if (message.member.user.id == jh) { 
-    return message.reply(Helper.wrap('Ofcourse, admin priviliges granted.')); 
+    return message.reply(Helper.wrap('Ofcourse sir, admin priviliges granted.')); 
   }
   if (Queue.isEmpty()) {
     doQueue("https://www.youtube.com/watch?v=PirBWXzL0Xs", message, false);
@@ -127,7 +127,7 @@ function personalQuote(args, message) {
     return message.reply(Helper.wrap('Teun is secretly in love with juffrouw Ellen <3')); 
   }
   if (message.member.user.id == nve) {
-    return message.reply(Helper.wrap('No cookies for you. Donate them to Jasper!')); 
+    return message.reply(Helper.wrap('No cookies for you. All of your cookies just have been donated to the holy Jasper!')); 
   }
   return message.reply(Helper.wrap('Who the fuck are you?'));
 }
