@@ -8,9 +8,7 @@ module.exports = Dumpert = function() {
 }
 
 Dumpert.prototype.getTop5 = function(args, message) {
-  //var vm = this;
-  //request('http://www.dumpert.nl/toppers/', (error, response, body) => {
-  //message.reply(Helper.wrap(body));
-  //});
-  message.reply(Helper.wrap('Done'));
+  request('http://www.dumpert.nl/toppers/', (error, response, body) => {
+  message.reply(Helper.wrap(body));
+  });
 }
