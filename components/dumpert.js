@@ -9,7 +9,7 @@ module.exports = Dumpert = function() {
 
 Dumpert.prototype.getTop5 = function(args, message) {
   request('http://www.dumpert.nl/toppers/', (error, response, body) => {
-    var bodystr = 'asdf /n asddf';
+    var bodystr = 'asdf \n asddf';
   //message.reply(Helper.wrap(body));
   console.log('body:', bodystr);
   });
