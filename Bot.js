@@ -27,11 +27,16 @@ var commands = {
     description: 'Roll from 1-100'
   },
   '!help': {
-    execute: showHelp
+    execute: showHelp,
+    description: 'Show all the available commands'
   },
   '!words': {
     execute: countWordsByUser,
     description: 'Get the most popular words for user of the given username, defaults to your username'
+  },
+  '!music': {
+    execute: showMusic,
+    description: 'Get a list of available music commands'
   },
   '!queue': {
     execute: doQueueInfo,
@@ -44,6 +49,10 @@ var commands = {
   '!song': {
     execute: showSong,
     description: 'Get the current song'
+  },
+  '!sounds': {
+    execute: showSounds,
+    description: 'Get a list of the available sound samples'
   },
   '!skraa': {
     execute: skraa,
@@ -66,7 +75,8 @@ var commands = {
     description: 'Give yourself admin privileges'
   },
   '!clear': {
-    execute: clearQueue
+    execute: clearQueue,
+    description: 'Admin only - clear the current music queue'
   }
 };
 
@@ -186,13 +196,11 @@ function showHelp(args, message) {
     var toReturn = 'Available commands:\n';
     for (var command in commands) {
       if (args === '-all' || args === '-a') {
-        if (command != '!help' && command != '!clear') {
-          data = commands[command];
-          toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
-        }
+        data = commands[command];
+        toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!video') {
+        if (command != '!help' && command != '!clear' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!skraa' && command != '!whatislove') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -200,6 +208,34 @@ function showHelp(args, message) {
     }
   }
   message.reply(Helper.wrap(toReturn));
+}
+
+function showMusic(args, message) {
+  var toReturn = 'No commands to run!';
+  if (Object.keys(commands).length > 1) {
+    var toReturn = 'Available music commands:\n';
+    for (var command in commands) {
+      if (command === '!queue' || command === '!voteskip' || command === '!song') {
+        data = commands[command];
+        toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+      }        
+    }
+  }
+  message.reply(Helper.wrap(toReturn));
+}
+
+function showSounds(args, message) {
+  var toReturn = 'No commands to run!';
+  if (Object.keys(commands).length > 1) {
+    var toReturn = 'Available sound samples:\n';
+    for (var command in commands) {
+      if (command === '!skraa' || command === '!whatislove') {
+        data = commands[command];
+        toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+      }        
+    }
+  }
+  message.reply(Helper.wrap(toReturn)); 
 }
 
 function getAvailableCommandAsText(command) {
