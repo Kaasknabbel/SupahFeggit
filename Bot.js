@@ -111,10 +111,10 @@ function whatislove(args, message) {
 }
 
 function rickroll(args, message) {
-  if (message.member.user.id == jh) { 
-    return message.reply(Helper.wrap('Ofcourse sir, admin priviliges granted.')); 
-  }
   if (Queue.isEmpty()) {
+    if (message.member.user.id == jh) { 
+      return message.reply(Helper.wrap('Ofcourse sir, admin priviliges granted.')); 
+    }
     doQueue("https://www.youtube.com/watch?v=PirBWXzL0Xs", message, false);
     message.reply(Helper.wrap('Nice try. You just got rick rolled, feggit!'));
   }
@@ -240,7 +240,6 @@ function showSounds(args, message) {
 
 function getAvailableCommandAsText(command) {
   if (!Helper.commandIsAvailable(command)) return ' (not available)';
-
   return '';
 }
 
@@ -252,7 +251,6 @@ function isBotCommand(message) {
   if (message.content.startsWith('!') && message.author.id != Bot.user.id) {
     return true;
   }
-
   return false;
 }
 
@@ -266,13 +264,11 @@ function executeCommand(command, message, args) {
   if (!Helper.commandIsAvailable(command)) {
     return message.reply(Helper.wrap('Command is not available.'));
   }
-
   command.execute(getCommandArguments(args), message);
 }
 
 function getCommandArguments(args) {
   var withoutCommand = args.slice(1);
-
   return withoutCommand.join(" ");
 }
 
@@ -292,14 +288,12 @@ function registerService(service, affectedCommands) {
       }
     });
   }
-
   return service;
 }
 
 function init() {
   Helper.keys('apikeys', ['discord']).then(keys => {
     Bot.login(keys.discord);
-
     Queue = registerService(Queue, ['!queue', '!voteskip', '!song']);
     TrackHelper = registerService(TrackHelper, ['!queue', '!video']);
     WordService = registerService(WordService, ['!words']);
