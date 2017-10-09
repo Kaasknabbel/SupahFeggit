@@ -31,8 +31,11 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
 
   return new Promise(function(resolve, reject) {
     youTube.search(searchWord, amount, function(error, results) {
-      if (error) reject('No videos found.');
-
+      if (error) {
+        console.log(error);
+        reject('No videos found.');
+      }
+        
       //result.items.forEach(function(item) {
       for (var i in results) {
         var item = results[i];
