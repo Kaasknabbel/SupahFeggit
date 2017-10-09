@@ -12,7 +12,7 @@ var rv = '199234428709502976';
 var gv = '260387356761260033';
 var tg = '226669570629435392';
 var nve = '160357117721706496';
-var admins = [jh];
+var admins = ['0'];
 
 var soundEnabled = true;
 
@@ -124,7 +124,8 @@ function whatislove(args, message) {
 }
 
 function rickroll(args, message) {
-  if (Queue.isEmpty() && soundEnabled) {
+  var channel = Queue.getAuthorVoiceChannel(message);
+  if (Queue.isEmpty() && soundEnabled && channel) {
     if (admins.includes(message.member.user.id)) { 
       return message.reply(Helper.wrap('Ofcourse sir, admin priviliges granted.')); 
     }
@@ -142,7 +143,8 @@ function personalQuote(args, message) {
     return message.reply(Helper.wrap('Ronnie is a feggit <3')); 
   }
   if (message.member.user.id == gv) { 
-    if (soundEnabled) {
+    var channel = Queue.getAuthorVoiceChannel(message);
+    if (soundEnabled && channel) {
       if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=ZLZ89GBFxP8", message, false);
       else return message.reply(Helper.wrap('Sorry giel, you can only use this command when no song is playing.'));
     }
