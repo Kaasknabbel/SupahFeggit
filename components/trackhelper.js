@@ -36,9 +36,9 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
         reject('No videos found.');
       }
 
-      //results.items.forEach(function(item) {
-      for (var i in results) {
-        var item = results[i];
+      results.items.forEach(function(item) {
+      //for (var i in results) {
+        //var item = results[i];
         if (item.id.videoId) {
           var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
           trackList.push(new Track(buildTrack(item, url)));
