@@ -35,12 +35,12 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
         console.log(error);
         reject('No videos found.');
       }
-      console.log(results.items[0].id);
-      //result.items.forEach(function(item) {
+
+      //results.items.forEach(function(item) {
       for (var i in results) {
         var item = results[i];
-        if (item.id) {
-          var url = 'https://www.youtube.com/watch?v=' + item.id;
+        if (item.id.videoId) {
+          var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
           trackList.push(new Track(buildTrack(item, url)));
         }
       };
