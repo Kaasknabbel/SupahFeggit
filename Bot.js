@@ -19,11 +19,11 @@ var soundEnabled = true;
 var commands = {
   '!video': {
     execute: getVideo,
-    description: '<search term> Get a youtube video by search word'
+    description: 'Get a youtube video by search word'
   },
   '!weather': {
     execute: getWeather,
-    description: '<city> Get current weather for the given city, defaults to Asten'
+    description: 'Get current weather for the given city, defaults to Asten'
   },
   '!roll': {
     execute: roll,
@@ -35,7 +35,7 @@ var commands = {
   },
   '!words': {
     execute: countWordsByUser,
-    description: '<name> Get the most popular words for user of the given username, defaults to your username'
+    description: 'Get the most popular words for user of the given username, defaults to your username'
   },
   '!music': {
     execute: showMusic,
@@ -43,7 +43,7 @@ var commands = {
   },
   '!queue': {
     execute: doQueueInfo,
-    description: '<YouTube-link> Queue your song'
+    description: 'Queue your song'
   },
   '!voteskip': {
     execute: voteSkip,
