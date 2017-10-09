@@ -185,7 +185,7 @@ function doQueue(args, message, info) {
       message.reply(Helper.wrap(err));
     });
   } else {
-    TrackHelper.getRandomTrack(args, 5).then(track => {
+    TrackHelper.getFirstTrack(args, 1).then(track => {
       Queue.add(track, message, info);
     }).catch(err => {
       message.reply(Helper.wrap(err));
@@ -194,7 +194,7 @@ function doQueue(args, message, info) {
 }
 
 function getVideo(args, message) {
-  TrackHelper.getRandomTrack(args, 5).then(track => {
+  TrackHelper.getFirstTrack(args, 1).then(track => {
     message.reply(track.url);
   }).catch(err => {
     message.reply(Helper.wrap(err));
