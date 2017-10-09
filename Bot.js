@@ -12,7 +12,7 @@ var rv = '199234428709502976';
 var gv = '260387356761260033';
 var tg = '226669570629435392';
 var nve = '160357117721706496';
-var admins = ['0'];
+var admins = [jh];
 
 var soundEnabled = true;
 
