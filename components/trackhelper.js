@@ -35,7 +35,7 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
         console.log(error);
         reject('No videos found.');
       }
-        
+      console.log(results);
       //result.items.forEach(function(item) {
       for (var i in results) {
         var item = results[i];
