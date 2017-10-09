@@ -43,7 +43,7 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
           var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
           trackList.push(new Track(buildTrack(item, url)));
         }
-      };
+      });
 
       var track = Helper.shuffle(trackList).find(video => {
         return video && video.url && video.title;
