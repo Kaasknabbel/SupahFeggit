@@ -36,7 +36,7 @@ function buildWeather(city, weather) {
     toReturn += '\nCurrent temperature: ' + weather.main.temp + 'C';
     return toReturn;
   }
-  else message.reply(Helper.wrap('City not found.'));
+  else return message.reply(Helper.wrap('City not found.'));
 }
 
 function capitalizeFirstLetter(string) {
