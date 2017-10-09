@@ -39,7 +39,7 @@ Queue.prototype.isEmpty = function() {
 
 Queue.prototype.play = function(message, info) {
   var vm = this;
-  var channel = getAuthorVoiceChannel(message);
+  var channel = vm.getAuthorVoiceChannel(message);
 
   if (!channel) {
     vm.queue = [];
@@ -85,7 +85,7 @@ Queue.prototype.showSong = function(message) {
 
 Queue.prototype.voteSkip = function(message) {
   var vm = this;
-  var channel = getAuthorVoiceChannel(message);
+  var channel = vm.getAuthorVoiceChannel(message);
 
   if (!vm.currentDispatcher) {
     return message.reply(Helper.wrap('No song is currently playing.'));
@@ -138,26 +138,23 @@ Queue.prototype.clearQueue = function(message) {
   else return message.reply(Helper.wrap('Only admins can clear the queue.'));
 }
 
+Queue.prototype.getAuthorVoiceChannel = function(message) {
+  var voiceChannelArray = message.guild.channels.filter((v) => v.type == 'voice').filter((v) => v.members.exists('id', message.author.id)).array();
+  if(voiceChannelArray.length <= 0) {
+    return undefined;
+  }
+  return voiceChannelArray[0];
+}
+
+
 function getAmountOfVotesNeeded(members, skipVotes, skipMajority) {
   var needed = 0;
   var skips = skipVotes;
-
   for (var i = 0; i < members; i++) {
     if (skips / members < skipMajority) {
       skips++;
       needed++;
     }
   }
-
   return needed;
-}
-
-function getAuthorVoiceChannel(message) {
-	var voiceChannelArray = message.guild.channels.filter((v) => v.type == 'voice').filter((v) => v.members.exists('id', message.author.id)).array();
-
-	if(voiceChannelArray.length <= 0) {
-    return undefined;
-  }
-
-	return voiceChannelArray[0];
 }
