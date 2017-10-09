@@ -30,10 +30,13 @@ WeatherService.prototype.getWeatherForCity = function(city, message) {
 }
 
 function buildWeather(city, weather) {
-  var toReturn = '\nWeather in ' + weather.name;
-  toReturn += '\nStatus: ' + weather.weather[0].main + ', ' + weather.weather[0].description;
-  toReturn += '\nCurrent temperature: ' + weather.main.temp + 'C';
-  return toReturn;
+  if (weather.cod != '404') {
+    var toReturn = '\nWeather in ' + weather.name;
+    toReturn += '\nStatus: ' + weather.weather[0].main + ', ' + weather.weather[0].description;
+    toReturn += '\nCurrent temperature: ' + weather.main.temp + 'C';
+    return toReturn;
+  }
+  else message.reply(Helper.wrap('City not found.'));
 }
 
 function capitalizeFirstLetter(string) {
