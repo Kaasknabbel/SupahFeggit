@@ -77,7 +77,7 @@ var commands = {
     execute: rickroll,
     description: 'Give yourself admin privileges'
   },
-  '!toggleSound': {
+  '!togglesound': {
     execute: toggleSound,
     description: 'Admin only - enable or disable bot sound/music commands'
   },
