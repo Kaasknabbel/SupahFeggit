@@ -12,6 +12,9 @@ var rv = '199234428709502976';
 var gv = '260387356761260033';
 var tg = '226669570629435392';
 var nve = '160357117721706496';
+var admins = [jh, 'test'];
+
+var soundEnabled = true;
 
 var commands = {
   '!video': {
@@ -74,6 +77,10 @@ var commands = {
     execute: rickroll,
     description: 'Give yourself admin privileges'
   },
+  '!toggleSound': {
+    execute: toggleSound,
+    description: 'Admin only - enable or disable bot sound/music commands'
+  },
   '!clear': {
     execute: clearQueue,
     description: 'Admin only - clear the current music queue'
@@ -101,24 +108,30 @@ function clearQueue(args, message) {
 }
 
 function skraa(args, message) {
-  if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
-  else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+  if (soundEnabled) {
+    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
+    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+  }
+  else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
 
 function whatislove(args, message) {
-  if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=W-1USI_uXho", message, false);
-  else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+  if (soundEnabled) {
+    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=W-1USI_uXho", message, false);
+    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+  }
+  else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
 
 function rickroll(args, message) {
-  if (Queue.isEmpty()) {
-    if (message.member.user.id == jh) { 
+  if (Queue.isEmpty() && soundEnabled) {
+    if (admins.includes(message.member.user.id)) { 
       return message.reply(Helper.wrap('Ofcourse sir, admin priviliges granted.')); 
     }
     doQueue("https://www.youtube.com/watch?v=PirBWXzL0Xs", message, false);
     message.reply(Helper.wrap('Nice try. You just got rick rolled, feggit!'));
   }
-  else return message.reply(Helper.wrap('Bot is currently in use. Please try again when bot is done with its current task.'));
+  else return message.reply(Helper.wrap('This command is currently unavailable. Please try again later or ask one of the admins fix this.'));
 }
 
 function personalQuote(args, message) {
@@ -129,8 +142,11 @@ function personalQuote(args, message) {
     return message.reply(Helper.wrap('Ronnie is a feggit <3')); 
   }
   if (message.member.user.id == gv) { 
-     if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=ZLZ89GBFxP8", message, false);
-     else return message.reply(Helper.wrap('Sorry giel, you can only use this command when no song is playing.'));
+    if (soundEnabled) {
+      if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=ZLZ89GBFxP8", message, false);
+      else return message.reply(Helper.wrap('Sorry giel, you can only use this command when no song is playing.'));
+    }
+    else message.reply(Helper.wrap('Sorry giel, this command is currently unavailable.'));
     return;
   }
   if (message.member.user.id == tg) {
@@ -147,7 +163,8 @@ function dumpertTop5(args, message) {
 }
 
 function doQueueInfo(args, message) {
-  doQueue(args, message, true);
+  if (soundEnabled) doQueue(args, message, true);
+  else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
 
 function doQueue(args, message, info) {
@@ -190,17 +207,36 @@ function getWeather(args, message) {
   WeatherService.getWeather(args, message);
 }
 
+function toggleSound (args, message) {
+  if (admins.includes(message.member.user.id)) { 
+    if (args == '-enable' || args == '-e') {
+      soundEnabled = true;
+      message.reply(Helper.wrap('Sounds enabled, sir.'));
+    }
+    else if (args == '-disable' || args == '-d') {
+      soundEnabled = false;
+      message.reply(Helper.wrap('Sounds disabled, sir.'));
+    }
+    else {
+      soundEnabled = !soundEnabled;
+      if (soundEnabled) message.reply(Helper.wrap('Sound enabled, sir.'));
+      else message.reply(Helper.wrap('Sound disabled, sir.'));
+    }
+  }
+  else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
+}
+
 function showHelp(args, message) {
   var toReturn = 'No commands to run!';
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available commands:\n';
     for (var command in commands) {
-      if (args === '-all' || args === '-a') {
+      if (args == '-all' || args == '-a') {
         data = commands[command];
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!skraa' && command != '!whatislove') {
+        if (command != '!help' && command != '!clear' && command != '!toggleSound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!skraa' && command != '!whatislove') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -215,7 +251,7 @@ function showMusic(args, message) {
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available music commands:\n';
     for (var command in commands) {
-      if (command === '!queue' || command === '!voteskip' || command === '!song') {
+      if (command == '!queue' || command == '!voteskip' || command == '!song') {
         data = commands[command];
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }        
