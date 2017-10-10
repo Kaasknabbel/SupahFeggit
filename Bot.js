@@ -136,7 +136,7 @@ function clearQueue(args, message) {
 }
 
 function removeFromQueue(args, message) {
-  if (!Queue.isEmpty()) Queue.remove(args, message);
+  if (!Queue.isEmpty()) Queue.removeSong(args, message);
   else message.reply(Helper.wrap('No songs in queue.'));
 }
 
