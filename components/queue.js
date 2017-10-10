@@ -37,6 +37,18 @@ Queue.prototype.isEmpty = function() {
   return this.queue.length == 0;
 }
 
+Queue.prototype.getList = function(args, message) {
+  var vm = this;
+  if (vm.queue.length > 0) {
+    var toReturn = 'Current queue:\n';
+    for (var song = 0; song < vm.queue.length; song++) {
+      toReturn += '[' + (song + 1) + ']  ' + vm.queue[song].title + '\n';
+    }
+    return message.reply(Helper.wrap(toReturn));
+  }
+  else return message.reply(Helper.wrap('No songs in queue.'));
+}
+
 Queue.prototype.play = function(message, info) {
   var vm = this;
   var channel = vm.getAuthorVoiceChannel(message);
