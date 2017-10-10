@@ -53,6 +53,10 @@ var commands = {
     execute: showSong,
     description: 'Get the current song'
   },
+  '!list': {
+    execute: getQueueList,
+    description: 'Get a list of the current queue'
+  },
   '!sounds': {
     execute: showSounds,
     description: 'Get a list of the available sound samples'
@@ -117,6 +121,10 @@ function showSong(args, message) {
 
 function voteSkip(args, message) {
   Queue.voteSkip(message);
+}
+
+function getQueueList(args, message) {
+  Queue.getList(args, message);
 }
 
 function clearQueue(args, message) {
