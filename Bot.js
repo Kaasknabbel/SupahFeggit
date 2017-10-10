@@ -7,7 +7,6 @@ var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
 
-var crashplease
 var jh = '235065709011533826';
 var rv = '199234428709502976';
 var gv = '260387356761260033';
