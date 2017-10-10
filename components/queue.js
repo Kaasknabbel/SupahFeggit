@@ -69,7 +69,7 @@ Queue.prototype.play = function(message, info) {
     vm.currentDispatcher = connection.playStream(stream, {
       seek: 0,
       volume: 0.2
-    }).catch(console.error);
+    });
 
     vm.currentDispatcher.on('end', event => {
       vm.remove(message, info);
