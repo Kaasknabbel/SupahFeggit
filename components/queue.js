@@ -131,13 +131,18 @@ Queue.prototype.voteSkip = function(message) {
 }
 
 Queue.prototype.remove = function(message, info) {
-  this.queue.shift();
-
-  if (this.queue.length > 0) {
-    this.play(message, info);
+  var vm = this;
+  vm.queue.shift();
+  if (vm.queue.length > 0) {
+    vm.play(message, info);
   } else {
     if (info) message.channel.sendMessage(Helper.wrap('No more songs in queue.'));
   }
+}
+
+Queue.prototype.removeSong = function(args, message) {
+  var vm = this;
+  
 }
 
 Queue.prototype.clearQueue = function(message) {
