@@ -65,6 +65,10 @@ var commands = {
     execute: whatislove,
     description: 'What is love?'
   },
+  '!gaaay': {
+    execute: gaaay,
+    description: 'Ha, gaaaaay!'
+  },
   '!personal': {
     execute: personalQuote,
     description: 'Get your own personal message'
@@ -122,6 +126,14 @@ function whatislove(args, message) {
   }
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
+
+function gaaay(args, message) {
+  if (soundEnabled) {
+    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=YaG5SAw1n0c", message, false);
+    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+  }
+  else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
+}  
 
 function rickroll(args, message) {
   var channel = Queue.getAuthorVoiceChannel(message);
@@ -238,7 +250,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!skraa' && command != '!whatislove') {
+        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!skraa' && command != '!whatislove' && command != '!gaaay') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -267,7 +279,7 @@ function showSounds(args, message) {
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available sound samples:\n';
     for (var command in commands) {
-      if (command === '!skraa' || command === '!whatislove') {
+      if (command == '!skraa' || command == '!whatislove' || command == '!gaaay') {
         data = commands[command];
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }        
