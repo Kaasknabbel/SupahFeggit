@@ -57,6 +57,10 @@ var commands = {
     execute: getQueueList,
     description: 'Get a list of the current queue'
   },
+  '!remove': {
+    execute: removeFromQueue,
+    description: 'Admin only - remove a specific song from the queue'
+  },
   '!sounds': {
     execute: showSounds,
     description: 'Get a list of the available sound samples'
@@ -129,6 +133,11 @@ function getQueueList(args, message) {
 
 function clearQueue(args, message) {
   Queue.clearQueue(message); 
+}
+
+function removeFromQueue(args, message) {
+  if (!Queue.isEmpty()) Queue.remove(args, message);
+  else message.reply(Helper.wrap('No songs in queue.'));
 }
 
 function skraa(args, message) {
@@ -294,7 +303,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
+        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!remove' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -309,10 +318,18 @@ function showMusic(args, message) {
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available music commands:\n';
     for (var command in commands) {
-      if (command == '!queue' || command == '!voteskip' || command == '!song') {
-        data = commands[command];
-        toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
-      }        
+      if (args == '-all' || args == '-a') {
+        if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list' || command == '!clear' || command == '!remove') {
+          data = commands[command];
+          toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+        } 
+        else {
+          if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list') {
+            data = commands[command];
+            toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+          }
+        }    
+      }
     }
   }
   message.reply(Helper.wrap(toReturn));
