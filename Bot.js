@@ -136,8 +136,11 @@ function clearQueue(args, message) {
 }
 
 function removeFromQueue(args, message) {
-  if (!Queue.isEmpty()) Queue.removeSong(args, message);
-  else message.reply(Helper.wrap('No songs in queue.'));
+  if (admins.includes(message.member.user.id)) { 
+    if (!Queue.isEmpty()) Queue.removeSong(args, message);
+    else return message.reply(Helper.wrap('No songs in queue.'));
+  }
+  else return message.reply(Helper.wrap('You need to be an admin to remove a specific song.'));
 }
 
 function skraa(args, message) {
