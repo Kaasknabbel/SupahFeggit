@@ -56,7 +56,7 @@ Queue.prototype.play = function(message, info) {
 
     vm.currentDispatcher = connection.playStream(stream, {
       seek: 0,
-      volume: 0.5
+      volume: 0.2
     });
 
     vm.currentDispatcher.on('end', event => {
