@@ -149,48 +149,42 @@ function removeFromQueue(args, message) {
 
 function skraa(args, message) {
   if (soundEnabled) {
-    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
-    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+    doQueue("https://www.youtube.com/watch?v=zVrTEvwjdDY", message, false);
   }
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
 
 function whatislove(args, message) {
   if (soundEnabled) {
-    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=W-1USI_uXho", message, false);
-    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+    doQueue("https://www.youtube.com/watch?v=W-1USI_uXho", message, false);
   }
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
 
 function gaaay(args, message) {
   if (soundEnabled) {
-    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=YaG5SAw1n0c", message, false);
-    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+    doQueue("https://www.youtube.com/watch?v=YaG5SAw1n0c", message, false);
   }
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }  
 
 function krakaka(args, message) {
   if (soundEnabled) {
-    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=Gn1Cw_1x2tM", message, false);
-    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+    doQueue("https://www.youtube.com/watch?v=Gn1Cw_1x2tM", message, false);
   }
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
 
 function moeder(args, message) {
   if (soundEnabled) {
-    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=DF4GPpm5hzE", message, false);
-    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+    doQueue("https://www.youtube.com/watch?v=DF4GPpm5hzE", message, false);
   }
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
 
 function nomoney(args, message) {
   if (soundEnabled) {
-    if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=uBHBA2DjCpA", message, false);
-    else return message.reply(Helper.wrap('This command is only allowed when no song is playing.'));
+    doQueue("https://www.youtube.com/watch?v=uBHBA2DjCpA", message, false);
   }
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));
 }
