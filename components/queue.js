@@ -90,7 +90,7 @@ Queue.prototype.play = function(message, info) {
 Queue.prototype.leaveVoicechannel = function(args, message) {
   var vm = this;
   var channel = vm.getAuthorVoiceChannel(message); 
-  channel.leave();
+  //channel.leave();
 }
 
 Queue.prototype.showSong = function(message) {
