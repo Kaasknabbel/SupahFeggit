@@ -61,6 +61,10 @@ var commands = {
     execute: removeFromQueue,
     description: 'Admin only - remove a specific song from the queue'
   },
+  '!leave': {
+    execute: leaveChannel,
+    description: 'Admin only - remove bot from the voicechannel'
+  },
   '!sounds': {
     execute: showSounds,
     description: 'Get a list of the available sound samples'
@@ -259,6 +263,13 @@ function doQueue(args, message, info) {
       message.reply(Helper.wrap(err));
     });
   }
+}
+
+function leaveChannel(args, message) {
+  if (admins.includes(message.member.user.id)) { 
+    Queue.leaveVoicechannel(args, message);
+  }
+  else return message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
 function getVideo(args, message) {
