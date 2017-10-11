@@ -146,6 +146,7 @@ Queue.prototype.removeSong = function(args, message) {
     var song = vm.queue.length - 1;
     var toReturn = 'Song has been removed from the queue:\n[' + (song + 1) + ']  ' + vm.queue[song].title + '\n';
     vm.queue.pop();
+    if (song == 0) vm.currentDispatcher.end();
     return message.reply(Helper.wrap(toReturn));
   }
   else {
@@ -154,12 +155,14 @@ Queue.prototype.removeSong = function(args, message) {
         var song = args - 1;
         var toReturn = 'Song has been removed from the queue:\n[' + (song + 1) + ']  ' + vm.queue[song].title + '\n';  
         vm.queue.splice(song, 1);
+        if (song == 0) vm.currentDispatcher.end();
         return message.reply(Helper.wrap(toReturn));
       }
       else {
         var song = vm.queue.length - 1;
         var toReturn = 'Song has been removed from the queue:\n[' + (song + 1) + ']  ' + vm.queue[song].title + '\n';
         vm.queue.pop();
+        if (song == 0) vm.currentDispatcher.end();
         return message.reply(Helper.wrap(toReturn));        
       }
     }
