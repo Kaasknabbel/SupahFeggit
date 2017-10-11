@@ -74,7 +74,7 @@ Queue.prototype.play = function(message, info) {
     });
 
     vm.currentDispatcher.on('end', event => {
-      if(vm.isEmpty) connection.disconnect();
+      if(vm.isEmpty()) connection.disconnect();
       vm.remove(message, info);
     });
 
