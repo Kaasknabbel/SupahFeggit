@@ -325,13 +325,13 @@ function showMusic(args, message) {
         if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list' || command == '!clear' || command == '!remove') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
-        } 
-        else {
-          if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list') {
-            data = commands[command];
-            toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
-          }
-        }    
+        }
+      }
+      else {
+        if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list') {
+          data = commands[command];
+          toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+        }
       }
     }
   }
