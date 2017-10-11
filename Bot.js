@@ -199,6 +199,7 @@ function rickroll(args, message) {
   var channel = Queue.getAuthorVoiceChannel(message);
   if (Queue.isEmpty() && soundEnabled && channel) {
     if (admins.includes(message.member.user.id)) { 
+      doQueue("https://www.youtube.com/watch?v=PirBWXzL0Xs", message, false);
       return message.reply(Helper.wrap('Ofcourse sir, admin priviliges granted.')); 
     }
     doQueue("https://www.youtube.com/watch?v=PirBWXzL0Xs", message, false);
