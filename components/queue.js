@@ -142,7 +142,29 @@ Queue.prototype.remove = function(message, info) {
 
 Queue.prototype.removeSong = function(args, message) {
   var vm = this;
-  
+  if (args == "") {
+    var song = vm.queue.length - 1;
+    var toReturn = 'Song has been removed from the queue:\n[' + (song + 1) + ']  ' + vm.queue[song].title + '\n';
+    vm.queue.pop();
+    return message.reply(Helper.wrap(toReturn));
+  }
+  else {
+    if (isNormalInteger(args)) {
+      if (args <= vm.queue.length) {
+        var song = args - 1;
+        var toReturn = 'Song has been removed from the queue:\n[' + (song + 1) + ']  ' + vm.queue[song].title + '\n';  
+        vm.queue.splice(song, 1);
+        return message.reply(Helper.wrap(toReturn));
+      }
+      else {
+        var song = vm.queue.length - 1;
+        var toReturn = 'Song has been removed from the queue:\n[' + (song + 1) + ']  ' + vm.queue[song].title + '\n';
+        vm.queue.pop();
+        return message.reply(Helper.wrap(toReturn));        
+      }
+    }
+    else return message.reply(Helper.wrap('Argument is not a positive integer. Please give the correct queue number of the song to remove it.'));
+  }
 }
 
 Queue.prototype.clearQueue = function(message) {
@@ -176,4 +198,9 @@ function getAmountOfVotesNeeded(members, skipVotes, skipMajority) {
     }
   }
   return needed;
+}
+
+function isNormalInteger(str) {
+    var n = Math.floor(Number(str));
+    return String(n) === str && n > 0;
 }
