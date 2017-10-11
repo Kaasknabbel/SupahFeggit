@@ -87,6 +87,12 @@ Queue.prototype.play = function(message, info) {
   }).catch(console.error);
 }
 
+Queue.prototype.leaveVoicechannel = function(args, message) {
+  var vm = this;
+  var channel = vm.getAuthorVoiceChannel(message); 
+  channel.leave();
+}
+
 Queue.prototype.showSong = function(message) {
   var song = this.queue[0];
 
