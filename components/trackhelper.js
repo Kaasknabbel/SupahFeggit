@@ -68,7 +68,7 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
      
       if (results.items) {
         for (var result = 0; result < amount; result++) {
-          var item = results.items[0];
+          var item = results.items[result];
           if (item != null) {
             if (item.id.videoId) {
               var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
