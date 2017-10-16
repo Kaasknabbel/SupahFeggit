@@ -35,7 +35,7 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
         console.log(error);
         reject('No videos found.');
       }
-
+      
       if (results.items) {
         results.items.forEach(function(item) {
           if (item.id.videoId) {
@@ -65,9 +65,10 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
         console.log(error);
         reject('No videos found.');
       }
-
+     
       if (results.items) {
         var item = results.items[0];
+        console.log(item);
         if (item.id.videoId) {
           var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
           trackList.push(new Track(buildTrack(item, url)));
