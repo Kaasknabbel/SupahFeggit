@@ -60,7 +60,7 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
   var baseUrl = 'https://www.youtube.com/watch?v=';
 
   return new Promise(function(resolve, reject) {
-    youTube.search(searchWord, amount, {type: video}, function(error, results) {
+    youTube.search(searchWord, amount, {type: 'video'}, function(error, results) {
       if (error) {
         console.log(error);
         reject('No videos found.');
