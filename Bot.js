@@ -252,7 +252,7 @@ function doQueue(args, message, info) {
       message.reply(Helper.wrap(err));
     });
   } else {
-    TrackHelper.getFirstTrack(args, 10).then(track => {
+    TrackHelper.getFirstTrack(args, 1).then(track => {
       Queue.add(track, message, info);
     }).catch(err => {
       message.reply(Helper.wrap(err));
