@@ -67,11 +67,14 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
       }
      
       if (results.items) {
-        var item = results.items[0];
-        if (item != null) {
-          if (item.id.videoId) {
-            var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
-            trackList.push(new Track(buildTrack(item, url)));
+        for (var result = 0; result < amount; result++) {
+          var item = results.items[0];
+          if (item != null) {
+            if (item.id.videoId) {
+              var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
+              trackList.push(new Track(buildTrack(item, url)));
+            }
+            result = amount;
           }
         }
       }
