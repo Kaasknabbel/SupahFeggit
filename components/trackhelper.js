@@ -68,11 +68,13 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
      
       if (results.items) {
         var item = results.items[0];
-        console.log(item);
-        if (item.id.videoId) {
-          var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
-          trackList.push(new Track(buildTrack(item, url)));
+        if (item != null) {
+          if (item.id.videoId) {
+            var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
+            trackList.push(new Track(buildTrack(item, url)));
+          }
         }
+        else reject ('No videos found.');
       }
 
       var track = trackList.find(video => {
