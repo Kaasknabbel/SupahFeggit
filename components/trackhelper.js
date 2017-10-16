@@ -74,7 +74,6 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
             trackList.push(new Track(buildTrack(item, url)));
           }
         }
-        else reject ('No videos found.');
       }
 
       var track = trackList.find(video => {
