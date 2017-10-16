@@ -30,7 +30,7 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
   var baseUrl = 'https://www.youtube.com/watch?v=';
 
   return new Promise(function(resolve, reject) {
-    youTube.search(searchWord, amount, function(error, results) {
+    youTube.search(searchWord, amount, {type: 'video'}, function(error, results) {
       if (error) {
         console.log(error);
         reject('No videos found.');
@@ -67,15 +67,11 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
       }
      
       if (results.items) {
-        for (var result = 0; result < amount; result++) {
-          var item = results.items[result];
-          console.log(item);
-          if (item != null) {
-            if (item.id.videoId) {
-              var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
-              trackList.push(new Track(buildTrack(item, url)));
-              result = amount;
-            }
+        var item = results.items[0];
+        if (item != null) {
+          if (item.id.videoId) {
+            var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
+            trackList.push(new Track(buildTrack(item, url)));
           }
         }
       }
