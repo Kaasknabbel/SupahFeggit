@@ -74,8 +74,8 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
             if (item.id.videoId) {
               var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
               trackList.push(new Track(buildTrack(item, url)));
+              result = amount;
             }
-            result = amount;
           }
         }
       }
