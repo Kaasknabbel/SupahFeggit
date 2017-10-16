@@ -36,12 +36,14 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
         reject('No videos found.');
       }
 
-      results.items.forEach(function(item) {
-        if (item.id.videoId) {
-          var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
-          trackList.push(new Track(buildTrack(item, url)));
-        }
-      });
+      if (results.items) {
+        results.items.forEach(function(item) {
+          if (item.id.videoId) {
+            var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
+            trackList.push(new Track(buildTrack(item, url)));
+          }
+        });
+      }
 
       var track = Helper.shuffle(trackList).find(video => {
         return video && video.url && video.title;
@@ -64,10 +66,12 @@ TrackHelper.prototype.getFirstTrack = function(searchWord, amount) {
         reject('No videos found.');
       }
 
-      var item = results.items[0];
-      if (item.id.videoId) {
-        var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
-        trackList.push(new Track(buildTrack(item, url)));
+      if (results.items) {
+        var item = results.items[0];
+        if (item.id.videoId) {
+          var url = 'https://www.youtube.com/watch?v=' + item.id.videoId;
+          trackList.push(new Track(buildTrack(item, url)));
+        }
       }
 
       var track = trackList.find(video => {
