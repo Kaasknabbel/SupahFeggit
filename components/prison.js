@@ -6,7 +6,7 @@ module.exports = Prison = function() {
   var vm = this;
 }
 
-Prison.prototype.moveToPrison(args, message) {
+Prison.prototype.moveToPrison = function(args, message) {
   if (!args[0].mentions.users.first()) 
     return message.reply(Helper.wrap('Please mention a user to move to the prison, sir.'));
   if (args[1]) {
@@ -18,7 +18,7 @@ Prison.prototype.moveToPrison(args, message) {
   }
 }
 
-Prison.prototype.releaseFromPrison(args, message) {
+Prison.prototype.releaseFromPrison = function(args, message) {
   
 }
 
