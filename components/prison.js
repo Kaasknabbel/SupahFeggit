@@ -6,7 +6,7 @@ module.exports = Prison = function() {
   var vm = this;
 }
 
-Prison.prototype.moveToPrison = function(args, message) {
+Prison.prototype.moveToPrison = function(args, message, client) {
   var vm = this;
   var argsArray = args.split(" ");
   console.log(argsArray);
@@ -28,7 +28,7 @@ Prison.prototype.moveToPrison = function(args, message) {
   }
 }
 
-Prison.prototype.releaseFromPrison = function(args, message) {
+Prison.prototype.releaseFromPrison = function(args, message, client) {
   var vm = this;
   if (message.mentions.users.size === 0) 
     return message.reply(Helper.wrap('Please mention a user to release from the prison, sir.'));
