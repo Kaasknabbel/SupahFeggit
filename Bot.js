@@ -302,14 +302,14 @@ function toggleSound (args, message) {
 
 function prison(args, message) {
   if (admins.includes(message.member.user.id)) {
-    Prison.moveToPrison(args, message);
+    Prison.moveToPrison(args, message, Bot);
   }
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
 function release(args, message) {
   if (admins.includes(message.member.user.id)) {
-    Prison.releaseFromPrison(args, message);
+    Prison.releaseFromPrison(args, message, Bot);
   }
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
