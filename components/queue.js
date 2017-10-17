@@ -12,7 +12,6 @@ module.exports = Queue = function() {
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
     vm.maxlen = values.maxlen;
     vm.skipmajority = values.skipmajority;
-    vm.admins = ['235065709011533826', '199234428709502976'];
   }).catch(err => {
     console.log(err);
     vm.hasUnmetDepedencies = true;
@@ -107,7 +106,7 @@ Queue.prototype.voteSkip = function(message) {
     return message.reply(Helper.wrap('No song is currently playing.'));
   }
 
-  if (vm.admins.includes(message.member.user.id)) {
+  if (Helper.admins.includes(message.member.user.id)) {
     this.currentDispatcher.end();
     return message.reply(Helper.wrap('Of course sir.'));
   }
@@ -174,7 +173,7 @@ Queue.prototype.removeSong = function(args, message) {
 
 Queue.prototype.clearQueue = function(message) {
    var vm = this;
-   if (vm.admins.includes(message.member.user.id)) {
+   if (Helper.admins.includes(message.member.user.id)) {
      vm.queue = [];
      if (vm.currentDispatcher) {
        vm.currentDispatcher.end();  
