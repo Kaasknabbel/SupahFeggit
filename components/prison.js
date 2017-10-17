@@ -33,7 +33,10 @@ Prison.prototype.releaseFromPrison = function(args, message) {
   if (message.mentions.users.size === 0) 
     return message.reply(Helper.wrap('Please mention a user to release from the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
-  return message.reply(Helper.wrap(prisonMember + ' has been released from the prison, sir.'));
+  if (client.memberHasRole(prisonMember, 'Prison')) {
+    return message.reply(Helper.wrap(prisonMember + ' has been released from the prison, sir.'));
+  }
+  else return message.reply(Helper.wrap(prisonMember + ' is currently not imprisoned, sir.'));
 }
 
 function isNormalInteger(str) {
