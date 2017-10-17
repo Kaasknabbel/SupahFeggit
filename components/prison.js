@@ -34,8 +34,10 @@ Prison.prototype.releaseFromPrison = function(args, message) {
     return message.reply(Helper.wrap('Please mention a user to release from the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
   var prisonRole = message.guild.roles.find("name", "Prison");
-  var membersInPrison = message.guild.roles.get(prisonRole.id).members;
-  console.log(Array.prototype.slice.call(membersInPrison, 0));
+  var membersInPrisonColl = message.guild.roles.get(prisonRole.id).members;
+  var membersInPrison = [];
+  for(var i = 0; i < membersInPrisonColl.length; i++) membersInPrison.push(membersInPrisonColl[i]);
+  console.log(membersInPrison);
   if (membersInPrison.includes(prisonMember)) {
     return message.reply(Helper.wrap(prisonMember + ' has been released from the prison, sir.'));
   }
