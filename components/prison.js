@@ -12,12 +12,11 @@ Prison.prototype.moveToPrison = function(args, message) {
   if (message.mentions.users.size === 0) 
     return message.reply(Helper.wrap('Please mention a user to move to the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
-  console.log(prisonMember.user.username);
   if (Helper.admins.includes(prisonMember.id))
     return message.reply(Helper.wrap('You cannot imprison an admin, feggit.'));
   var prisonRole = message.guild.roles.find("name", "Prison");
   if (prisonMember.roles.has(prisonRole.id))
-    return message.reply(Helper.wrap(prisonMember + ' is already in prison, sir.'));
+    return message.reply(Helper.wrap(prisonMember.user.username + ' is already in prison, sir.'));
   var prisonerChannel = checkVoicePrisoner(message, prisonMember);
   var prisonChannel = message.guild.channels.filter(g => {
     return g.type == 'voice' && g.name == 'Gevangenis';
@@ -25,7 +24,7 @@ Prison.prototype.moveToPrison = function(args, message) {
   var amountOfTime = argsArray.slice(1).join(" ");
   if (amountOfTime) {
     if (!isNormalInteger(amountOfTime))
-      return message.reply(Helper.wrap('Please mention a valid amount of time to imprison the user, sir.'));
+      return message.reply(Helper.wrap('Please mention a valid amount of time to imprison ' + prisonMember.user.username + ', sir.'));
     setTimeout(() => {
       vm.releaseFromPrison(args, message);
     }, amountOfTime * 1000);
@@ -33,14 +32,14 @@ Prison.prototype.moveToPrison = function(args, message) {
     if (prisonerChannel) {
       message.guild.member(prisonMember).setVoiceChannel(prisonChannel);
     }
-    return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir.'));
+    return message.reply(Helper.wrap(prisonMember.user.username + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir.'));
   }
   else {
     prisonMember.addRole(prisonRole).catch(console.error);
     if (prisonerChannel) {
       message.guild.member(prisonMember).setVoiceChannel(prisonChannel);
     }
-    return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for unlimited time, sir.'));
+    return message.reply(Helper.wrap(prisonMember.user.username + ' has been moved to the prison for unlimited time, sir.'));
   }
 }
 
@@ -52,9 +51,9 @@ Prison.prototype.releaseFromPrison = function(args, message) {
   var prisonRole = message.guild.roles.find("name", "Prison");
   if (prisonMember.roles.has(prisonRole.id)) {
     prisonMember.removeRole(prisonRole).catch(console.error);
-    return message.reply(Helper.wrap(prisonMember + ' has been released from the prison, sir.'));
+    return message.reply(Helper.wrap(prisonMember.user.username + ' has been released from the prison, sir.'));
   }
-  else return message.reply(Helper.wrap(prisonMember + ' is currently not imprisoned, sir.'));
+  else return message.reply(Helper.wrap(prisonMember.user.username + ' is currently not imprisoned, sir.'));
 }
 
 function checkVoicePrisoner(message, prisonMember) {
