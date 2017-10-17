@@ -13,7 +13,7 @@ Prison.prototype.moveToPrison = function(args, message) {
     return message.reply(Helper.wrap('Please mention a user to move to the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
   var prisonRole = message.guild.roles.find("name", "Prison");
-  var prisonerChannel = vm.checkVoicePrisoner(message, prisonMember);
+  var prisonerChannel = checkVoicePrisoner(message, prisonMember);
   var amountOfTime = argsArray.slice(1).join(" ");
   if (amountOfTime) {
     if (!isNormalInteger(amountOfTime))
