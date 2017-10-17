@@ -14,7 +14,7 @@ Prison.prototype.moveToPrison = function(args, message) {
       return message.reply(Helper.wrap('Please mention a valid amount of time to kick ' + args[0].mentions.users.first() + ', sir.'));
   }
   else {
-    return message.reply(Helper.wrap(args[0].mentions.users.first() + ' has been moved to the prison for unlimited time.));
+    return message.reply(Helper.wrap(args[0].mentions.users.first() + ' has been moved to the prison for unlimited time.'));
   }
 }
 
