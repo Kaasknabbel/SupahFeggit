@@ -324,7 +324,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!remove' && command != '!prison' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
+        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!remove' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
