@@ -236,7 +236,7 @@ function doQueueInfo(args, message) {
 
 function doQueue(args, message, info) {
   var prisonRole = message.guild.roles.find("name", "Prison");
-  if (message.author.roles.has(prisonRole.id)) {
+  if (message.member.roles.has(prisonRole.id)) {
     return message.reply(Helper.wrap('You are in prison. You are not allowed to play music.'));
   }
     
