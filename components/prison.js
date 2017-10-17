@@ -14,6 +14,7 @@ Prison.prototype.moveToPrison = function(args, message) {
   var prisonMember = message.guild.member(message.mentions.users.first());
   var prisonRole = message.guild.roles.find("name", "Prison");
   var prisonerChannel = checkVoicePrisoner(message, prisonMember);
+  var prisonChannel = voiceChannel.name('Gevangenis');
   if (prisonMember.roles.has(prisonRole.id))
     return message.reply(Helper.wrap(prisonMember + ' is already in prison, sir.'));
   console.log(prisonerChannel);
@@ -25,7 +26,7 @@ Prison.prototype.moveToPrison = function(args, message) {
       vm.releaseFromPrison(args, message);
     }, amountOfTime * 1000);
     if (prisonerChannel) {
-      
+      message.guild.member(prisonMember).setVoiceChannel(prisonChannel)
     }
     prisonMember.addRole(prisonRole).catch(console.error);
     return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir.'));
