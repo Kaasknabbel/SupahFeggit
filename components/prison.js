@@ -15,11 +15,11 @@ Prison.prototype.moveToPrison = function(args, message) {
   var amountOfTime = argsArray.slice(1).join(" ");
   if (amountOfTime) {
     if (!isNormalInteger(amountOfTime))
-      return message.reply(Helper.wrap('Please mention a valid amount of time to kick ' + prisonMember.name + ', sir.'));
-    return message.reply(Helper.wrap(prisonMember.name + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir'));
+      return message.reply(Helper.wrap('Please mention a valid amount of time to kick ' + prisonMember.username + ', sir.'));
+    return message.reply(Helper.wrap(prisonMember.username + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir'));
   }
   else {
-    return message.reply(Helper.wrap(prisonMember.name + ' has been moved to the prison for unlimited time, sir.'));
+    return message.reply(Helper.wrap(prisonMember.username + ' has been moved to the prison for unlimited time, sir.'));
   }
 }
 
