@@ -20,10 +20,11 @@ Prison.prototype.moveToPrison = function(args, message) {
     setTimeout(() => {
       vm.releaseFromPrison(args, message);
     }, amountOfTime * 1000);
+    prisonMember.addRole(prisonRole).catch(console.error);
     return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir'));
   }
   else {
-    
+    prisonMember.addRole(prisonRole).catch(console.error);  
     return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for unlimited time, sir.'));
   }
 }
@@ -34,9 +35,8 @@ Prison.prototype.releaseFromPrison = function(args, message) {
     return message.reply(Helper.wrap('Please mention a user to release from the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
   var prisonRole = message.guild.roles.find("name", "Prison");
-  //var membersInPrison = message.guild.roles.get(prisonRole.id).members;
-  //if (membersInPrison.includes(prisonMember)) {
   if (prisonMember.roles.has(prisonRole.id)) {
+    prisonMember.removeRole(prisonRole).catch(console.error);
     return message.reply(Helper.wrap(prisonMember + ' has been released from the prison, sir.'));
   }
   else return message.reply(Helper.wrap(prisonMember + ' is currently not imprisoned, sir.'));
