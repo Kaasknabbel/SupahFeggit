@@ -7,7 +7,8 @@ module.exports = Prison = function() {
 }
 
 Prison.prototype.moveToPrison = function(args, message) {
-  console.log(args);
+  var argsArray = args.split(" ");
+  console.log(argsArray);
   if (!args[0].mentions.users.first()) 
     return message.reply(Helper.wrap('Please mention a user to move to the prison, sir.'));
   if (args[1]) {
