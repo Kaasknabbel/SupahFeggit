@@ -12,7 +12,7 @@ Prison.prototype.moveToPrison = function(args, message) {
   if (message.mentions.users.size === 0) 
     return message.reply(Helper.wrap('Please mention a user to move to the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
-  console.log(prisonMember);
+  console.log(prisonMember.username);
   if (Helper.admins.includes(prisonMember.id))
     return message.reply(Helper.wrap('You cannot imprison an admin, feggit.'));
   var prisonRole = message.guild.roles.find("name", "Prison");
