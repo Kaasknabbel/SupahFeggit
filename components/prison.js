@@ -21,7 +21,7 @@ Prison.prototype.moveToPrison = function(args, message) {
       vm.releaseFromPrison(args, message);
     }, amountOfTime * 1000);
     prisonMember.addRole(prisonRole).catch(console.error);
-    return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir'));
+    return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir.'));
   }
   else {
     prisonMember.addRole(prisonRole).catch(console.error);  
