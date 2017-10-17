@@ -431,6 +431,7 @@ function init() {
     WordService = registerService(WordService, ['!words']);
     WeatherService = registerService(WeatherService, ['!weather']);
     Dumpert = registerService(Dumpert, ['!dumpert']);
+    Prison = registerService(Prison, ['!prison', '!release'];
   }).catch(console.error);
 }
 
