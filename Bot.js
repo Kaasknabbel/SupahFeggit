@@ -6,6 +6,7 @@ var TrackHelper = require('./components/trackhelper.js');
 var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
+var Prison = require('./components/prison.js');
 
 var jh = '235065709011533826';
 var rv = '199234428709502976';
@@ -61,10 +62,6 @@ var commands = {
     execute: removeFromQueue,
     description: 'Admin only - remove a specific song from the queue'
   },
-  '!leave': {
-    execute: leaveChannel,
-    description: 'Admin only - remove bot from the voicechannel'
-  },
   '!sounds': {
     execute: showSounds,
     description: 'Get a list of the available sound samples'
@@ -112,6 +109,14 @@ var commands = {
   '!clear': {
     execute: clearQueue,
     description: 'Admin only - clear the current music queue'
+  },
+  '!prison': {
+    execute: prison,
+    description: 'Admin only - move a user to the prison for a certain amount of time'
+  },
+  '!release': {
+    execute: release,
+    description: 'Admin only - release a user from the prison'
   }
 };
 
@@ -260,13 +265,6 @@ function doQueue(args, message, info) {
   }
 }
 
-function leaveChannel(args, message) {
-  if (admins.includes(message.member.user.id)) { 
-    Queue.leaveVoicechannel(args, message);
-  }
-  else return message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
-}
-
 function getVideo(args, message) {
   TrackHelper.getFirstTrack(args, 1).then(track => {
     message.reply(track.url);
@@ -302,6 +300,20 @@ function toggleSound (args, message) {
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
+function prison(args, message) {
+  if (admins.includes(message.member.user.id)) {
+    Prison.moveToPrison(args, message);
+  }
+  else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
+}
+
+function release(args, message) {
+  if (admins.includes(message.member.user.id)) {
+    Prison.releaseFromPrison(args, message);
+  }
+  else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
+}
+
 function showHelp(args, message) {
   var toReturn = 'No commands to run!';
   if (Object.keys(commands).length > 1) {
@@ -312,7 +324,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!remove' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
+        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!remove' && command != '!prison' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
