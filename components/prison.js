@@ -19,9 +19,6 @@ Prison.prototype.moveToPrison = function(args, message) {
   }).first();
   if (prisonMember.roles.has(prisonRole.id))
     return message.reply(Helper.wrap(prisonMember + ' is already in prison, sir.'));
-  console.log(prisonerChannel);
-  console.log('_________________________');
-  console.log(prisonChannel);
   var amountOfTime = argsArray.slice(1).join(" ");
   if (amountOfTime) {
     if (!isNormalInteger(amountOfTime))
