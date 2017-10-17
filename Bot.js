@@ -302,7 +302,7 @@ function toggleSound (args, message) {
 
 function prison(args, message) {
   if (admins.includes(message.member.user.id)) {
-    if (Bot.memberHasRole(jh, 'Prison')) 
+    if (client.memberHasRole(jh, 'Prison')) 
       return message.reply(Helper.wrap('Yes'));
     else return message.reply(Helper.wrap('No'));
     //Prison.moveToPrison(args, message, Bot);
