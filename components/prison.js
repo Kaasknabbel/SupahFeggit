@@ -38,8 +38,7 @@ Prison.prototype.releaseFromPrison = function(args, message) {
   var membersInPrison = [];
   for(var i = 0; i < membersInPrisonColl.size; i++) membersInPrison.push(membersInPrisonColl[i]);
   console.log(membersInPrisonColl.size, '\n');
-  console.log(membersInPrisonColl.length, '\n');
-  console.log(membersInPrisonColl, '\n');
+  console.log(membersInPrisonColl[0], '\n');
   console.log(membersInPrison);
   if (membersInPrison.includes(prisonMember)) {
     return message.reply(Helper.wrap(prisonMember + ' has been released from the prison, sir.'));
