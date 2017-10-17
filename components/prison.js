@@ -9,14 +9,16 @@ module.exports = Prison = function() {
 Prison.prototype.moveToPrison = function(args, message) {
   var argsArray = args.split(" ");
   console.log(argsArray);
-  if (!args[0].mentions.users.first()) 
+  if (!message.mentions.users.size === 0) 
     return message.reply(Helper.wrap('Please mention a user to move to the prison, sir.'));
-  if (args[1]) {
-    if (!isNormalInteger(args[1]))
-      return message.reply(Helper.wrap('Please mention a valid amount of time to kick ' + args[0].mentions.users.first() + ', sir.'));
+  var prisonMember = message.guild.member(message.mentions.users.first());
+  var amountOfTime = argsArray.slice(1).join(" ");
+  if (amountOfTime) {
+    if (!isNormalInteger(amountOfTime))
+      return message.reply(Helper.wrap('Please mention a valid amount of time to kick ' + prisonMember + ', sir.'));
   }
   else {
-    return message.reply(Helper.wrap(args[0].mentions.users.first() + ' has been moved to the prison for unlimited time.'));
+    return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for unlimited time.'));
   }
 }
 
