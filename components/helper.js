@@ -3,6 +3,13 @@ var YAML = require('yamljs');
 var exports = {};
 var keystorePath = 'keystore.yml';
 
+exports.jh = '235065709011533826';
+exports.rv = '199234428709502976';
+exports.gv = '260387356761260033';
+exports.tg = '226669570629435392';
+exports.nve = '160357117721706496';
+exports.admins = [this.jh, this.rv];
+
 var keystores = [
   env,
   yml
