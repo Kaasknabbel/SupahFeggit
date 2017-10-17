@@ -15,10 +15,14 @@ Prison.prototype.moveToPrison = function(args, message) {
   var amountOfTime = argsArray.slice(1).join(" ");
   if (amountOfTime) {
     if (!isNormalInteger(amountOfTime))
-      return message.reply(Helper.wrap('Please mention a valid amount of time to kick ' + prisonMember.displayName + ', sir.'));
+      return message.reply(Helper.wrap('Please mention a valid amount of time to imprison the user, sir.'));
+    setTimeout(() => {
+      message.reply(Helper.wrap('Start timeout'));
+    }, amountOfTime);
     return message.reply(Helper.wrap(prisonMember.displayName + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir'));
   }
   else {
+    
     return message.reply(Helper.wrap(prisonMember.displayName + ' has been moved to the prison for unlimited time, sir.'));
   }
 }
