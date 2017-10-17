@@ -16,8 +16,6 @@ Prison.prototype.moveToPrison = function(args, message) {
   var prisonerChannel = checkVoicePrisoner(message, prisonMember);
   if (prisonMember.roles.has(prisonRole.id))
     return message.reply(Helper.wrap(prisonMember + ' is already in prison, sir.'));
-  console.log(prisonMember.id);
-  console.log(message.author.id);
   console.log(prisonerChannel);
   var amountOfTime = argsArray.slice(1).join(" ");
   if (amountOfTime) {
@@ -52,7 +50,7 @@ Prison.prototype.releaseFromPrison = function(args, message) {
 }
 
 function checkVoicePrisoner(message, prisonMember) {
-  var voiceChannelArray = message.guild.channels.filter((v) => v.type == 'voice').filter((v) => v.members.exists('id', prisonMember)).array();
+  var voiceChannelArray = message.guild.channels.filter((v) => v.type == 'voice').filter((v) => v.members.exists('id', prisonMember.id)).array();
   if(voiceChannelArray.length <= 0) {
     return undefined;
   }
