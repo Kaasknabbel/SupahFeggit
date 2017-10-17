@@ -50,7 +50,7 @@ Prison.prototype.releaseFromPrison = function(args, message) {
 }
 
 function checkVoicePrisoner(message, prisonMember) {
-  var voiceChannelArray = message.guild.channels.filter((v) => v.type == 'voice').filter((v) => v.members.exists('id', prisonMember)).array();
+  var voiceChannelArray = message.guild.channels.filter((v) => v.type == 'voice').filter((v) => v.members.has('id', prisonMember)).array();
   if(voiceChannelArray.length <= 0) {
     return undefined;
   }
