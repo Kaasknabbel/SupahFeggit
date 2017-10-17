@@ -35,7 +35,8 @@ Prison.prototype.releaseFromPrison = function(args, message) {
     return message.reply(Helper.wrap('Please mention a user to release from the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
   var prisonRole = message.guild.roles.find("name", "Prison");
-  if (prisonMember.hasRole(prisonRole)) {
+  var membersInPrison = message.guild.roles.get(prisonRole).members;
+  if (membersInPrison.includes(prisonMember)) {
     return message.reply(Helper.wrap(prisonMember + ' has been released from the prison, sir.'));
   }
   else return message.reply(Helper.wrap(prisonMember + ' is currently not imprisoned, sir.'));
