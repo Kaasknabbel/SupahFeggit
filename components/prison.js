@@ -7,6 +7,7 @@ module.exports = Prison = function() {
 }
 
 Prison.prototype.moveToPrison = function(args, message) {
+  var vm = this;
   var argsArray = args.split(" ");
   console.log(argsArray);
   if (message.mentions.users.size === 0) 
@@ -17,18 +18,22 @@ Prison.prototype.moveToPrison = function(args, message) {
     if (!isNormalInteger(amountOfTime))
       return message.reply(Helper.wrap('Please mention a valid amount of time to imprison the user, sir.'));
     setTimeout(() => {
-      message.reply(Helper.wrap('Start timeout'));
-    }, amountOfTime);
-    return message.reply(Helper.wrap(prisonMember.displayName + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir'));
+      vm.releaseFromPrison(args, message);
+    }, amountOfTime * 1000);
+    return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir'));
   }
   else {
     
-    return message.reply(Helper.wrap(prisonMember.displayName + ' has been moved to the prison for unlimited time, sir.'));
+    return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for unlimited time, sir.'));
   }
 }
 
 Prison.prototype.releaseFromPrison = function(args, message) {
-  
+  var vm = this;
+  if (message.mentions.users.size === 0) 
+    return message.reply(Helper.wrap('Please mention a user to release from the prison, sir.'));
+  var prisonMember = message.guild.member(message.mentions.users.first());
+  return message.reply(Helper.wrap(prisonMember + ' has been released from the prison, sir.'));
 }
 
 function isNormalInteger(str) {
