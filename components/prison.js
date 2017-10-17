@@ -18,7 +18,7 @@ Prison.prototype.moveToPrison = function(args, message, client) {
     if (!isNormalInteger(amountOfTime))
       return message.reply(Helper.wrap('Please mention a valid amount of time to imprison the user, sir.'));
     setTimeout(() => {
-      vm.releaseFromPrison(args, message);
+      vm.releaseFromPrison(args, message, client);
     }, amountOfTime * 1000);
     return message.reply(Helper.wrap(prisonMember + ' has been moved to the prison for ' + amountOfTime + ' seconds, sir'));
   }
