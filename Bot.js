@@ -8,13 +8,6 @@ var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
 var Prison = require('./components/prison.js');
 
-var jh = '235065709011533826';
-var rv = '199234428709502976';
-var gv = '260387356761260033';
-var tg = '226669570629435392';
-var nve = '160357117721706496';
-var admins = [jh, rv];
-
 var soundEnabled = true;
 
 var commands = {
@@ -145,7 +138,7 @@ function clearQueue(args, message) {
 }
 
 function removeFromQueue(args, message) {
-  if (admins.includes(message.member.user.id)) { 
+  if (Helper.admins.includes(message.member.user.id)) { 
     if (!Queue.isEmpty()) Queue.removeSong(args, message);
     else return message.reply(Helper.wrap('No songs in queue.'));
   }
@@ -197,7 +190,7 @@ function nomoney(args, message) {
 function rickroll(args, message) {
   var channel = Queue.getAuthorVoiceChannel(message);
   if (Queue.isEmpty() && soundEnabled && channel) {
-    if (admins.includes(message.member.user.id)) { 
+    if (Helper.admins.includes(message.member.user.id)) { 
       doQueue("https://www.youtube.com/watch?v=PirBWXzL0Xs", message, false);
       return message.reply(Helper.wrap('Ofcourse sir, admin priviliges granted.')); 
     }
@@ -211,10 +204,10 @@ function personalQuote(args, message) {
   if (message.member.user.id == Helper.jh) { 
     return message.reply(Helper.wrap('Jasper is the most amazing person of the world <3 Please give him all your cookies')); 
   }
-  if (message.member.user.id == rv) { 
+  if (message.member.user.id == Helper.rv) { 
     return message.reply(Helper.wrap('Ronnie is a feggit <3')); 
   }
-  if (message.member.user.id == gv) { 
+  if (message.member.user.id == Helper.gv) { 
     var channel = Queue.getAuthorVoiceChannel(message);
     if (soundEnabled && channel) {
       if (Queue.isEmpty()) doQueue("https://www.youtube.com/watch?v=ZLZ89GBFxP8", message, false);
@@ -223,10 +216,10 @@ function personalQuote(args, message) {
     else message.reply(Helper.wrap('Sorry giel, this command is currently unavailable.'));
     return;
   }
-  if (message.member.user.id == tg) {
+  if (message.member.user.id == Helper.tg) {
     return message.reply(Helper.wrap('Teun is secretly in love with juffrouw Ellen <3')); 
   }
-  if (message.member.user.id == nve) {
+  if (message.member.user.id == Helper.nve) {
     return message.reply(Helper.wrap('No cookies for you. All of your cookies just have been donated to the holy Jasper!')); 
   }
   return message.reply(Helper.wrap('Who the fuck are you?'));
@@ -282,7 +275,7 @@ function getWeather(args, message) {
 }
 
 function toggleSound (args, message) {
-  if (admins.includes(message.member.user.id)) { 
+  if (Helper.admins.includes(message.member.user.id)) { 
     if (args == '-enable' || args == '-e') {
       soundEnabled = true;
       message.reply(Helper.wrap('Sounds enabled, sir.'));
@@ -301,14 +294,14 @@ function toggleSound (args, message) {
 }
 
 function prison(args, message) {
-  if (admins.includes(message.member.user.id)) {
+  if (Helper.admins.includes(message.member.user.id)) {
     Prison.moveToPrison(args, message);
   }
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
 function release(args, message) {
-  if (admins.includes(message.member.user.id)) {
+  if (Helper.admins.includes(message.member.user.id)) {
     Prison.releaseFromPrison(args, message);
   }
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
