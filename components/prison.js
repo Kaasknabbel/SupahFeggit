@@ -9,7 +9,7 @@ module.exports = Prison = function() {
 Prison.prototype.moveToPrison = function(args, message) {
   var argsArray = args.split(" ");
   console.log(argsArray);
-  if (!message.mentions.users.size === 0) 
+  if (message.mentions.users.size === 0) 
     return message.reply(Helper.wrap('Please mention a user to move to the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
   var amountOfTime = argsArray.slice(1).join(" ");
