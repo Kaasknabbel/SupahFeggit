@@ -8,7 +8,7 @@ exports.rv = '199234428709502976';
 exports.gv = '260387356761260033';
 exports.tg = '226669570629435392';
 exports.nve = '160357117721706496';
-exports.admins = [this.jh, this.rv];
+exports.admins = [exports.jh, exports.rv];
 
 var keystores = [
   env,
