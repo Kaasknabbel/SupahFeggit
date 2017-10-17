@@ -208,7 +208,7 @@ function rickroll(args, message) {
 }
 
 function personalQuote(args, message) {
-  if (message.member.user.id == jh) { 
+  if (message.member.user.id == Helper.jh) { 
     return message.reply(Helper.wrap('Jasper is the most amazing person of the world <3 Please give him all your cookies')); 
   }
   if (message.member.user.id == rv) { 
