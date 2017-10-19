@@ -21,7 +21,7 @@ module.exports = Queue = function() {
 Queue.prototype.add = function(track, message, info) {
   this.queue.push(track);
 
-  if (info) message.reply(Helper.wrap('Added ' + track.title + ' to the queue. (number ' + (this.queue.indexOf(track) + 1) + ')'));
+  if (info) message.reply(Helper.wrap("Added '" + track.title + "' to the queue. (number " + (this.queue.indexOf(track) + 1) + ")"));
 
   if (this.queue.length == 1) {
     this.play(message, info);
@@ -137,9 +137,9 @@ Queue.prototype.moveForward = function(args, message) {
     var toReturn = "";
     if (args == "") {
       var song = vm.queue.length - 1;
-      if (song == 0) toReturn = vm.queue[song].title + ' is already playing.';
+      if (song == 0) toReturn = "'" + vm.queue[song].title + "' is already playing.";
       else {
-        toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
+        toReturn = "'" + vm.queue[song].title + "' will be the next song played in the queue.";
         vm.queue.splice(1, 0, vm.queue[song]);
         vm.queue.pop();
       }
@@ -149,9 +149,9 @@ Queue.prototype.moveForward = function(args, message) {
       if (isNormalInteger(args)) {
         if (args <= vm.queue.length) {
           var song = args - 1;
-          if (song == 0) toReturn = vm.queue[song].title + ' is already playing.';
+          if (song == 0) toReturn = "'" + vm.queue[song].title + "' is already playing.";
           else {
-            toReturn = vm.queue[song].title + ' will be the next song played in the queue.';  
+            toReturn = "'" + vm.queue[song].title + "' will be the next song played in the queue.";  
             vm.queue.splice(1, 0, vm.queue[song]);
             vm.queue.splice((song + 1), 1);    
           }
@@ -159,9 +159,9 @@ Queue.prototype.moveForward = function(args, message) {
         }
         else {
           var song = vm.queue.length - 1;
-          if (song == 0) toReturn = vm.queue[song].title + ' is already playing.';
+          if (song == 0) toReturn = "'" + vm.queue[song].title + "' is already playing.";
           else {
-            toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
+            toReturn = "'" + vm.queue[song].title + "' will be the next song played in the queue.";
             vm.queue.splice(1, 0, vm.queue[song]);
             vm.queue.pop();
           }
