@@ -133,32 +133,45 @@ Queue.prototype.voteSkip = function(message) {
 
 Queue.prototype.moveForward = function(args, message) {
   var vm = this;
-  if (args == "") {
-    var song = vm.queue.length - 1;
-    var toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
-    vm.queue.splice(1, 0, vm.queue[song]);
-    vm.queue.pop();
-    return message.reply(Helper.wrap(toReturn));
-  }
-  else {
-    if (isNormalInteger(args)) {
-      if (args <= vm.queue.length) {
-        var song = args - 1;
-        var toReturn = vm.queue[song].title + ' will be the next song played in the queue.';  
-        vm.queue.splice(1, 0, vm.queue[song]);
-        vm.queue.splice(song, 1);      
-        return message.reply(Helper.wrap(toReturn));
-      }
+  if (!vm.isEmpty()) {
+    var toReturn = "";
+    if (args == "") {
+      var song = vm.queue.length - 1;
+      if (song = 0) toReturn = vm.queue[song].title + ' is already playing.';
       else {
-        var song = vm.queue.length - 1;
-        var toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
+        toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
         vm.queue.splice(1, 0, vm.queue[song]);
         vm.queue.pop();
-        return message.reply(Helper.wrap(toReturn));  
       }
+      return message.reply(Helper.wrap(toReturn));
     }
-    else return message.reply(Helper.wrap('Argument is not a positive integer. Please give the correct queue number of the song to remove it.'));
-  }    
+    else {
+      if (isNormalInteger(args)) {
+        if (args <= vm.queue.length) {
+          var song = args - 1;
+          if (song = 0) toReturn = vm.queue[song].title + ' is already playing.';
+          else {
+            toReturn = vm.queue[song].title + ' will be the next song played in the queue.';  
+            vm.queue.splice(1, 0, vm.queue[song]);
+            vm.queue.splice((song + 1), 1);    
+          }
+          return message.reply(Helper.wrap(toReturn));
+        }
+        else {
+          var song = vm.queue.length - 1;
+          if (song = 0) toReturn = vm.queue[song].title + ' is already playing.';
+          else {
+            toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
+            vm.queue.splice(1, 0, vm.queue[song]);
+            vm.queue.pop();
+          }
+          return message.reply(Helper.wrap(toReturn));  
+        }
+      }
+      else return message.reply(Helper.wrap('Argument is not a positive integer. Please give the correct queue number of the song to remove it.'));
+    }    
+  }
+  else return message.reply(Helper.wrap('You cannot move a song forward with an empty queue, feggit.'));
 }
 
 Queue.prototype.remove = function(message, info) {
