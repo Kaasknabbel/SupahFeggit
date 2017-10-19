@@ -137,7 +137,7 @@ Queue.prototype.moveForward = function(args, message) {
     var toReturn = "";
     if (args == "") {
       var song = vm.queue.length - 1;
-      if (song = 0) toReturn = vm.queue[song].title + ' is already playing.';
+      if (song == 0) toReturn = vm.queue[song].title + ' is already playing.';
       else {
         toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
         vm.queue.splice(1, 0, vm.queue[song]);
@@ -149,7 +149,7 @@ Queue.prototype.moveForward = function(args, message) {
       if (isNormalInteger(args)) {
         if (args <= vm.queue.length) {
           var song = args - 1;
-          if (song = 0) toReturn = vm.queue[song].title + ' is already playing.';
+          if (song == 0) toReturn = vm.queue[song].title + ' is already playing.';
           else {
             toReturn = vm.queue[song].title + ' will be the next song played in the queue.';  
             vm.queue.splice(1, 0, vm.queue[song]);
@@ -159,7 +159,7 @@ Queue.prototype.moveForward = function(args, message) {
         }
         else {
           var song = vm.queue.length - 1;
-          if (song = 0) toReturn = vm.queue[song].title + ' is already playing.';
+          if (song == 0) toReturn = vm.queue[song].title + ' is already playing.';
           else {
             toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
             vm.queue.splice(1, 0, vm.queue[song]);
