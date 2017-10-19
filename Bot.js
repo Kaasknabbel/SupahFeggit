@@ -302,7 +302,7 @@ function toggleSound (args, message) {
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
-function forward(args, message) {
+function forwardQueue(args, message) {
   if (Helper.admins.include(message.member.user.id)) {
     Queue.moveForward(args, message);
   }
