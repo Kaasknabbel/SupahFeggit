@@ -156,7 +156,6 @@ Queue.prototype.moveForward = function(args, message) {
     }
     else return message.reply(Helper.wrap('Argument is not a positive integer. Please give the correct queue number of the song to remove it.'));
   }    
-  }
 }
 
 Queue.prototype.remove = function(message, info) {
