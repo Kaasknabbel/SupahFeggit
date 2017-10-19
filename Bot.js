@@ -51,6 +51,10 @@ var commands = {
     execute: getQueueList,
     description: 'Get a list of the current queue'
   },
+  '!forward': {
+    execute forwardQueue,
+    description: 'Admin only - move a song forward so it is the next song in the queue'
+  },
   '!remove': {
     execute: removeFromQueue,
     description: 'Admin only - remove a specific song from the queue'
@@ -298,6 +302,13 @@ function toggleSound (args, message) {
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
+function forward(args, message) {
+  if (Helper.admins.include(message.member.user.id)) {
+    Queue.moveForward(args, message);
+  }
+  else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
+}
+
 function prison(args, message) {
   if (Helper.admins.includes(message.member.user.id)) {
     Prison.moveToPrison(args, message);
@@ -322,7 +333,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!remove' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
+        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -338,7 +349,7 @@ function showMusic(args, message) {
     var toReturn = 'Available music commands:\n';
     for (var command in commands) {
       if (args == '-all' || args == '-a') {
-        if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list' || command == '!clear' || command == '!remove') {
+        if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list' || command == '!clear' || command == '!forward' || command == '!remove') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }
