@@ -133,7 +133,7 @@ Queue.prototype.voteSkip = function(message) {
 
 Queue.prototype.moveForward = function(args, message) {
   var vm = this;
-  if (args = "") {
+  if (args == "") {
     var song = vm.queue.length - 1;
     var toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
     vm.queue.splice(1, 0, vm.queue[song]);
