@@ -52,7 +52,7 @@ var commands = {
     description: 'Get a list of the current queue'
   },
   '!forward': {
-    execute forwardQueue,
+    execute: forwardQueue,
     description: 'Admin only - move a song forward so it is the next song in the queue'
   },
   '!remove': {
