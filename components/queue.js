@@ -136,7 +136,8 @@ Queue.prototype.moveForward = function(args, message) {
   if (args = "") {
     var song = vm.queue.length - 1;
     var toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
-    vm.queue.splice(1,0,song);
+    vm.queue.splice(1, 0, vm.queue[song]);
+    vm.queue.pop();
     return message.reply(Helper.wrap(toReturn));
   }
   else {
@@ -144,13 +145,15 @@ Queue.prototype.moveForward = function(args, message) {
       if (args <= vm.queue.length) {
         var song = args - 1;
         var toReturn = vm.queue[song].title + ' will be the next song played in the queue.';  
-        vm.queue.splice(1, 0, song);
+        vm.queue.splice(1, 0, vm.queue[song]);
+        vm.queue.splice(song, 1);      
         return message.reply(Helper.wrap(toReturn));
       }
       else {
         var song = vm.queue.length - 1;
         var toReturn = vm.queue[song].title + ' will be the next song played in the queue.';
-        vm.queue.splice(1,0,song);
+        vm.queue.splice(1, 0, vm.queue[song]);
+        vm.queue.pop();
         return message.reply(Helper.wrap(toReturn));  
       }
     }
