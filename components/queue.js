@@ -60,7 +60,7 @@ Queue.prototype.play = function(message, info) {
   var channel = vm.getAuthorVoiceChannel(message);
 
   if (!channel) {
-    var toReturn = "'" + vm.queue[0].title + "' has been skipped. You are not in a voice channel anymore, feggit";
+    var toReturn = "'" + vm.queue[0].title + "' has been skipped. You are not in a voice channel anymore, feggit.";
     vm.remove(message, info);
     return message.reply(Helper.wrap(toReturn));
   }
