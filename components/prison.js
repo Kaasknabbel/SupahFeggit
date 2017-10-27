@@ -27,6 +27,10 @@ Prison.prototype.moveToPrison = function(args, message) {
       return message.reply(Helper.wrap("Please mention a valid amount of time to imprison '" + prisonMember.user.username + "', sir."));
     setTimeout(() => {
       vm.releaseFromPrison(args, message);
+      var inPrisonChannel = checkVoicePrisoner(message, prisonMember);
+      if (inPrisonChannel) {
+        message.guild.member(prisonMember).setVoiceChannel(prisonerChannel);
+      }
     }, amountOfTime * 1000);
     prisonMember.addRole(prisonRole).catch(console.error);
     if (prisonerChannel) {
