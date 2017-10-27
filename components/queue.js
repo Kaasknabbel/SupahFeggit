@@ -19,6 +19,13 @@ module.exports = Queue = function() {
 }
 
 Queue.prototype.add = function(track, message, info) {
+  var vm = this;
+  var channel = vm.getAuthorVoiceChannel(message);
+
+  if (!channel) {
+    return message.reply(Helper.wrap('You are not in a voice channel, feggit.'));
+  }
+  
   this.queue.push(track);
 
   if (info) message.reply(Helper.wrap("Added '" + track.title + "' to the queue. (number " + (this.queue.indexOf(track) + 1) + ")"));
@@ -53,8 +60,9 @@ Queue.prototype.play = function(message, info) {
   var channel = vm.getAuthorVoiceChannel(message);
 
   if (!channel) {
-    vm.queue = [];
-    return message.reply(Helper.wrap('You are not in a voice channel.'));
+    var toReturn = "'" + vm.queue[0].title + "' has been skipped. You are not in a voice channel anymore, feggit";
+    vm.remove(message, info);
+    return message.reply(Helper.wrap(toReturn));
   }
 
   var toPlay = vm.queue[0];
