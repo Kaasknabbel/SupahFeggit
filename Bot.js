@@ -276,36 +276,59 @@ function doQueue(args, message, info) {
 }
 
 function blacklist(args, message) {
-  
-}
-
-function whitelist(args, message) {
-  var number = -1;
-  if (isNormalInteger(args)) {
-    number = args;
-    Queue.removeFromBlacklist("", message, number);
+  if (args == "") {
+    Queue.showBlacklist(message);
   }
   else {
-    if (args == "") {
-      number = -2;
-      Queue.removeFromBlacklist("", message, number);
-    }
-    else {
+    if (Helper.admins.includes(message.member.user.id)) {
       if (args.startsWith('http')) {
         TrackHelper.getVideoFromUrl(args).then(track => {
-          Queue.removeFromBlacklist(track, message, number);
+          Queue.addToBlacklist(track, message);
         }).catch(err => {
           message.reply(Helper.wrap(err));
         });
       } else {
         TrackHelper.getFirstTrack(args, 1).then(track => {
-          Queue.removeFromBlacklist(track, message, number);
+          Queue.addToBlacklist(track, message);
         }).catch(err => {
           message.reply(Helper.wrap(err));
         });
+      }      
+    }
+    else message.reply(Helper.wrap('You need to be an admin to add a song to the blacklist, feggit.'));
+  }
+}
+
+function whitelist(args, message) {
+  if (Helper.admins.includes(message.member.user.id)) {
+    var number = -1;
+    if (isNormalInteger(args)) {
+      number = args;
+      Queue.removeFromBlacklist("", message, number);
+    }
+    else {
+      if (args == "") {
+        number = -2;
+        Queue.removeFromBlacklist("", message, number);
+      }
+      else {
+        if (args.startsWith('http')) {
+          TrackHelper.getVideoFromUrl(args).then(track => {
+            Queue.removeFromBlacklist(track, message, number);
+          }).catch(err => {
+            message.reply(Helper.wrap(err));
+          });
+        } else {
+          TrackHelper.getFirstTrack(args, 1).then(track => {
+            Queue.removeFromBlacklist(track, message, number);
+          }).catch(err => {
+            message.reply(Helper.wrap(err));
+          });
+        }
       }
     }
   }
+  else message.reply(Helper.wrap('You need to be an admin to remove a song from the blacklist, feggit.'));
 }
 
 function getVideo(args, message) {
