@@ -8,6 +8,7 @@ module.exports = Queue = function() {
   vm.skipVotes = [];
   vm.queue = [];
   vm.currentDispatcher = undefined;
+  vm.blacklist = [];
 
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
     vm.maxlen = values.maxlen;
@@ -232,6 +233,51 @@ Queue.prototype.clearQueue = function(message) {
      return message.reply(Helper.wrap('Of course sir.'));
   }
   else return message.reply(Helper.wrap('Only admins can clear the queue.'));
+}
+
+Queue.prototype.addToBlacklist = function(track, message) {
+  var vm = this;
+  if (vm.blacklist.includes(track)) 
+    return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
+  vm.blacklist.push(track);
+  return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + vm.blacklist.length + ")"));
+}
+
+Queue.prototype.removeFromBlacklist = function(track, message, number) {
+  var vm = this;
+  if (number == -1) {
+    for (var i = 0; i < vm.blacklist.length; i++) {
+      if (vm.blacklist == track) {
+        vm.blacklist.splice(i, 1);
+        return message.reply(Helper.wrap("'" + track.title + "' has been removed from the blacklist, sir."));
+      }
+    }
+    return message.reply(Helper.wrap("'" + track.title + "' is not on the blacklist, feggit."));
+  }
+  else {
+    var toReturn = "";
+    if (number < vm.blacklist.length && number != -2) {
+      toReturn = "'" + vm.blacklist[number].title + "' has been removed from the blacklist, sir."
+      vm.blacklist.splice(number, 1);
+    }
+    else {
+      toReturn = "'" + vm.blacklist[(vm.blacklist.length - 1)].title + "' has been removed from the blacklist, sir."
+      vm.blacklist.pop();
+    }
+    return message.reply(Helper.wrap(toReturn));
+  }
+}
+
+Queue.prototype.showBlacklist = function(message) {
+  var vm = this;
+  var toReturn = 'There are no songs on the blacklist.';
+  if (!vm.blacklist)
+    return message.reply(Helper.wrap(toReturn));
+  toReturn = 'Current songs on the blacklist:';
+  for (var i = 0; i < vm.blacklist.length; i++) {
+    toReturn += "\n[" + (i + 1) + "]  " + vm.blacklist[i].title;
+  }
+  return message.reply(Helper.wrap(toReturn));
 }
 
 Queue.prototype.getAuthorVoiceChannel = function(message) {
