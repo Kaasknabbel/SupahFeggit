@@ -59,6 +59,14 @@ var commands = {
     execute: removeFromQueue,
     description: 'Admin only - remove a specific song from the queue'
   },
+  '!blacklist': {
+    execute: blacklist,
+    description: 'Show blacklist or (-Admin only-) add a song to the blacklist'
+  },
+  '!whitelist': {
+    execute: whitelist,
+    description: 'Admin only - remove a song from the blacklist'
+  },
   '!sounds': {
     execute: showSounds,
     description: 'Get a list of the available sound samples'
@@ -267,6 +275,39 @@ function doQueue(args, message, info) {
   }
 }
 
+function blacklist(args, message) {
+  
+}
+
+function whitelist(args, message) {
+  var number = -1;
+  if (isNormalInteger(args)) {
+    number = args;
+    Queue.removeFromBlacklist("", message, number);
+  }
+  else {
+    if (args == "") {
+      number = -2;
+      Queue.removeFromBlacklist("", message, number);
+    }
+    else {
+      if (args.startsWith('http')) {
+        TrackHelper.getVideoFromUrl(args).then(track => {
+          Queue.removeFromBlacklist(track, message, number);
+        }).catch(err => {
+          message.reply(Helper.wrap(err));
+        });
+      } else {
+        TrackHelper.getFirstTrack(args, 1).then(track => {
+          Queue.removeFromBlacklist(track, message, number);
+        }).catch(err => {
+          message.reply(Helper.wrap(err));
+        });
+      }
+    }
+  }
+}
+
 function getVideo(args, message) {
   TrackHelper.getFirstTrack(args, 1).then(track => {
     message.reply(track.url);
@@ -430,6 +471,11 @@ function registerService(service, affectedCommands) {
     });
   }
   return service;
+}
+
+function isNormalInteger(str) {
+    var n = Math.floor(Number(str));
+    return String(n) === str && n > 0;
 }
 
 function init() {
