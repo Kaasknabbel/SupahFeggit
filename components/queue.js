@@ -9,6 +9,7 @@ module.exports = Queue = function() {
   vm.queue = [];
   vm.currentDispatcher = undefined;
   vm.blacklist = [];
+  vm.blacklisturl = [];
 
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
     vm.maxlen = values.maxlen;
@@ -27,7 +28,7 @@ Queue.prototype.add = function(track, message, info) {
     return message.reply(Helper.wrap('You are not in a voice channel, feggit.'));
   }
   
-  if (vm.blacklist.includes(track.url)) {
+  if (vm.blacklisturl.includes(track.url)) {
     return message.reply(Helper.wrap("'" + track.title + "' cannot be played. This song is on the blacklist, feggit."));
   }
   
@@ -241,9 +242,10 @@ Queue.prototype.clearQueue = function(message) {
 
 Queue.prototype.addToBlacklist = function(track, message) {
   var vm = this;
-  if (vm.blacklist.includes(track.url)) 
+  if (vm.blacklisturl.includes(track.url)) 
     return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
-  vm.blacklist.push(track.url);
+  vm.blacklisturl.push(track.url);
+  vm.blacklist.push(track);
   return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + vm.blacklist.length + ")"));
 }
 
@@ -253,7 +255,8 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
     return message.reply(Helper.wrap("The blacklist is empty, feggit. There are no songs to whitelist."));
   if (number == -1) {
     for (var i = 0; i < vm.blacklist.length; i++) {
-      if (vm.blacklist == track.url) {
+      if (vm.blacklisturl[i] == track.url) {
+        vm.blacklisturl.splice(i, 1);
         vm.blacklist.splice(i, 1);
         return message.reply(Helper.wrap("'" + track.title + "' has been removed from the blacklist, sir."));
       }
@@ -264,10 +267,12 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
     var toReturn = "";
     if (number < vm.blacklist.length && number != -2) {
       toReturn = "'" + vm.blacklist[number].title + "' has been removed from the blacklist, sir."
+      vm.blacklisturl.splice(number, 1);
       vm.blacklist.splice(number, 1);
     }
     else {
       toReturn = "'" + vm.blacklist[(vm.blacklist.length - 1)].title + "' has been removed from the blacklist, sir."
+      vm.blacklisturl.pop();
       vm.blacklist.pop();
     }
     return message.reply(Helper.wrap(toReturn));
