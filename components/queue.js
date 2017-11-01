@@ -249,6 +249,8 @@ Queue.prototype.addToBlacklist = function(track, message) {
 
 Queue.prototype.removeFromBlacklist = function(track, message, number) {
   var vm = this;
+  if (vm.blacklist.length == 0) 
+    return message.reply(Helper.wrap("The blacklist is empty, feggit. There are no songs to whitelist."));
   if (number == -1) {
     for (var i = 0; i < vm.blacklist.length; i++) {
       if (vm.blacklist == track) {
@@ -275,7 +277,7 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
 Queue.prototype.showBlacklist = function(message) {
   var vm = this;
   var toReturn = 'There are no songs on the blacklist.';
-  if (!vm.blacklist)
+  if (vm.blacklist.length == 0)
     return message.reply(Helper.wrap(toReturn));
   toReturn = 'Current songs on the blacklist:';
   for (var i = 0; i < vm.blacklist.length; i++) {
