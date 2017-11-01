@@ -27,6 +27,10 @@ Queue.prototype.add = function(track, message, info) {
     return message.reply(Helper.wrap('You are not in a voice channel, feggit.'));
   }
   
+  if (vm.blacklist.includes(track)) {
+    return message.reply(Helper.wrap("'" + track.title + "' cannot be played. This song is on the blacklist, feggit."));
+  }
+  
   this.queue.push(track);
 
   if (info) message.reply(Helper.wrap("Added '" + track.title + "' to the queue. (number " + (this.queue.indexOf(track) + 1) + ")"));
