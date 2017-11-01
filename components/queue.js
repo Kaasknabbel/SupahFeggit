@@ -27,7 +27,7 @@ Queue.prototype.add = function(track, message, info) {
     return message.reply(Helper.wrap('You are not in a voice channel, feggit.'));
   }
   
-  if (vm.blacklist.includes(track)) {
+  if (vm.blacklist.includes(track.url)) {
     return message.reply(Helper.wrap("'" + track.title + "' cannot be played. This song is on the blacklist, feggit."));
   }
   
@@ -241,9 +241,9 @@ Queue.prototype.clearQueue = function(message) {
 
 Queue.prototype.addToBlacklist = function(track, message) {
   var vm = this;
-  if (vm.blacklist.includes(track)) 
+  if (vm.blacklist.includes(track.url)) 
     return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
-  vm.blacklist.push(track);
+  vm.blacklist.push(track.url);
   return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + vm.blacklist.length + ")"));
 }
 
@@ -253,7 +253,7 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
     return message.reply(Helper.wrap("The blacklist is empty, feggit. There are no songs to whitelist."));
   if (number == -1) {
     for (var i = 0; i < vm.blacklist.length; i++) {
-      if (vm.blacklist == track) {
+      if (vm.blacklist == track.url) {
         vm.blacklist.splice(i, 1);
         return message.reply(Helper.wrap("'" + track.title + "' has been removed from the blacklist, sir."));
       }
