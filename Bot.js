@@ -7,6 +7,7 @@ var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
 var Prison = require('./components/prison.js');
+var Game = require('./components/setgame.js');
 
 var soundEnabled = true;
 
@@ -122,6 +123,10 @@ var commands = {
   '!release': {
     execute: release,
     description: 'Admin only - release a user from the prison'
+  },
+  '!game': {
+    execute: setGame,
+    description: 'Admin only - set the game of a user'
   }
 };
 
@@ -397,7 +402,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
+        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!game' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -510,6 +515,7 @@ function init() {
     WeatherService = registerService(WeatherService, ['!weather']);
     Dumpert = registerService(Dumpert, ['!dumpert']);
     Prison = registerService(Prison, ['!prison', '!release']);
+    Game = registerService(Game, ['!game']);
   }).catch(console.error);
 }
 
