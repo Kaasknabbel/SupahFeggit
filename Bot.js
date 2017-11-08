@@ -393,7 +393,7 @@ function release(args, message) {
 
 function setStatus(args, message) {
   if (Helper.admins.includes(message.member.user.id)) {
-    Bot.setStatus('online', args, error => {
+    Bot.user.setStatus('online', args, error => {
       console.log(error);
     });
     return message.reply(Helper.wrap("Status of the bot has been set to '" + args + "'"));
