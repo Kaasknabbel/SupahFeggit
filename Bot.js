@@ -7,7 +7,6 @@ var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
 var Prison = require('./components/prison.js');
-var Game = require('./components/setgame.js');
 
 var soundEnabled = true;
 
@@ -124,9 +123,9 @@ var commands = {
     execute: release,
     description: 'Admin only - release a user from the prison'
   },
-  '!game': {
-    execute: setGame,
-    description: 'Admin only - set the game of a user'
+  '!status': {
+    execute: setStatus,
+    description: 'Admin only - set the status and game of the bot'
   }
 };
 
@@ -392,9 +391,10 @@ function release(args, message) {
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
-function setGame(args, message) {
+function setStatus(args, message) {
   if (Helper.admins.includes(message.member.user.id)) {
-    Game.setGame(args, message);
+    Bot.setPlayingGame(args);
+    return message.reply(Helper.wrap("Status of the bot has been set to '" + args + "'"));
   }
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
@@ -409,7 +409,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!game' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
+        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!status' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -522,7 +522,6 @@ function init() {
     WeatherService = registerService(WeatherService, ['!weather']);
     Dumpert = registerService(Dumpert, ['!dumpert']);
     Prison = registerService(Prison, ['!prison', '!release']);
-    Game = registerService(Game, ['!game']);
   }).catch(console.error);
 }
 
