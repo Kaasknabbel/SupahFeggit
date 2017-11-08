@@ -391,9 +391,11 @@ function release(args, message) {
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
-function setStatus(Bot, args, message) {
+function setStatus(args, message) {
   if (Helper.admins.includes(message.member.user.id)) {
-    Bot.setPlayingGame(args);
+    Bot.setStatus('online', args, error => {
+      console.log(error);
+    });
     return message.reply(Helper.wrap("Status of the bot has been set to '" + args + "'"));
   }
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
