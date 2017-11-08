@@ -392,6 +392,13 @@ function release(args, message) {
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
+function setGame(args, message) {
+  if (Helper.admins.includes(message.member.user.id)) {
+    Game.setGame(args, message);
+  }
+  else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
+}
+
 function showHelp(args, message) {
   var toReturn = 'No commands to run!';
   if (Object.keys(commands).length > 1) {
