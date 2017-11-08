@@ -15,6 +15,6 @@ Game.prototype.setGame = function(args, message) {
   var gameName = argsArray.slice(1).join(" ");
   if (gameName == "")
     return message.reply(Helper.wrap("Please mention what game '" + gameMember.user.username + "' should be playing, sir."));
-  gameMember.setGame(gameName);
+  gameMember.user.setPlayingGame(gameName);
   return message.reply(Helper.wrap("The current game of '" + gameMember.user.username + "' has been set to '" + gameName + "', sir."));
 }
