@@ -16,12 +16,21 @@ module.exports = Github = function() {
 
 Github.prototype.updateVariable = function(name, content) {
   var vm = this;
+  getGHvars(); 
+  var sha = '082b8fa8d42d6c528e7255b20da12189218b8d31';
+  ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, sha, err => {
+    console.log(err);
+  });
+}
+
+Github.prototype.getSHA = function(path) {
+  getGHvars();
+}
+
+function getGHvars() {
+  var vm = this;
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');  
-  var sha = '30d74d258442c7c65512eafab474568dd706c430';
-  ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, sha, err => {
-    console.log(err);
-  });
 }
