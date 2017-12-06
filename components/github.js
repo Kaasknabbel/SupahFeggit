@@ -21,6 +21,7 @@ Github.prototype.updateVariable = function(name, content) {
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');  
   var sha = vm.getSHA('variables.js');
+  console.log(sha);
   ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, sha, err => {
     console.log(err);
   });
@@ -38,7 +39,6 @@ Github.prototype.getSHA = function(path) {
       return 'error';
     }
     else {
-      console.log(b.sha);
       return b.sha;
     }
   });
