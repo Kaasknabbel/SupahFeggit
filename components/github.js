@@ -14,12 +14,11 @@ module.exports = Github = function() {
   });
 }
 
-var client = gh.client(this.apikey);
-var ghme   = client.me();
-var ghuser = client.user('Kaasknabbel');
-var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
-
 Github.prototype.updateVariable = function(name, content) {
   var vm = this;
+  var client = gh.client(vm.apikey);
+  var ghme   = client.me();
+  var ghuser = client.user('Kaasknabbel');
+  var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
   ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, '8b137891791fe96927ad78e64b0aad7bded08bdc', err => console.log(err));
 }
