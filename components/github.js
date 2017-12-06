@@ -37,7 +37,8 @@ Github.prototype.getSHA = function(path) {
       console.log(err);
       return 'error';
     }
-    else { 
+    else {
+      JSON.parse(b);
       return b.sha;
     }
   });
