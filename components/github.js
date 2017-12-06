@@ -27,6 +27,7 @@ Github.prototype.updateVariable = function(name, content) {
 }
 
 Github.prototype.getSHA = function(path) {
+  var vm = this;
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
