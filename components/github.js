@@ -22,7 +22,7 @@ Github.prototype.updateVariable = function(name, content) {
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');  
   var sha = vm.getSHA('variables.js');
   ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, sha, err => {
-    //console.log(err);
+    console.log(err);
   });
 }
 
@@ -34,13 +34,11 @@ Github.prototype.getSHA = function(path) {
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
   ghrepo.contents(path, (err, b) => {
     if (err) {
-      //console.log(err);
+      console.log(err);
       return 'error';
     }
     else { 
-      var body = JSON.parse(b);
-      console.log('BLABLABLA: ' + body);
-      return 'test';
+      return b.sha;
     }
   });
 }
