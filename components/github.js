@@ -16,6 +16,7 @@ module.exports = Github = function() {
 
 Github.prototype.updateVariable = function(name, content) {
   var vm = this;
+  var path = 'variables.js';
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
@@ -23,7 +24,7 @@ Github.prototype.updateVariable = function(name, content) {
   ghrepo.contents(path, (err, b) => {
     if (err) console.log(err);
     else {
-      ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, b.sha, err => {
+      ghrepo.updateContents(path, 'Bot - Updated ' + name, content, b.sha, err => {
         console.log(err);
       });
     }
