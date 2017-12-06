@@ -16,11 +16,11 @@ module.exports = Github = function() {
   });
 }
 
-Github.prototype.initialiseVariables = function(content) {
+exports.initialiseVariables = function(content) {
   var vm = this;
 }
 
-Github.prototype.updateVariables = function(name, content) {
+exports.updateVariables = function(name, content) {
   var vm = this;
   var path = 'variables.js';
   var client = gh.client(vm.apikey);
