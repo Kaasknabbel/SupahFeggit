@@ -41,3 +41,5 @@ exports.updateVariables = function(name, content) {
     }
   });
 }
+
+module.exports = exports;
