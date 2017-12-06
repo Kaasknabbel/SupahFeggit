@@ -17,8 +17,30 @@ exports.init = function() {
 }
 exports.init();
 
-exports.initialiseVariables = function(content) {
+exports.initialiseVariables = function() {
   var vm = this;
+  var path = 'variables.js';
+  var client = gh.client(vm.apikey);
+  var ghme = client.me();
+  var ghuser = client.user('Kaasknabbel');
+  var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
+  ghrepo.contents(path, (err, b) => {
+    if (err) console.log(err);
+    else {
+      var contentB64 = new Buffer(b.content, 'base64')
+      var content = contentB64.toString();
+      splitVariables(content);
+    }
+  });
+}
+
+exports.splitVariables = function(content) {
+  var vm = this;
+  var contents = content.split("'/n");
+  var blacklistContent = contents[0].substring("Blacklist: '".length);
+  vm.blacklist = blacklistContent.split(',');
+  var blacklisturlContent = contents[0].substring("Blacklisturl: '".length);
+  vm.blacklisturl = blacklisturlContent.split(',');
 }
 
 exports.updateVariables = function(name, content) {
