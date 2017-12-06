@@ -247,8 +247,8 @@ Queue.prototype.addToBlacklist = function(track, message) {
     return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
   vm.blacklisturl.push(track.url);
   vm.blacklist.push(track.title);
-  Github.updateVariables('blacklisturl', vm.blacklisturl);
   Github.updateVariables('blacklist', vm.blacklist);
+  Github.updateVariables('blacklisturl', vm.blacklisturl);
   return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + vm.blacklist.length + ")"));
 }
 
