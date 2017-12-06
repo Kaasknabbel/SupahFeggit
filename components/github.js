@@ -29,9 +29,9 @@ exports.updateVariables = function(name, content) {
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
   if (name = 'blacklist')
-    vm.blacklist = content;
+    vm.blacklist = "'" + content + "'";
   else if (name = 'blacklisturl')
-    vm.blacklisturl = content;
+    vm.blacklisturl = "'" + content + "'";
   var completeContent = 'Blacklist: ' + vm.blacklist + '\nBlacklisturl: ' + vm.blacklisturl;
   ghrepo.contents(path, (err, b) => {
     if (err) console.log(err);
