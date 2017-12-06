@@ -7,6 +7,7 @@ var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
 var Prison = require('./components/prison.js');
+var Github = require('./components/github.js');
 
 var soundEnabled = true;
 
@@ -535,6 +536,7 @@ function init() {
     WeatherService = registerService(WeatherService, ['!weather']);
     Dumpert = registerService(Dumpert, ['!dumpert']);
     Prison = registerService(Prison, ['!prison', '!release']);
+    Github = registerService(Github, []);
   }).catch(console.error);
 }
 
