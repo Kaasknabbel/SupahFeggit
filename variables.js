@@ -1,2 +1,2 @@
-Blacklist: 'Bizzey - Traag ft. Jozo & Kraantje Pappie (prod. Ramiks & Bizzey)'
-Blacklisturl: 'https://www.youtube.com/watch?v=1z8NpmCqvZE'
+Blacklist: 'Bizzey - Traag ft. Jozo & Kraantje Pappie (prod. Ramiks & Bizzey),Nyan Cat 10 hours (original)'
+Blacklisturl: 'https://www.youtube.com/watch?v=1z8NpmCqvZE,https://www.youtube.com/watch?v=wZZ7oFKsKzY'
