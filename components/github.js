@@ -4,7 +4,7 @@ var gh = require('octonode');
 
 var exports = {};
 
-function init() {
+exports.init = function() {
   var vm = this;
   vm.blacklist = [];
   vm.blacklisturl = [];
@@ -15,7 +15,7 @@ function init() {
     vm.hasUnmetDepedencies = true;
   });
 }
-init();
+exports.init();
 
 exports.initialiseVariables = function(content) {
   var vm = this;
