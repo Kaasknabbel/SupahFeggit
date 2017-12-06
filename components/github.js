@@ -20,9 +20,9 @@ Github.prototype.updateVariable = function(name, content) {
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');  
-  var sha = vm.getSHA('variables.js');
-  console.log(sha);
-  ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, sha, err => {
+  vm.getSHA('variables.js');
+  console.log(vm.sha);
+  ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, vm.sha, err => {
     console.log(err);
   });
 }
@@ -33,14 +33,13 @@ Github.prototype.getSHA = function(path) {
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
-  var sha = 'undefined';
   ghrepo.contents(path, (err, b) => {
-      if (err) {
-        console.log(err);
-      }
-      else {
-        sha = b.sha;
-      }
-    });
-  return sha;
+    if (err) {
+      console.log(err);
+      vm.sha = 'undefined';
+    }
+    else {
+      vm.sha = b.sha;
+    }
+  });
 }
