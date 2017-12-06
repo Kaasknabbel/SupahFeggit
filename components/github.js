@@ -13,3 +13,7 @@ module.exports = GitHub = function() {
     vm.hasUnmetDepedencies = true;
   });
 }
+
+var client = gh.client(this.apikey);
+var ghuser = client.user('Kaasknabbel');
+var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
