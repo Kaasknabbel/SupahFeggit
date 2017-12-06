@@ -4,7 +4,7 @@ var gh = require('octonode');
 
 var exports = {};
 
-module.exports = GitHub = function() {
+module.exports = Github = function() {
   var vm = this;
   Helper.keys('apikeys', ['github']).then(function(keys) {
     vm.apikey = keys.github;
