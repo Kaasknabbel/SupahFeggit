@@ -15,6 +15,7 @@ module.exports = Github = function() {
 }
 
 var client = gh.client(this.apikey);
+var ghme   = client.me();
 var ghuser = client.user('Kaasknabbel');
 var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
 
