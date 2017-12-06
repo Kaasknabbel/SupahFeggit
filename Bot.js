@@ -538,7 +538,7 @@ function init() {
     WeatherService = registerService(WeatherService, ['!weather']);
     Dumpert = registerService(Dumpert, ['!dumpert']);
     Prison = registerService(Prison, ['!prison', '!release']);
-    Github = registerService(Github, []);
+    Github = registerService(Github, ['!updatevar']);
   }).catch(console.error);
 }
 
