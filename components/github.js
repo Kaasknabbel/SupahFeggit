@@ -33,13 +33,14 @@ Github.prototype.getSHA = function(path) {
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
-  ghrepo.contents(path, (err, b) => {
-    if (err) {
-      console.log(err);
-      return 'error';
-    }
-    else {
-      return b.sha;
-    }
-  });
+  var sha = ghrepo.contents(path, (err, b) => {
+      if (err) {
+        console.log(err);
+        return 'error';
+      }
+      else {
+        return b.sha;
+      }
+    });
+  return sha;
 }
