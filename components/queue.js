@@ -22,7 +22,9 @@ module.exports = Queue = function() {
 }
 
 Queue.prototype.init = function() {
-  
+  var vm = this;
+  vm.blacklist = Github.blacklist;
+  vm.blacklisturl = Github.blacklisturl;
 }
 
 Queue.prototype.add = function(track, message, info) {
