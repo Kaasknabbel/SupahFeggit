@@ -6,6 +6,8 @@ var exports = {};
 
 module.exports = Github = function() {
   var vm = this;
+  vm.blacklist = [];
+  vm.blacklisturl = [];
   Helper.keys('apikeys', ['github']).then(function(keys) {
     vm.apikey = keys.github;
   }).catch(err => {
@@ -14,17 +16,26 @@ module.exports = Github = function() {
   });
 }
 
-Github.prototype.updateVariable = function(name, content) {
+Github.prototype.initialiseVariables = function(content) {
+  var vm = this;
+}
+
+Github.prototype.updateVariables = function(name, content) {
   var vm = this;
   var path = 'variables.js';
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
-  var ghrepo = client.repo('Kaasknabbel/SupahFeggit');  
+  var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
+  if (name = 'blacklist')
+    vm.blacklist = content;
+  else if (name = 'blacklisturl')
+    vm.blacklisturl = content;
+  var completeContent = 'Blacklist: ' + vm.blacklist + '\nBlacklisturl: ' + vm.blacklisturl;
   ghrepo.contents(path, (err, b) => {
     if (err) console.log(err);
     else {
-      ghrepo.updateContents(path, 'Bot - Updated ' + name, content, b.sha, err => {
+      ghrepo.updateContents(path, 'Bot - Updated ' + name, completeContent, b.sha, err => {
         if (err) console.log(err);
       });
     }
