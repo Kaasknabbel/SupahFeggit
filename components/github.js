@@ -28,10 +28,10 @@ exports.updateVariables = function(name, content) {
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
-  if (name == 'blacklist')
-    vm.blacklist = "'" + content + "'";
-  else if (name == 'blacklisturl')
-    vm.blacklisturl = "'" + content + "'";
+  if (name == 'blacklist') {
+    vm.blacklist = "'" + content[0] + "'";
+    vm.blacklisturl = "'" + content[1] + "'";
+  }
   var completeContent = 'Blacklist: ' + vm.blacklist + '\nBlacklisturl: ' + vm.blacklisturl;
   console.log(completeContent);
   ghrepo.contents(path, (err, b) => {
