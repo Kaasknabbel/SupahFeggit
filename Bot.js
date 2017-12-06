@@ -540,7 +540,6 @@ function init() {
     Prison = registerService(Prison, ['!prison', '!release']);
   }).catch(console.error);
   Github.initialiseVariables();
-  Queue.initialise();
 }
 
 init();
