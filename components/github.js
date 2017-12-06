@@ -25,7 +25,7 @@ Github.prototype.updateVariable = function(name, content) {
     if (err) console.log(err);
     else {
       ghrepo.updateContents(path, 'Bot - Updated ' + name, content, b.sha, err => {
-        console.log(err);
+        if (err) console.log(err);
       });
     }
   });
