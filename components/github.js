@@ -55,7 +55,6 @@ exports.updateVariables = function(name, content) {
     vm.blacklisturl = "'" + content[1] + "'";
   }
   var completeContent = 'Blacklist: ' + vm.blacklist + '\nBlacklisturl: ' + vm.blacklisturl;
-  console.log(completeContent);
   ghrepo.contents(path, (err, b) => {
     if (err) console.log(err);
     else {
