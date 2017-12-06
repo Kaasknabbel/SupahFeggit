@@ -38,7 +38,11 @@ var commands = {
   },
   '!queue': {
     execute: doQueueInfo,
-    description: 'Queue your song'
+    description: 'Queue your song [Short command: !q]'
+  },
+  '!q': {
+    execute: doQueueInfo,
+    description: 'Short command of: !queue'
   },
   '!voteskip': {
     execute: voteSkip,
@@ -423,7 +427,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!status' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf') {
+        if (command != '!q' && command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!status' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -530,8 +534,8 @@ function isNormalInteger(str) {
 function init() {
   Helper.keys('apikeys', ['discord']).then(keys => {
     Bot.login(keys.discord);
-    Queue = registerService(Queue, ['!queue', '!voteskip', '!song', '!clear', '!admin', '!skraa', '!whatislove', '!gaaay', '!krakaka', '!moeder', '!nomoney', '!personal']);
-    TrackHelper = registerService(TrackHelper, ['!queue', '!video']);
+    Queue = registerService(Queue, ['!queue','!q', '!voteskip', '!song', '!clear', '!admin', '!skraa', '!whatislove', '!gaaay', '!krakaka', '!moeder', '!nomoney', '!personal']);
+    TrackHelper = registerService(TrackHelper, ['!queue','!q', '!video']);
     WordService = registerService(WordService, ['!words']);
     WeatherService = registerService(WeatherService, ['!weather']);
     Dumpert = registerService(Dumpert, ['!dumpert']);
