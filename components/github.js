@@ -4,7 +4,7 @@ var gh = require('octonode');
 
 var exports = {};
 
-module.exports = Github = function() {
+function init() {
   var vm = this;
   vm.blacklist = [];
   vm.blacklisturl = [];
@@ -15,6 +15,7 @@ module.exports = Github = function() {
     vm.hasUnmetDepedencies = true;
   });
 }
+init();
 
 exports.initialiseVariables = function(content) {
   var vm = this;
