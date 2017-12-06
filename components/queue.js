@@ -1,4 +1,5 @@
 var Helper = require('./helper.js');
+var Github = require('./github.js');
 
 var exports = {};
 
@@ -246,6 +247,8 @@ Queue.prototype.addToBlacklist = function(track, message) {
     return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
   vm.blacklisturl.push(track.url);
   vm.blacklist.push(track);
+  Github.updateVariable('blacklisturl', vm.blacklisturl);
+  Github.updateVariable('blacklist', vm.blacklist);
   return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + vm.blacklist.length + ")"));
 }
 
@@ -258,6 +261,8 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
       if (vm.blacklisturl[i] == track.url) {
         vm.blacklisturl.splice(i, 1);
         vm.blacklist.splice(i, 1);
+        Github.updateVariable('blacklisturl', vm.blacklisturl);
+        Github.updateVariable('blacklist', vm.blacklist);
         return message.reply(Helper.wrap("'" + track.title + "' has been removed from the blacklist, sir."));
       }
     }
@@ -269,11 +274,15 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
       toReturn = "'" + vm.blacklist[number].title + "' has been removed from the blacklist, sir."
       vm.blacklisturl.splice(number, 1);
       vm.blacklist.splice(number, 1);
+      Github.updateVariable('blacklisturl', vm.blacklisturl);
+      Github.updateVariable('blacklist', vm.blacklist);
     }
     else {
       toReturn = "'" + vm.blacklist[(vm.blacklist.length - 1)].title + "' has been removed from the blacklist, sir."
       vm.blacklisturl.pop();
       vm.blacklist.pop();
+      Github.updateVariable('blacklisturl', vm.blacklisturl);
+      Github.updateVariable('blacklist', vm.blacklist);
     }
     return message.reply(Helper.wrap(toReturn));
   }
