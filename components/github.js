@@ -40,7 +40,7 @@ Github.prototype.getSHA = function(path) {
     else { 
       var body = JSON.parse(b);
       console.log('BLABLABLA: ' + body);
-      return body.sha;
+      return 'test';
     }
   });
 }
