@@ -20,5 +20,5 @@ var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
 
 Github.prototype.updateVariable = function(name, content) {
   var vm = this;
-  ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, '1ad12fd79836cb8b07fcb0db1b6f10814b1db7de', err => console.log(err));
+  ghrepo.updateContents('variables.js', 'Bot - Updated', content, '1ad12fd79836cb8b07fcb0db1b6f10814b1db7de', err => console.log(err));
 }
