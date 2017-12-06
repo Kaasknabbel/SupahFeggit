@@ -21,6 +21,10 @@ module.exports = Queue = function() {
   });
 }
 
+Queue.prototype.init = function() {
+  
+}
+
 Queue.prototype.add = function(track, message, info) {
   var vm = this;
   var channel = vm.getAuthorVoiceChannel(message);
