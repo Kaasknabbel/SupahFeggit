@@ -409,7 +409,7 @@ function release(args, message) {
 
 function updatevar(args, message) {
   if (Helper.admins.includes(message.member.user.id)) {
-    Github.updateVariable('variables.js', args);
+    Github.updateVariables('variables.js', args);
     return message.reply(Helper.wrap("Variable has been changed - " + args));
   }
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
