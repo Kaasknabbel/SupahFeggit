@@ -36,10 +36,15 @@ Github.prototype.getSHA = function(path) {
   ghrepo.contents(path, (err, b) => {
     if (err) {
       console.log(err);
-      vm.sha = 'undefined';
+      setSha('undefined');
     }
     else {
-      vm.sha = b.sha;
+      setSha(b.sha);
     }
   });
+}
+
+function setSha(sha) {
+  var vm = this;
+  vm.sha = sha;
 }
