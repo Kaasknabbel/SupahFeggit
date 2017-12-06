@@ -21,6 +21,7 @@ module.exports = Github = function() {
 Github.prototype.updateVariable = function(name, content) {
   var vm = this;
   var sha = '30d74d258442c7c65512eafab474568dd706c430';
+  vm.ghme;
   vm.ghrepo.updateContents('variables.js', 'Bot - Updated ' + name, content, sha, err => {
     console.log(err);
   });
