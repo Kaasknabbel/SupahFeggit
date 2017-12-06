@@ -28,6 +28,7 @@ exports.updateVariables = function(name, content) {
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
+  console.log(content);
   if (name == 'blacklist')
     vm.blacklist = "'" + content + "'";
   else if (name == 'blacklisturl')
