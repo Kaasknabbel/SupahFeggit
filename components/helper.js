@@ -18,7 +18,8 @@ var keystores = [
 var standardValues = {
   openweathermap: 'openweathermap api key',
   discord: 'discord api key',
-  youtube: 'youtube api key'
+  youtube: 'youtube api key',
+  github: 'github api key'
 };
 
 function env(key, attributes) {
