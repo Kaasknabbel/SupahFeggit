@@ -246,7 +246,7 @@ Queue.prototype.addToBlacklist = function(track, message) {
   if (vm.blacklisturl.includes(track.url)) 
     return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
   vm.blacklisturl.push(track.url);
-  vm.blacklist.push(track);
+  vm.blacklist.push(track.title);
   Github.updateVariables('blacklisturl', vm.blacklisturl);
   Github.updateVariables('blacklist', vm.blacklist);
   return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + vm.blacklist.length + ")"));
@@ -271,14 +271,14 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
   else {
     var toReturn = "";
     if (number < vm.blacklist.length && number != -2) {
-      toReturn = "'" + vm.blacklist[number].title + "' has been removed from the blacklist, sir."
+      toReturn = "'" + vm.blacklist[number] + "' has been removed from the blacklist, sir."
       vm.blacklisturl.splice(number, 1);
       vm.blacklist.splice(number, 1);
       Github.updateVariables('blacklisturl', vm.blacklisturl);
       Github.updateVariables('blacklist', vm.blacklist);
     }
     else {
-      toReturn = "'" + vm.blacklist[(vm.blacklist.length - 1)].title + "' has been removed from the blacklist, sir."
+      toReturn = "'" + vm.blacklist[(vm.blacklist.length - 1)] + "' has been removed from the blacklist, sir."
       vm.blacklisturl.pop();
       vm.blacklist.pop();
       Github.updateVariables('blacklisturl', vm.blacklisturl);
@@ -295,7 +295,7 @@ Queue.prototype.showBlacklist = function(message) {
     return message.reply(Helper.wrap(toReturn));
   toReturn = 'Current songs on the blacklist:';
   for (var i = 0; i < vm.blacklist.length; i++) {
-    toReturn += "\n[" + (i + 1) + "]  " + vm.blacklist[i].title;
+    toReturn += "\n[" + (i + 1) + "]  " + vm.blacklist[i];
   }
   return message.reply(Helper.wrap(toReturn));
 }
