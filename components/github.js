@@ -26,16 +26,17 @@ exports.initialiseVariables = function() {
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
-  ghrepo.contents(path).then(b => {
-    var contentB64 = new Buffer(b.content, 'base64')
-    var content = contentB64.toString();
-    var contents = content.split("\'\n");
-    var blacklistContent = contents[0].substring("Blacklist: \'".length);
-    vm.blacklist = blacklistContent.split(',');
-    var blacklisturlContent = contents[1].substring("Blacklisturl: \'".length);
-    vm.blacklisturl = blacklisturlContent.split(',');
-  }).catch(err => {
-    console.log(err);
+  ghrepo.contents(path, (err, b) => {
+    if (err) console.log(err);
+    else {
+      var contentB64 = new Buffer(b.content, 'base64')
+      var content = contentB64.toString();
+      var contents = content.split("\'\n");
+      var blacklistContent = contents[0].substring("Blacklist: \'".length);
+      vm.blacklist = blacklistContent.split(',');
+      var blacklisturlContent = contents[1].substring("Blacklisturl: \'".length);
+      vm.blacklisturl = blacklisturlContent.split(',');
+    }
   });
   console.log('gh: ' + vm.blacklist);
 }
