@@ -527,7 +527,6 @@ function init() {
     Dumpert = registerService(Dumpert, ['!dumpert']);
     Prison = registerService(Prison, ['!prison', '!release']);
   }).catch(console.error);
-  Github.initialiseVariables();
 }
 
 init();
