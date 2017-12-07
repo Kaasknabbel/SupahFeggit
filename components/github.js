@@ -38,6 +38,7 @@ exports.initialiseVariables = function() {
       vm.blacklisturl = blacklisturlContent.split(',');
     }
   });
+  console.log('gh: ' + vm.blacklist);
 }
 
 exports.updateVariables = function(name, content) {
