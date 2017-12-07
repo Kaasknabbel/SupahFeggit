@@ -29,7 +29,7 @@ exports.initialiseVariables = function() {
     else {
       var contentB64 = new Buffer(b.content, 'base64')
       var content = contentB64.toString();
-      splitVariables(content);
+      vm.splitVariables(content);
     }
   });
 }
