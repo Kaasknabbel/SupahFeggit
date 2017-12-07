@@ -21,7 +21,7 @@ module.exports = Queue = function() {
   });
 }
 
-Queue.prototype.initialise = function() {
+Queue.initialise = function() {
   var vm = this;
   vm.blacklist = Github.blacklist;
   vm.blacklisturl = Github.blacklisturl;
