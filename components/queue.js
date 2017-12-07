@@ -11,7 +11,7 @@ module.exports = Queue = function() {
   vm.currentDispatcher = undefined;
   vm.blacklist = [];
   vm.blacklisturl = [];
-
+  
   vm.initialise();
   
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
