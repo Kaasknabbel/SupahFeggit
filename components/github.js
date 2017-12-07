@@ -2,6 +2,7 @@ var request = require('request');
 var Helper = require('./helper.js');
 var gh = require('octonode');
 var Queue = require('./queue.js');
+Queue = new Queue;
 
 var exports = {};
 
