@@ -131,10 +131,6 @@ var commands = {
   '!release': {
     execute: release,
     description: 'Admin only - release a user from the prison'
-  },
-  '!updatevar': {
-    execute: updatevar,
-    description: 'Admin only - test function to update a github file'
   }
 };
 
@@ -407,14 +403,6 @@ function release(args, message) {
   else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
 }
 
-function updatevar(args, message) {
-  if (Helper.admins.includes(message.member.user.id)) {
-    //Github.updateVariables('variables.js', args);
-    //return message.reply(Helper.wrap("Variable has been changed - " + args));
-  }
-  else message.reply(Helper.wrap('You need to be an admin to use this command, feggit.'));
-}
-
 function showHelp(args, message) {
   var toReturn = 'No commands to run!';
   if (Object.keys(commands).length > 1) {
@@ -425,7 +413,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!q' && command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!updatevar' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf') {
+        if (command != '!q' && command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
