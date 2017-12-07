@@ -39,8 +39,10 @@ exports.splitVariables = function(content) {
   var contents = content.split("'/n");
   var blacklistContent = contents[0].substring("Blacklist: '".length);
   vm.blacklist = blacklistContent.split(',');
-  var blacklisturlContent = contents[0].substring("Blacklisturl: '".length);
+  var blacklisturlContent = contents[1].substring("Blacklisturl: '".length);
   vm.blacklisturl = blacklisturlContent.split(',');
+  console.log(contents);
+  console.log(vm.blacklisturl);
 }
 
 exports.updateVariables = function(name, content) {
