@@ -11,8 +11,6 @@ module.exports = Queue = function() {
   vm.currentDispatcher = undefined;
   vm.blacklist = [];
   vm.blacklisturl = [];
-  
-  initialise();
 
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
     vm.maxlen = values.maxlen;
@@ -23,9 +21,8 @@ module.exports = Queue = function() {
   });
 }
 
-function initialise() {
+Queue.prototype.initialise = function() {
   var vm = this;
-  Github.initialiseVariables();
   vm.blacklist = Github.blacklist;
   vm.blacklisturl = Github.blacklisturl;
   console.log(vm.blacklist);
