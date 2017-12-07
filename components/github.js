@@ -1,6 +1,7 @@
 var request = require('request');
 var Helper = require('./helper.js');
 var gh = require('octonode');
+var Queue = require('./queue.js');
 
 var exports = {};
 
@@ -37,12 +38,12 @@ exports.initialiseVariables = function() {
 exports.splitVariables = function(content) {
   var vm = this;
   var contents = content.split("'/n");
+  console.log(contents);
   var blacklistContent = contents[0].substring("Blacklist: '".length);
   vm.blacklist = blacklistContent.split(',');
   var blacklisturlContent = contents[1].substring("Blacklisturl: '".length);
   vm.blacklisturl = blacklisturlContent.split(',');
-  console.log(contents);
-  console.log(vm.blacklisturl);
+  Queue.initialise();
 }
 
 exports.updateVariables = function(name, content) {
