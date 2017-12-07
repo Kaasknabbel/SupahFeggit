@@ -25,8 +25,8 @@ module.exports = Queue = function() {
 
 Queue.prototype.initialise = function() {
   var vm = this;
-  Github.initialiseVariables();
-  while (Github.initialised == false);
+  while (Github.initialised == false)
+    Github.initialiseVariables();
   vm.blacklist = Github.blacklist;
   vm.blacklisturl = Github.blacklisturl;
   console.log(vm.blacklist);
