@@ -28,6 +28,8 @@ function initialise() {
   Github.initialiseVariables();
   vm.blacklist = Github.blacklist;
   vm.blacklisturl = Github.blacklisturl;
+  console.log(vm.blacklist);
+  console.log(Github.blacklist);
 }
 
 Queue.prototype.add = function(track, message, info) {
