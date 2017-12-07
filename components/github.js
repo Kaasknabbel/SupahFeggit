@@ -42,7 +42,7 @@ exports.splitVariables = function(content) {
   vm.blacklist = blacklistContent.split(',');
   var blacklisturlContent = contents[1].substring("Blacklisturl: \'".length);
   vm.blacklisturl = blacklisturlContent.split(',');
-  Queue.initialise();
+  Queue.Queue.initialise();
 }
 
 exports.updateVariables = function(name, content) {
