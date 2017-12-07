@@ -9,7 +9,7 @@ exports.init = function() {
   var vm = this;
   vm.blacklist = [];
   vm.blacklisturl = [];
-  vm.initialised = false;
+
   Helper.keys('apikeys', ['github']).then(function(keys) {
     vm.apikey = keys.github;
   }).catch(err => {
@@ -31,19 +31,13 @@ exports.initialiseVariables = function() {
     else {
       var contentB64 = new Buffer(b.content, 'base64')
       var content = contentB64.toString();
-      vm.splitVariables(content);
+      var contents = content.split("\'\n");
+      var blacklistContent = contents[0].substring("Blacklist: \'".length);
+      vm.blacklist = blacklistContent.split(',');
+      var blacklisturlContent = contents[1].substring("Blacklisturl: \'".length);
+      vm.blacklisturl = blacklisturlContent.split(',');
     }
   });
-}
-
-exports.splitVariables = function(content) {
-  var vm = this;
-  var contents = content.split("\'\n");
-  var blacklistContent = contents[0].substring("Blacklist: \'".length);
-  vm.blacklist = blacklistContent.split(',');
-  var blacklisturlContent = contents[1].substring("Blacklisturl: \'".length);
-  vm.blacklisturl = blacklisturlContent.split(',');
-  vm.initialised = true;
 }
 
 exports.updateVariables = function(name, content) {
