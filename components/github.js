@@ -10,6 +10,7 @@ exports.init = function() {
   var vm = this;
   vm.blacklist = [];
   vm.blacklisturl = [];
+  vm.initialised = false;
   Helper.keys('apikeys', ['github']).then(function(keys) {
     vm.apikey = keys.github;
   }).catch(err => {
@@ -43,7 +44,7 @@ exports.splitVariables = function(content) {
   vm.blacklist = blacklistContent.split(',');
   var blacklisturlContent = contents[1].substring("Blacklisturl: \'".length);
   vm.blacklisturl = blacklisturlContent.split(',');
-  Queue.initialise();
+  vm.initialised = true;
 }
 
 exports.updateVariables = function(name, content) {
