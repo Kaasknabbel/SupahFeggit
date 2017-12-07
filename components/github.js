@@ -37,11 +37,11 @@ exports.initialiseVariables = function() {
 
 exports.splitVariables = function(content) {
   var vm = this;
-  var contents = content.split("'/n");
+  var contents = content.split("\'\n");
   console.log(contents);
-  var blacklistContent = contents[0].substring("Blacklist: '".length);
+  var blacklistContent = contents[0].substring("Blacklist: \'".length);
   vm.blacklist = blacklistContent.split(',');
-  var blacklisturlContent = contents[1].substring("Blacklisturl: '".length);
+  var blacklisturlContent = contents[1].substring("Blacklisturl: \'".length);
   vm.blacklisturl = blacklisturlContent.split(',');
   Queue.initialise();
 }
