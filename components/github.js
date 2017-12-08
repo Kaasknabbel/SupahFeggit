@@ -47,17 +47,35 @@ exports.updateVariables = function(name, content) {
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
   var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
-  if (name == 'blacklist') {
-    vm.blacklist = "'" + content[0] + "'";
-    vm.blacklisturl = "'" + content[1] + "'";
-  }
-  var newContent = 'Blacklist: ' + vm.blacklist + '\nBlacklisturl: ' + vm.blacklisturl;
   ghrepo.contents(path, (err, b) => {
     if (err) console.log(err);
     else {
       var contentB64 = new Buffer(b.content, 'base64')
       var currentContent = contentB64.toString();
-      console.log(currentContent);
+      var splitContent = currentContent.split("\n");
+      if (name == 'blacklist') {
+        var blacklistArray = content[0].split(",");
+        var blacklisturlArray = content[1].split(",");
+        var totalblContent = "  vm.blacklist = [";
+        var totalbluContent = "  vm.blacklisturl = [";
+        for (var i = 0; i < blacklistArray.length; i++) {
+          totalblContent +=  "'" + blacklistArray[i] + "'";
+          totalbluContent +=  "'" + blacklisturlArray[i] + "'";
+          if (i != blacklistArray.length - 1){
+            totalblContent += ",";
+            totalbluContent += ",";
+          }
+        }
+        totalblContent += "];";
+        totalbluContent += "];";
+        splitContent[4] = totalblContent;
+        splitContent[5] = totalbluContent;
+      }
+      var completeContent = "";
+      for (var ii = 0; ii < splitContent.length; ii ++) {
+        completeContent += splitContent[ii] + "\n";
+      }
+      console.log(completeContent);
       //ghrepo.updateContents(path, 'Bot - Updated ' + name, completeContent, b.sha, err => {
       //  if (err) console.log(err);
       //});
