@@ -1,5 +1,6 @@
 var Helper = require('./helper.js');
 var Github = require('./github.js');
+var Variables = require('././variables.js');
 
 var exports = {};
 
@@ -12,6 +13,8 @@ module.exports = Queue = function() {
   vm.blacklist = [];
   vm.blacklisturl = [];
   
+  vm.initialise();
+  
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
     vm.maxlen = values.maxlen;
     vm.skipmajority = values.skipmajority;
@@ -23,11 +26,8 @@ module.exports = Queue = function() {
 
 Queue.prototype.initialise = function() {
   var vm = this;
-  Github.initialiseVariables();
-  vm.blacklist = Github.blacklist;
-  vm.blacklisturl = Github.blacklisturl;
-  console.log(vm.blacklist);
-  console.log(Github.blacklist);
+  vm.blacklist = Variables.blacklist;
+  vm.blacklisturl = Variables.blacklisturl;
 }
 
 Queue.prototype.add = function(track, message, info) {
