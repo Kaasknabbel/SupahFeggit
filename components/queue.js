@@ -1,6 +1,6 @@
 var Helper = require('./helper.js');
 var Github = require('./github.js');
-var Variables = require('././variables.js');
+var Variables = require('variables.js');
 
 var exports = {};
 
