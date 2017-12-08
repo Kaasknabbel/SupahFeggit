@@ -20,7 +20,7 @@ exports.init();
 
 exports.initialiseVariables = function() {
   var vm = this;
-  var path = 'variables.js';
+  var path = 'components/variables.js';
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
@@ -42,7 +42,7 @@ exports.initialiseVariables = function() {
 
 exports.updateVariables = function(name, content) {
   var vm = this;
-  var path = 'variables.js';
+  var path = 'components/variables.js';
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
