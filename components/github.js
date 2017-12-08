@@ -1,7 +1,6 @@
 var request = require('request');
 var Helper = require('./helper.js');
 var gh = require('octonode');
-var Queue = require('./queue.js');
 
 var exports = {};
 
@@ -52,13 +51,16 @@ exports.updateVariables = function(name, content) {
     vm.blacklist = "'" + content[0] + "'";
     vm.blacklisturl = "'" + content[1] + "'";
   }
-  var completeContent = 'Blacklist: ' + vm.blacklist + '\nBlacklisturl: ' + vm.blacklisturl;
+  var newContent = 'Blacklist: ' + vm.blacklist + '\nBlacklisturl: ' + vm.blacklisturl;
   ghrepo.contents(path, (err, b) => {
     if (err) console.log(err);
     else {
-      ghrepo.updateContents(path, 'Bot - Updated ' + name, completeContent, b.sha, err => {
-        if (err) console.log(err);
-      });
+      var contentB64 = new Buffer(b.content, 'base64')
+      var currentContent = contentB64.toString();
+      console.log(currentContent);
+      //ghrepo.updateContents(path, 'Bot - Updated ' + name, completeContent, b.sha, err => {
+      //  if (err) console.log(err);
+      //});
     }
   });
 }
