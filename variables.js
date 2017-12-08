@@ -7,8 +7,3 @@ exports.initialiseVariables = function() {
 }
 
 module.exports = exports;
-
-
-
-
-
