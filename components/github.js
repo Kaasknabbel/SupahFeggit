@@ -58,12 +58,14 @@ exports.updateVariables = function(name, content) {
         var blacklisturlArray = content[1].toString().split(",");
         var totalblContent = "  vm.blacklist = [";
         var totalbluContent = "  vm.blacklisturl = [";
-        for (var i = 0; i < blacklistArray.length; i++) {
-          totalblContent +=  "'" + blacklistArray[i] + "'";
-          totalbluContent +=  "'" + blacklisturlArray[i] + "'";
-          if (i != blacklistArray.length - 1){
-            totalblContent += ",";
-            totalbluContent += ",";
+        if (blacklistArray.length != 0) {
+          for (var i = 0; i < blacklistArray.length; i++) {
+            totalblContent +=  "'" + blacklistArray[i] + "'";
+            totalbluContent +=  "'" + blacklisturlArray[i] + "'";
+            if (i != blacklistArray.length - 1){
+              totalblContent += ",";
+              totalbluContent += ",";
+            }
           }
         }
         totalblContent += "];";
