@@ -36,9 +36,9 @@ Playlist.prototype.showPlaylist = function(args, message) {
   var user = message.author.username;
   var toReturn = "";
   if (args == "") {
-    toReturn = "Your playlists:";
     Github.readPlaylist(user, undefined, (userPlaylists,playlist,playlisturl) => {
       if (userPlaylists[0] != undefined) {
+        toReturn = "Your playlists:";
         for (var i = 0; i < userPlaylists.length; i++) {
           toReturn += "\n[" + (i + 1) + "]  " + userPlaylists[i];
         }
@@ -47,4 +47,22 @@ Playlist.prototype.showPlaylist = function(args, message) {
       else message.reply(Helper.wrap("You don't have any playlists, feggit.\nYou can create one with the command: !playlist.new [name]"));
     });
   }
+  else if (message.mentions.users.size === 0) {
+    Github.readPlaylist(user,args, (userPlaylists,playlist,playlisturl) => {
+      if (userPlaylists.includes(args)) {
+        if (playlist[0] != undefined) {
+          toReturn = "Your playlist '" + args + "':";
+          for (var i = 0; i < playlist.length; i++) {
+            toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+          }
+          message.reply(Helper.wrap(toReturn));
+        }
+        else message.reply(Helper.wrap("Your playlist '" + args + "' is empty, feggit."));
+      }
+      else message.reply(Helper.wrap("You don't have a playlist with the name: '" + name + "', feggit."));
+    });
+  }
+  else {
+    
+  } 
 }
