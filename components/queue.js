@@ -31,15 +31,14 @@ Queue.prototype.add = function(track, message, info) {
     if (blacklisturl.includes(track.url)) {
       return message.reply(Helper.wrap("'" + track.title + "' cannot be played. This song is on the blacklist, feggit."));
     }
+    else {
+      vm.queue.push(track);
+      if (info) message.reply(Helper.wrap("Added '" + track.title + "' to the queue. (number " + (vm.queue.indexOf(track) + 1) + ")"));
+      if (vm.queue.length == 1) {
+        vm.play(message, info);
+      }
+    }
   });
-  
-  this.queue.push(track);
-
-  if (info) message.reply(Helper.wrap("Added '" + track.title + "' to the queue. (number " + (this.queue.indexOf(track) + 1) + ")"));
-
-  if (this.queue.length == 1) {
-    this.play(message, info);
-  }
 }
 
 Queue.prototype.isFull = function() {
