@@ -153,7 +153,7 @@ exports.updatePlaylist = function(user,name,content) {
             userPlaylists.push(playlistName[0]);
             if (playlistName[0] == name) {
               listExists = true;
-              listLine = i + 1;
+              listLine = i;
               playlist = playlistName[1].split("ⱡ");
               var playlistPath = "playlisturl(" + playlistUser[0] + "ⱡ" + playlistName[0] + ") = [";
               var playlisturlContent = splitContent[i + 1].substring(playlistPath.length);
