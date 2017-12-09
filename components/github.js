@@ -85,7 +85,6 @@ exports.updateVariables = function(name, content) {
           completeContent += splitContent[ii] + "\n";
         }
       }
-      console.log(completeContent);
       ghrepo.updateContents(path, 'Bot - Updated ' + name, completeContent, b.sha, err => {
         if (err) console.log(err);
       });
