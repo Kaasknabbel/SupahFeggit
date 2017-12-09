@@ -182,7 +182,7 @@ Queue.prototype.moveForward = function(args, message) {
           return message.reply(Helper.wrap(toReturn));  
         }
       }
-      else return message.reply(Helper.wrap('Argument is not a positive integer. Please give the correct queue number of the song to remove it.'));
+      else return message.reply(Helper.wrap('Argument is not a positive integer. Please give the correct queue number of the song to forward it.\nCommand help: !forward [number(optional)]'));
     }    
   }
   else return message.reply(Helper.wrap('You cannot move a song forward with an empty queue, feggit.'));
@@ -224,7 +224,7 @@ Queue.prototype.removeSong = function(args, message) {
         return message.reply(Helper.wrap(toReturn));        
       }
     }
-    else return message.reply(Helper.wrap('Argument is not a positive integer. Please give the correct queue number of the song to remove it.'));
+    else return message.reply(Helper.wrap('Argument is not a positive integer. Please give the correct queue number of the song to remove it.\nCommand help: !remove [number(optional)]'));
   }
 }
 
