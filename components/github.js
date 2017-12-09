@@ -30,11 +30,11 @@ exports.initialiseVariables = function(cb) {
     else {
       var contentB64 = new Buffer(b.content, 'base64')
       var content = contentB64.toString();
-      var contents = content.split("'];\n");
-      var blacklistContent = contents[0].substring("Blacklist = ['".length);
-      var blacklist = blacklistContent.split("','");
+      var contents = content.split("];\n");
+      var blacklistContent = contents[0].substring("Blacklist = [".length);
+      var blacklist = blacklistContent.split(",");
       var blacklisturlContent = contents[1].substring("Blacklisturl = ['".length);
-      var blacklisturl = blacklisturlContent.split("','");
+      var blacklisturl = blacklisturlContent.split(",");
       cb(blacklist, blacklisturl);
     }
   });
