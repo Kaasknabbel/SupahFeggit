@@ -78,7 +78,7 @@ Playlist.prototype.showPlaylist = function(args, message) {
           }
           else message.reply(Helper.wrap(user + "'s playlist '" + name + "' is empty, feggit."));
         }
-        else message.reply(Helper.wrap(user + " has no playlist with the name: '" + name + "', feggit."));
+        else message.reply(Helper.wrap(user + " has no playlist with the name: '" + name + "', feggit.\nCommand help: !playlist [user(optional)] [name(optional)]"));
       });
     }
     else {
