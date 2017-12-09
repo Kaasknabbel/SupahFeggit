@@ -36,7 +36,11 @@ exports.readVariables = function(name,cb) {
         var blacklist = blacklistContent.split(",");
         var blacklisturlContent = contents[1].substring("blacklisturl = [".length);
         var blacklisturl = blacklisturlContent.split(",");
-        cb(blacklist, blacklisturl);
+        if (blacklist != "")
+          cb(blacklist, blacklisturl);
+        else
+          cb([],[]);
+        
       }
     }
   });
