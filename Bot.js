@@ -85,6 +85,10 @@ var commands = {
     execute: deletePlaylist,
     description: 'Delete an existing playlist'
   },
+  '!playlist.add': {
+    execute: addPlaylist,
+    description: 'Add a song to one of your playlists'
+  },
   '!sounds': {
     execute: showSounds,
     description: 'Get a list of the available sound samples'
@@ -376,6 +380,27 @@ function deletePlaylist(args, message) {
 
 function showPlaylist(args, message) {
   Playlist.showPlaylist(args, message);
+}
+
+function addPlaylist(args, message) {
+  var data = args.split(" ", 2);
+  if (data[1].length <= 0) {
+    return message.reply(Helper.wrap('Type of music need to be specified.'));
+  }
+
+  if (args.startsWith('http')) {
+    TrackHelper.getVideoFromUrl(data[1]).then(track => {
+      Playlist.addSong(data[0], track, message);
+    }).catch(err => {
+      message.reply(Helper.wrap(err));
+    });
+  } else {
+    TrackHelper.getFirstTrack(data[1], 1).then(track => {
+      Playlist.addSong(data[0], track, message);
+    }).catch(err => {
+      message.reply(Helper.wrap(err));
+    });
+  }  
 }
 
 function getVideo(args, message) {
