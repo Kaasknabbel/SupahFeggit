@@ -7,3 +7,6 @@ module.exports = Playlist = function() {
   var vm = this;
 }
 
+Playlist.prototype.newPlaylist = function(message, name) {
+  
+}
