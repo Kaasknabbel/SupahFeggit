@@ -1,1 +1,2 @@
-
+playlist(Kaasknabbel,Test) = [the ting go skraa full song with lyrics - original - mans not hot];
+playlisturl(Kaasknabbel,Test) = [https://www.youtube.com/watch?v=KZgjdQwuUb8];
