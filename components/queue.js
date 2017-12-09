@@ -27,7 +27,7 @@ Queue.prototype.add = function(track, message, info) {
     return message.reply(Helper.wrap('You are not in a voice channel, feggit.'));
   }
   
-  Github.readVariables('blacklist', (blacklist, blacklisturl) => {
+  Github.readBlacklist((blacklist, blacklisturl) => {
     if (blacklisturl.includes(track.url)) {
       return message.reply(Helper.wrap("'" + track.title + "' cannot be played. This song is on the blacklist, feggit."));
     }
@@ -242,19 +242,19 @@ Queue.prototype.clearQueue = function(message) {
 
 Queue.prototype.addToBlacklist = function(track, message) {
   var vm = this;
-  Github.readVariables('blacklist', (blacklist, blacklisturl) => {
+  Github.readBlacklist((blacklist, blacklisturl) => {
     if (blacklisturl.includes(track.url)) 
       return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
     blacklisturl.push(track.url);
     blacklist.push(track.title);
-    Github.updateVariables('blacklist', [blacklist, blacklisturl]);
+    Github.updateBlacklist([blacklist, blacklisturl]);
     return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + blacklist.length + ")"));
   });
 }
 
 Queue.prototype.removeFromBlacklist = function(track, message, number) {
   var vm = this;
-  Github.readVariables('blacklist', (blacklist, blacklisturl) => {
+  Github.readBlacklist((blacklist, blacklisturl) => {
     if (blacklist.length == 0) 
       return message.reply(Helper.wrap("The blacklist is empty, feggit. There are no songs to whitelist."));
     if (number == -1) {
@@ -262,7 +262,7 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
         if (blacklisturl[i] == track.url) {
           blacklisturl.splice(i, 1);
           blacklist.splice(i, 1);
-          Github.updateVariables('blacklist', [blacklist, blacklisturl]);
+          Github.updateBlacklist([blacklist, blacklisturl]);
           return message.reply(Helper.wrap("'" + track.title + "' has been removed from the blacklist, sir."));
         }
       }
@@ -274,13 +274,13 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
         toReturn = "'" + blacklist[number] + "' has been removed from the blacklist, sir."
         blacklisturl.splice(number, 1);
         blacklist.splice(number, 1);
-        Github.updateVariables('blacklist', [blacklist, blacklisturl]);
+        Github.updateBlacklist([blacklist, blacklisturl]);
       }
       else {
         toReturn = "'" + blacklist[(blacklist.length - 1)] + "' has been removed from the blacklist, sir."
         blacklisturl.pop();
         blacklist.pop();
-        Github.updateVariables('blacklist', [blacklist, blacklisturl]);
+        Github.updateBlacklist([blacklist, blacklisturl]);
       }
       return message.reply(Helper.wrap(toReturn));
     }
@@ -290,7 +290,7 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
 Queue.prototype.showBlacklist = function(message) {
   var vm = this;
   var toReturn = 'There are no songs on the blacklist.';
-  Github.readVariables('blacklist', (blacklist, blacklisturl) => {
+  Github.readBlacklist((blacklist, blacklisturl) => {
     if (blacklist.length == 0)
       return message.reply(Helper.wrap(toReturn));
     toReturn = 'Current songs on the blacklist:';
