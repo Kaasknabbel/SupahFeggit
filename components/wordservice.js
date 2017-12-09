@@ -33,6 +33,7 @@ WordService.prototype.countWordsByUser = function(args, message) {
   }
 
   words = vm.wordsByUser[user];
+  console.log(words);
 
   if (words) {
     var sortedWords = getTopUsedWords(words);
