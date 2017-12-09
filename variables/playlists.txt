@@ -1,2 +1,5 @@
 playlist(KaasknabbelⱡTest) = [-];
 playlisturl(KaasknabbelⱡTest) = [1];
+
+playlist(KaasknabbelⱡTest 2) = [];
+playlisturl(KaasknabbelⱡTest 2) = [];
