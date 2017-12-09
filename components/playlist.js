@@ -63,6 +63,35 @@ Playlist.prototype.showPlaylist = function(args, message) {
     });
   }
   else {
-    
+    user = message.guild.member(message.mentions.users.first()).username;
+    var argsArray = args.split(" ");
+    if (argsArray[1] != undefined) {
+      var name = argsArray.slice(1).join(" ");
+      Github.readPlaylist(user,name, (userPlaylists,playlist,playlisturl) => {
+        if (userPlaylists.includes(name)) {
+          if (playlist[0] != "") {
+            toReturn = user + "'s playlist '" + args + "':";
+            for (var i = 0; i < playlist.length; i++) {
+              toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+            }
+            message.reply(Helper.wrap(toReturn));
+          }
+          else message.reply(Helper.wrap(user + "'s playlist '" + name + "' is empty, feggit."));
+        }
+        else message.reply(Helper.wrap(user + " has no playlist with the name: '" + name + "', feggit."));
+      });
+    }
+    else {
+      Github.readPlaylist(user, undefined, (userPlaylists,playlist,playlisturl) => {
+        if (userPlaylists[0] != undefined) {
+          toReturn = user + "'s playlists:";
+          for (var i = 0; i < userPlaylists.length; i++) {
+            toReturn += "\n[" + (i + 1) + "]  " + userPlaylists[i];
+          }
+          message.reply(Helper.wrap(toReturn));
+        }
+        else message.reply(Helper.wrap(user + " doesn't have any playlists, feggit."));
+      });
+    }
   } 
 }
