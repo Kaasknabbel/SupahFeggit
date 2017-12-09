@@ -1,2 +1,4 @@
 playlist(KaasknabbelⱡTest) = [];
 playlisturl(KaasknabbelⱡTest) = [];
+playlist(KaasknabbelⱡA sick playlist) = [];
+playlisturl(KaasknabbelⱡA sick playlist) = [];
