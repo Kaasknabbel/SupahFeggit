@@ -1,5 +1,5 @@
-blacklist = [];
-blacklisturl = [];
+var exports = {};
+
 exports.initialiseVariables = function() {
   var vm = this;
   vm.blacklist = [];
