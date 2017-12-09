@@ -59,7 +59,7 @@ Playlist.prototype.showPlaylist = function(args, message) {
         }
         else message.reply(Helper.wrap("Your playlist '" + args + "' is empty, feggit."));
       }
-      else message.reply(Helper.wrap("You don't have a playlist with the name: '" + name + "', feggit."));
+      else message.reply(Helper.wrap("You don't have a playlist with the name: '" + args + "', feggit."));
     });
   }
   else {
