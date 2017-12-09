@@ -17,9 +17,9 @@ exports.init = function() {
 }
 exports.init();
 
-exports.readVariables = function(name,cb) {
+exports.readBlacklist = function(cb) {
   var vm = this;
-  var path = 'components/variables.txt';
+  var path = 'variables/blacklist.txt';
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
@@ -30,24 +30,21 @@ exports.readVariables = function(name,cb) {
       var contentB64 = new Buffer(b.content, 'base64')
       var content = contentB64.toString();
       var contents = content.split("];\n");
-      if (name == 'blacklist') {
-        var blacklistContent = contents[0].substring("blacklist = [".length);
-        var blacklist = blacklistContent.split("ⱡ");
-        var blacklisturlContent = contents[1].substring("blacklisturl = [".length);
-        var blacklisturl = blacklisturlContent.split("ⱡ");
-        if (blacklist != "")
-          cb(blacklist, blacklisturl);
-        else
-          cb([],[]);
-        
-      }
+      var blacklistContent = contents[0].substring("blacklist = [".length);
+      var blacklist = blacklistContent.split("ⱡ");
+      var blacklisturlContent = contents[1].substring("blacklisturl = [".length);
+      var blacklisturl = blacklisturlContent.split("ⱡ");
+      if (blacklist != "")
+        cb(blacklist, blacklisturl);
+      else
+        cb([],[]);
     }
   });
 }
 
-exports.updateVariables = function(name, content) {
+exports.updateBlacklist = function(content) {
   var vm = this;
-  var path = 'components/variables.txt';
+  var path = 'variables/blacklist.txt';
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
@@ -58,33 +55,31 @@ exports.updateVariables = function(name, content) {
       var contentB64 = new Buffer(b.content, 'base64')
       var currentContent = contentB64.toString();
       var splitContent = currentContent.split("\n");
-      if (name == 'blacklist') {
-        var blacklistArray = content[0];
-        var blacklisturlArray = content[1];
-        var totalblContent = "blacklist = [";
-        var totalbluContent = "blacklisturl = [";
-        if (blacklistArray[0] != "") {
-          for (var i = 0; i < blacklistArray.length; i++) {
-            totalblContent += blacklistArray[i];
-            totalbluContent += blacklisturlArray[i];
-            if (i != blacklistArray.length - 1){
-              totalblContent += "ⱡ";
-              totalbluContent += "ⱡ";
-            }
+      var blacklistArray = content[0];
+      var blacklisturlArray = content[1];
+      var totalblContent = "blacklist = [";
+      var totalbluContent = "blacklisturl = [";
+      if (blacklistArray[0] != "") {
+        for (var i = 0; i < blacklistArray.length; i++) {
+          totalblContent += blacklistArray[i];
+          totalbluContent += blacklisturlArray[i];
+          if (i != blacklistArray.length - 1){
+            totalblContent += "ⱡ";
+            totalbluContent += "ⱡ";
           }
         }
-        totalblContent += "];";
-        totalbluContent += "];";
-        splitContent[0] = totalblContent;
-        splitContent[1] = totalbluContent;
       }
+      totalblContent += "];";
+      totalbluContent += "];";
+      splitContent[0] = totalblContent;
+      splitContent[1] = totalbluContent;
       var completeContent = "";
       for (var ii = 0; ii < splitContent.length; ii ++) {
         if (ii != splitContent.length - 1){
           completeContent += splitContent[ii] + "\n";
         }
       }
-      ghrepo.updateContents(path, 'Bot - Updated ' + name, completeContent, b.sha, err => {
+      ghrepo.updateContents(path, 'Bot - Updated blacklist', completeContent, b.sha, err => {
         if (err) console.log(err);
       });
     }
