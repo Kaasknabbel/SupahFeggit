@@ -1,2 +1,2 @@
-blacklist = [];
-blacklisturl = [];
+blacklist = ['Bizzey - Traag ft. Jozo & Kraantje Pappie (prod. Ramiks & Bizzey)'];
+blacklisturl = ['https://www.youtube.com/watch?v=1z8NpmCqvZE'];
