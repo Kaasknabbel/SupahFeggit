@@ -1,7 +1,4 @@
-playlist(KaasknabbelⱡTest) = [-];
-playlisturl(KaasknabbelⱡTest) = [1];
 
 playlist(KaasknabbelⱡTest 2) = [];
 playlisturl(KaasknabbelⱡTest 2) = [];
 playlist(KaasknabbelⱡTest 3) = [];
-playlisturl(KaasknabbelⱡTest 3) = [];
