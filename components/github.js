@@ -135,7 +135,7 @@ exports.updatePlaylist = function(user,name,content) {
     else {
       var contentB64 = new Buffer(b.content, 'base64')
       var currentContent = contentB64.toString();
-      var splitContent = currentContent.split("\n");
+      var splitContent = currentContent.split("];\n");
       var userPlaylists = [];
       var playlist = [];
       var playlisturl = [];
