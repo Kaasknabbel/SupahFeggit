@@ -123,7 +123,7 @@ exports.readPlaylist = function(user,name,cb) {
   });
 }
 
-exports.updatePlaylist = function(content) {
+exports.updatePlaylist = function(user,name,content) {
   var vm = this;
   var path = 'variables/playlists.txt';
   var client = gh.client(vm.apikey);
@@ -136,31 +136,52 @@ exports.updatePlaylist = function(content) {
       var contentB64 = new Buffer(b.content, 'base64')
       var currentContent = contentB64.toString();
       var splitContent = currentContent.split("\n");
-      var blacklistArray = content[0];
-      var blacklisturlArray = content[1];
-      var totalblContent = "blacklist = [";
-      var totalbluContent = "blacklisturl = [";
-      if (blacklistArray[0] != "") {
-        for (var i = 0; i < blacklistArray.length; i++) {
-          totalblContent += blacklistArray[i];
-          totalbluContent += blacklisturlArray[i];
-          if (i != blacklistArray.length - 1){
-            totalblContent += "ⱡ";
-            totalbluContent += "ⱡ";
+      var userPlaylists = [];
+      var playlist = [];
+      var playlisturl = [];
+      var listExists = false;
+      var listLine = -1;
+      var newPlaylist = "";
+      var newPlaylisturl = "";
+      var completeContent = "";
+      if (splitContent[0] != "") {
+        for (var i = 0; i < splitContent.length; i += 2) {
+          var playlistContent = splitContent[i].substring("playlist(".length);
+          var playlistUser = playlistContent.split("ⱡ",2);
+          if (playlistUser[0] == user) {
+            var playlistName = playlistUser[1].split(") = [",2);
+            userPlaylists.push(playlistName[0]);
+            if (playlistName[0] == name) {
+              listExists = true;
+              listLine = i + 1;
+              playlist = playlistName[1].split("ⱡ");
+              var playlistPath = "playlisturl(" + playlistUser[0] + "ⱡ" + playlistName[0] + ") = [";
+              var playlisturlContent = splitContent[i + 1].substring(playlistPath.length);
+              playlisturl = playlisturlContent.split("ⱡ");
+            }
           }
         }
-      }
-      totalblContent += "];";
-      totalbluContent += "];";
-      splitContent[0] = totalblContent;
-      splitContent[1] = totalbluContent;
-      var completeContent = "";
-      for (var ii = 0; ii < splitContent.length; ii ++) {
-        if (ii != splitContent.length - 1){
-          completeContent += splitContent[ii] + "\n";
+        if (content[0] == "") {
+          newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];
+          newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];
+          completeContent = currentContent + "\n" + newPlaylist + "\n" + newPlaylisturl;
+        }
+        else if (content[0] == "-1") {
+
+        } 
+        else {
+          newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];
+          newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];
         }
       }
-      ghrepo.updateContents(path, 'Bot - Updated blacklist', completeContent, b.sha, err => {
+      else {
+        if (content[0] == "") {
+          newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];";
+          newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];";
+          completeContent = newPlaylist + "\n" + newPlaylisturl;
+        }
+      }
+      ghrepo.updateContents(path, 'Bot - Updated playlists', completeContent, b.sha, err => {
         if (err) console.log(err);
       });
     }
