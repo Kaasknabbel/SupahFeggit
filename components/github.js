@@ -162,16 +162,41 @@ exports.updatePlaylist = function(user,name,content) {
           }
         }
         if (content[0] == "") {
-          newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];
-          newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];
-          completeContent = currentContent + "\n" + newPlaylist + "\n" + newPlaylisturl;
+          if (listExists == false) {
+            newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];";
+            newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];";
+            completeContent = currentContent + "\n" + newPlaylist + "\n" + newPlaylisturl;
+          }
+          else {
+            newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];";
+            newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];";
+            splitContent[listLine - 1] = newPlaylist;
+            splitContent[listLine] = newPlaylisturl;
+            for (var ii = 0; ii < splitContent.length; ii ++) {
+              if (ii != splitContent.length - 1){
+                completeContent += splitContent[ii] + "\n";
+              }
+            }
+          }
         }
         else if (content[0] == "-1") {
-
+          splitContent.splice((listLine - 1), 2);
+          for (var ii = 0; ii < splitContent.length; ii ++) {
+            if (ii != splitContent.length - 1){
+              completeContent += splitContent[ii] + "\n";
+            }
+          }
         } 
         else {
-          newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];
-          newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];
+          newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [" + content[0] + "];";
+          newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [" + content[1] + "];";
+          splitContent[listLine - 1] = newPlaylist;
+          splitContent[listLine] = newPlaylisturl;
+          for (var ii = 0; ii < splitContent.length; ii ++) {
+            if (ii != splitContent.length - 1){
+              completeContent += splitContent[ii] + "\n";
+            }
+          }
         }
       }
       else {
