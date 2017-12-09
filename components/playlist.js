@@ -63,7 +63,7 @@ Playlist.prototype.showPlaylist = function(args, message) {
     });
   }
   else {
-    user = message.guild.member(message.mentions.users.first());
+    user = message.guild.member(message.mentions.users.first()).user.username;
     console.log(user);
     var argsArray = args.split(" ");
     if (argsArray[1] != undefined) {
