@@ -299,13 +299,15 @@ Queue.prototype.removeFromBlacklist = function(track, message, number) {
 Queue.prototype.showBlacklist = function(message) {
   var vm = this;
   var toReturn = 'There are no songs on the blacklist.';
-  if (vm.blacklist.length == 0)
+  Github.readVariables('blacklist', (blacklist, blacklisturl) => {
+    if (blacklist.length == 0)
+      return message.reply(Helper.wrap(toReturn));
+    toReturn = 'Current songs on the blacklist:';
+    for (var i = 0; i < blacklist.length; i++) {
+      toReturn += "\n[" + (i + 1) + "]  " + blacklist[i];
+    }
     return message.reply(Helper.wrap(toReturn));
-  toReturn = 'Current songs on the blacklist:';
-  for (var i = 0; i < vm.blacklist.length; i++) {
-    toReturn += "\n[" + (i + 1) + "]  " + vm.blacklist[i];
-  }
-  return message.reply(Helper.wrap(toReturn));
+  });
 }
 
 Queue.prototype.getAuthorVoiceChannel = function(message) {
