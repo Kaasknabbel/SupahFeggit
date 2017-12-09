@@ -292,8 +292,6 @@ Queue.prototype.showBlacklist = function(message) {
   var vm = this;
   var toReturn = 'There are no songs on the blacklist.';
   Github.readVariables('blacklist', (blacklist, blacklisturl) => {
-    console.log(blacklist);
-    console.log(blacklisturl);
     if (blacklist.length == 0)
       return message.reply(Helper.wrap(toReturn));
     toReturn = 'Current songs on the blacklist:';
