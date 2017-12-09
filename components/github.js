@@ -153,7 +153,7 @@ exports.updatePlaylist = function(user,name,content) {
             userPlaylists.push(playlistName[0]);
             if (playlistName[0] == name) {
               listExists = true;
-              listLine = i;
+              listLine = i + 1;
               playlist = playlistName[1].split("ⱡ");
               var playlistPath = "playlisturl(" + playlistUser[0] + "ⱡ" + playlistName[0] + ") = [";
               var playlisturlContent = splitContent[i + 1].substring(playlistPath.length);
@@ -176,6 +176,8 @@ exports.updatePlaylist = function(user,name,content) {
               if (ii != splitContent.length - 1){
                 completeContent += splitContent[ii] + "\n";
               }
+              else
+                completeContent += splitContent[ii];
             }
           }
         }
@@ -185,6 +187,8 @@ exports.updatePlaylist = function(user,name,content) {
             if (ii != splitContent.length - 1){
               completeContent += splitContent[ii] + "\n";
             }
+            else
+              completeContent += splitContent[ii];
           }
         } 
         else {
@@ -196,6 +200,8 @@ exports.updatePlaylist = function(user,name,content) {
             if (ii != splitContent.length - 1){
               completeContent += splitContent[ii] + "\n";
             }
+            else
+              completeContent += splitContent[ii];
           }
         }
       }
