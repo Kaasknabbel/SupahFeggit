@@ -73,6 +73,10 @@ var commands = {
     execute: whitelist,
     description: 'Admin only - remove a song from the blacklist'
   },
+  '!playlist': {
+    execute: showPlaylist,
+    description: 'Show your own or others playlists'
+  },
   '!playlist.new': {
     execute: newPlaylist,
     description: 'Create a new playlist'
@@ -370,6 +374,10 @@ function deletePlaylist(args, message) {
   Playlist.deletePlaylist(args, message);
 }
 
+function showPlaylist(args, message) {
+  Playlist.showPlaylist(args, message);
+}
+
 function getVideo(args, message) {
   TrackHelper.getFirstTrack(args, 1).then(track => {
     message.reply(track.url);
@@ -544,7 +552,7 @@ function init() {
   Helper.keys('apikeys', ['discord']).then(keys => {
     Bot.login(keys.discord);
     Queue = registerService(Queue, ['!queue','!q', '!voteskip', '!song', '!clear', '!admin', '!skraa', '!whatislove', '!gaaay', '!krakaka', '!moeder', '!nomoney', '!personal']);
-    Playlist = registerService(Playlist, ['!playlist.new']);
+    Playlist = registerService(Playlist, ['!playlist.new', '!playlist.delete', '!playlist']);
     TrackHelper = registerService(TrackHelper, ['!queue','!q', '!video']);
     WordService = registerService(WordService, ['!words']);
     WeatherService = registerService(WeatherService, ['!weather']);
