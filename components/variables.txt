@@ -1,2 +1,2 @@
-blacklist = [Bizzey - Traag ft. Jozo & Kraantje Pappie (prod. Ramiks & Bizzey)ⱡNyan Cat 10 hours (original)ⱡCleber & Cauan – 1,2,3 | Resenha (Ao Vivo em Goiânia)];
-blacklisturl = [https://www.youtube.com/watch?v=1z8NpmCqvZEⱡhttps://www.youtube.com/watch?v=wZZ7oFKsKzYⱡhttps://www.youtube.com/watch?v=y-FAeJYKfoI];
+blacklist = [Bizzey - Traag ft. Jozo & Kraantje Pappie (prod. Ramiks & Bizzey)ⱡNyan Cat 10 hours (original)];
+blacklisturl = [https://www.youtube.com/watch?v=1z8NpmCqvZEⱡhttps://www.youtube.com/watch?v=wZZ7oFKsKzY];
