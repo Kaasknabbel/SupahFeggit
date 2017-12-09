@@ -1,5 +1,3 @@
-playlist(KaasknabbelⱡTest) = [https://www.youtube.com/watch?v=KZgjdQwuUb8];
-playlisturl(KaasknabbelⱡTest) = [https://www.youtube.com/watch?v=wZZ7oFKsKzY];
 
 playlist(KaasknabbelⱡTest List) = [];
 playlisturl(KaasknabbelⱡTest List) = [];
