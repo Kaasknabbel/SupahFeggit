@@ -77,6 +77,10 @@ var commands = {
     execute: newPlaylist,
     description: 'Create a new playlist'
   },
+  '!playlist.delete': {
+    execute: deletePlaylist,
+    description: 'Delete an existing playlist'
+  },
   '!sounds': {
     execute: showSounds,
     description: 'Get a list of the available sound samples'
