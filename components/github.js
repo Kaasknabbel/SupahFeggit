@@ -66,8 +66,8 @@ exports.updateVariables = function(name, content) {
         var totalbluContent = "blacklisturl = [";
         if (blacklistArray[0] != "") {
           for (var i = 0; i < blacklistArray.length; i++) {
-            totalblContent +=  "'" + blacklistArray[i] + "'";
-            totalbluContent +=  "'" + blacklisturlArray[i] + "'";
+            totalblContent += blacklistArray[i];
+            totalbluContent += blacklisturlArray[i];
             if (i != blacklistArray.length - 1){
               totalblContent += ",";
               totalbluContent += ",";
