@@ -161,7 +161,7 @@ exports.updatePlaylist = function(user,name,content) {
             }
           }
         }
-        if (content[0] == "") {
+        if (content == "") {
           if (listExists == false) {
             newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];";
             newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];";
@@ -179,7 +179,7 @@ exports.updatePlaylist = function(user,name,content) {
             }
           }
         }
-        else if (content[0] == "-1") {
+        else if (content == "-1") {
           splitContent.splice((listLine - 1), 2);
           for (var ii = 0; ii < splitContent.length; ii ++) {
             if (ii != splitContent.length - 1){
@@ -200,7 +200,7 @@ exports.updatePlaylist = function(user,name,content) {
         }
       }
       else {
-        if (content[0] == "") {
+        if (content == "") {
           newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [];";
           newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [];";
           completeContent = newPlaylist + "\n" + newPlaylisturl;
