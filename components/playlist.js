@@ -11,6 +11,9 @@ Playlist.prototype.newPlaylist = function(name, message) {
   var vm = this;
   var user = message.author.username;
   Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
+    console.log(userPlaylists);
+    console.log(playlist);
+    console.log(playlisturl);
     if (playlist == []) {
       message.reply(Helper.wrap("Playlist '" + name + "' has been created, " + user + "."));
     }
