@@ -9,6 +9,7 @@ module.exports = Playlist = function() {
 
 Playlist.prototype.newPlaylist = function(message, name) {
   var vm = this;
+  console.log(message);
   var user = message.author.username;
   Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
     if (playlist == []) {
