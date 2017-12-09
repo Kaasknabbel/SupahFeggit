@@ -1,4 +1,4 @@
-playlist(KaasknabbelⱡTest) = [,the ting go skraa full song with lyrics - original - mans not hot,the ting go skraa full song with lyrics - original - mans not hot
-playlisturl(KaasknabbelⱡTest) = [];,https://www.youtube.com/watch?v=KZgjdQwuUb8];,https://www.youtube.com/watch?v=KZgjdQwuUb8
-playlist(KaasknabbelⱡTest2) = [,the ting go skraa full song with lyrics - original - mans not hot];
-playlisturl(KaasknabbelⱡTest2) = [];,https://www.youtube.com/watch?v=KZgjdQwuUb8];
+playlist(KaasknabbelⱡTest) = [the ting go skraa full song with lyrics - original - mans not hot];
+playlisturl(KaasknabbelⱡTest) = [https://www.youtube.com/watch?v=KZgjdQwuUb8];
+playlist(KaasknabbelⱡTest2) = [the ting go skraa full song with lyrics - original - mans not hot];
+playlisturl(KaasknabbelⱡTest2) = [https://www.youtube.com/watch?v=KZgjdQwuUb8];
