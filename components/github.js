@@ -135,7 +135,7 @@ exports.updatePlaylist = function(user,name,content) {
     else {
       var contentB64 = new Buffer(b.content, 'base64')
       var currentContent = contentB64.toString();
-      var splitContent = currentContent.split("];\n");
+      var splitContent = currentContent.split("\n");
       var userPlaylists = [];
       var playlist = [];
       var playlisturl = [];
@@ -192,6 +192,8 @@ exports.updatePlaylist = function(user,name,content) {
           }
         } 
         else {
+          console.log(content[0]);
+          console.log(content[1]);
           newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [" + content[0] + "];";
           newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [" + content[1] + "];";
           splitContent[listLine - 1] = newPlaylist;
