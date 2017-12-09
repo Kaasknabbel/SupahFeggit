@@ -2,6 +2,7 @@ var Discord = require('discord.js');
 var Bot = new Discord.Client();
 var Helper = require('./components/helper.js');
 var Queue = require('./components/queue.js');
+var Playlist = require('./components/playlist.js');
 var TrackHelper = require('./components/trackhelper.js');
 var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
@@ -71,6 +72,10 @@ var commands = {
   '!whitelist': {
     execute: whitelist,
     description: 'Admin only - remove a song from the blacklist'
+  },
+  '!playlist.new': {
+    execute: newPlaylist,
+    description: 'Create a new playlist'
   },
   '!sounds': {
     execute: showSounds,
@@ -347,6 +352,13 @@ function whitelist(args, message) {
   else message.reply(Helper.wrap('You need to be an admin to remove a song from the blacklist, feggit.'));
 }
 
+function newPlaylist(args, message) {
+  if (args == "") {
+    return message.reply(Helper.wrap('Please give a name for the new playlist, feggit.\nCommand help: !playlist.new [name]'));
+  }
+  Playlist.newPlaylist(args, message);
+}
+
 function getVideo(args, message) {
   TrackHelper.getFirstTrack(args, 1).then(track => {
     message.reply(track.url);
@@ -521,6 +533,7 @@ function init() {
   Helper.keys('apikeys', ['discord']).then(keys => {
     Bot.login(keys.discord);
     Queue = registerService(Queue, ['!queue','!q', '!voteskip', '!song', '!clear', '!admin', '!skraa', '!whatislove', '!gaaay', '!krakaka', '!moeder', '!nomoney', '!personal']);
+    Playlist = registerService(Playlist, ['!playlist.new']);
     TrackHelper = registerService(TrackHelper, ['!queue','!q', '!video']);
     WordService = registerService(WordService, ['!words']);
     WeatherService = registerService(WeatherService, ['!weather']);
