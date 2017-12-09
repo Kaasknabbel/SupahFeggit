@@ -363,6 +363,13 @@ function newPlaylist(args, message) {
   Playlist.newPlaylist(args, message);
 }
 
+function deletePlaylist(args, message) {
+  if (args == "") {
+    return message.reply(Helper.wrap('Please give the name of the playlist that you want to delete, feggit.\nCommand help: !playlist.delete [name]'));
+  }
+  Playlist.newPlaylist(args, message);
+}
+
 function getVideo(args, message) {
   TrackHelper.getFirstTrack(args, 1).then(track => {
     message.reply(track.url);
