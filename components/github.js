@@ -86,4 +86,85 @@ exports.updateBlacklist = function(content) {
   });
 }
 
+exports.readPlaylist = function(user,name,cb) {
+  var vm = this;
+  var path = 'variables/playlists.txt';
+  var client = gh.client(vm.apikey);
+  var ghme = client.me();
+  var ghuser = client.user('Kaasknabbel');
+  var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
+  ghrepo.contents(path, (err, b) => {
+    if (err) console.log(err);
+    else {
+      var contentB64 = new Buffer(b.content, 'base64')
+      var content = contentB64.toString();
+      var contents = content.split("];\n");
+      var userPlaylists = [];
+      var playlist = [];
+      var playlisturl = [];
+      if (contents[0] != "") {
+        for (var i = 0; i < contents.length; i += 2) {
+          var playlistContent = contents[i].substring("playlist(".length);
+          var playlistUser = playlistContent.split("ⱡ",2);
+          if (playlistUser[0] == user) {
+            var playlistName = playlistUser.split(") = [",2);
+            userPlaylists.push(playlistName[0]);
+            if (playlistName[0] == name) {
+              playlist = playlistName[1].split("ⱡ");
+              var playlistPath = "playlisturl(" + playlistUser[0] + "ⱡ" + playlistName[0] + ") = [";
+              var playlisturlContent = contents[i + 1].substring(playlistPath.length);
+              playlisturl = playlisturlContent.split("ⱡ");
+            }
+          }
+        }
+      }
+      cb(userPlaylists,playlist,playlisturl);
+    }
+  });
+}
+
+exports.updatePlaylist = function(content) {
+  var vm = this;
+  var path = 'variables/playlists.txt';
+  var client = gh.client(vm.apikey);
+  var ghme = client.me();
+  var ghuser = client.user('Kaasknabbel');
+  var ghrepo = client.repo('Kaasknabbel/SupahFeggit');
+  ghrepo.contents(path, (err, b) => {
+    if (err) console.log(err);
+    else {
+      var contentB64 = new Buffer(b.content, 'base64')
+      var currentContent = contentB64.toString();
+      var splitContent = currentContent.split("\n");
+      var blacklistArray = content[0];
+      var blacklisturlArray = content[1];
+      var totalblContent = "blacklist = [";
+      var totalbluContent = "blacklisturl = [";
+      if (blacklistArray[0] != "") {
+        for (var i = 0; i < blacklistArray.length; i++) {
+          totalblContent += blacklistArray[i];
+          totalbluContent += blacklisturlArray[i];
+          if (i != blacklistArray.length - 1){
+            totalblContent += "ⱡ";
+            totalbluContent += "ⱡ";
+          }
+        }
+      }
+      totalblContent += "];";
+      totalbluContent += "];";
+      splitContent[0] = totalblContent;
+      splitContent[1] = totalbluContent;
+      var completeContent = "";
+      for (var ii = 0; ii < splitContent.length; ii ++) {
+        if (ii != splitContent.length - 1){
+          completeContent += splitContent[ii] + "\n";
+        }
+      }
+      ghrepo.updateContents(path, 'Bot - Updated blacklist', completeContent, b.sha, err => {
+        if (err) console.log(err);
+      });
+    }
+  });
+}
+
 module.exports = exports;
