@@ -1,4 +1,3 @@
-var request = require('request');
 var Helper = require('./helper.js');
 var gh = require('octonode');
 
