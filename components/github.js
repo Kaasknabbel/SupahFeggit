@@ -18,7 +18,7 @@ exports.init = function() {
 }
 exports.init();
 
-exports.initialiseVariables = function(cb) {
+exports.readVariables = function(name,cb) {
   var vm = this;
   var path = 'components/variables.txt';
   var client = gh.client(vm.apikey);
@@ -31,11 +31,13 @@ exports.initialiseVariables = function(cb) {
       var contentB64 = new Buffer(b.content, 'base64')
       var content = contentB64.toString();
       var contents = content.split("];\n");
-      var blacklistContent = contents[0].substring("Blacklist = [".length);
-      var blacklist = blacklistContent.split(",");
-      var blacklisturlContent = contents[1].substring("Blacklisturl = ['".length);
-      var blacklisturl = blacklisturlContent.split(",");
-      cb(blacklist, blacklisturl);
+      if (name == 'blacklist') {
+        var blacklistContent = contents[0].substring("Blacklist = [".length);
+        var blacklist = blacklistContent.split(",");
+        var blacklisturlContent = contents[1].substring("Blacklisturl = ['".length);
+        var blacklisturl = blacklisturlContent.split(",");
+        cb(blacklist, blacklisturl);
+      }
     }
   });
 }
