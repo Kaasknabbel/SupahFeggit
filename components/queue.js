@@ -13,8 +13,6 @@ module.exports = Queue = function() {
   vm.blacklist = [];
   vm.blacklisturl = [];
   
-  vm.initialise();
-  
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
     vm.maxlen = values.maxlen;
     vm.skipmajority = values.skipmajority;
