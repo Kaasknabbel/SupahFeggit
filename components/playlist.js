@@ -36,7 +36,7 @@ Playlist.prototype.showPlaylist = function(args, message) {
   var user = message.author.username;
   var toReturn = "";
   if (args == "") {
-    toReturn = user + "'s playlists:";
+    toReturn = "Your playlists:";
     Github.readPlaylist(user, undefined, (userPlaylists,playlist,playlisturl) => {
       if (userPlaylists[0] != undefined) {
         for (var i = 0; i < userPlaylists.length; i++) {
