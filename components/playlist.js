@@ -71,7 +71,7 @@ Playlist.prototype.showPlaylist = function(args, message) {
       Github.readPlaylist(user,name, (userPlaylists,playlist,playlisturl) => {
         if (userPlaylists.includes(name)) {
           if (playlist[0] != "") {
-            toReturn = user + "'s playlist '" + args + "':";
+            toReturn = user + "'s playlist '" + name + "':";
             for (var i = 0; i < playlist.length; i++) {
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
             }
