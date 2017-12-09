@@ -30,3 +30,21 @@ Playlist.prototype.deletePlaylist = function(name, message) {
     else message.reply(Helper.wrap("You don't have a playlist with the name: '" + name + "', feggit."));
   });
 }
+
+Playlist.prototype.showPlaylist = function(args, message) {
+  var vm = this;
+  var user = message.author.username;
+  var toReturn = "";
+  if (args == "") {
+    toReturn = user + "'s playlists:";
+    Github.readPlaylist(user, undefined, (userPlaylists,playlist,playlisturl) => {
+      if (userPlaylists[0] != undefined) {
+        for (var i = 0; i < userPlaylists.length; i++) {
+          toReturn += "\n[" + (i + 1) + "]  " + userPlaylists[i];
+        }
+        message.reply(Helper.wrap(toReturn));
+      }
+      else message.reply(Helper.wrap("You don't have any playlists, feggit.\nYou can create one with the command: !playlist.new [name]
+    });
+  }
+}
