@@ -44,7 +44,7 @@ exports.readVariables = function(name,cb) {
 
 exports.updateVariables = function(name, content) {
   var vm = this;
-  var path = 'components/variables.js';
+  var path = 'components/variables.txt';
   var client = gh.client(vm.apikey);
   var ghme = client.me();
   var ghuser = client.user('Kaasknabbel');
