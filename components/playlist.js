@@ -44,7 +44,7 @@ Playlist.prototype.showPlaylist = function(args, message) {
         }
         message.reply(Helper.wrap(toReturn));
       }
-      else message.reply(Helper.wrap("You don't have any playlists, feggit.\nYou can create one with the command: !playlist.new [name]
+      else message.reply(Helper.wrap("You don't have any playlists, feggit.\nYou can create one with the command: !playlist.new [name]));
     });
   }
 }
