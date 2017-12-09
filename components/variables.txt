@@ -1,2 +1,2 @@
-blacklist = [Nyan Cat 10 hours (original)];
-blacklisturl = [https://www.youtube.com/watch?v=wZZ7oFKsKzY];
+blacklist = [];
+blacklisturl = [];
