@@ -107,7 +107,7 @@ exports.readPlaylist = function(user,name,cb) {
           var playlistContent = contents[i].substring("playlist(".length);
           var playlistUser = playlistContent.split("ⱡ",2);
           if (playlistUser[0] == user) {
-            var playlistName = playlistUser.split(") = [",2);
+            var playlistName = playlistUser[1].split(") = [",2);
             userPlaylists.push(playlistName[0]);
             if (playlistName[0] == name) {
               playlist = playlistName[1].split("ⱡ");
