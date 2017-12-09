@@ -2,3 +2,6 @@ playlist(KaasknabbelⱡTest) = [the ting go skraa full song with lyrics - origin
 playlisturl(KaasknabbelⱡTest) = [https://www.youtube.com/watch?v=KZgjdQwuUb8,https://www.youtube.com/watch?v=wZZ7oFKsKzY];
 playlist(KaasknabbelⱡTest2) = [the ting go skraa full song with lyrics - original - mans not hot,Nyan Cat 10 hours (original)];
 playlisturl(KaasknabbelⱡTest2) = [https://www.youtube.com/watch?v=KZgjdQwuUb8,https://www.youtube.com/watch?v=wZZ7oFKsKzY];
+
+playlist(KaasknabbelⱡTest3) = [];
+playlisturl(KaasknabbelⱡTest3) = [];
