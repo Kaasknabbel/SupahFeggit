@@ -253,12 +253,14 @@ Queue.prototype.clearQueue = function(message) {
 
 Queue.prototype.addToBlacklist = function(track, message) {
   var vm = this;
-  if (vm.blacklisturl.includes(track.url)) 
-    return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
-  vm.blacklisturl.push(track.url);
-  vm.blacklist.push(track.title);
-  Github.updateVariables('blacklist', [vm.blacklist, vm.blacklisturl]);
-  return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + vm.blacklist.length + ")"));
+  Github.readVariables('blacklist', (blacklist, blacklisturl) => {
+    if (blacklisturl.includes(track.url)) 
+      return message.reply(Helper.wrap("'" + track.title + "' is already on the blacklist, feggit."));
+    blacklisturl.push(track.url);
+    blacklist.push(track.title);
+    Github.updateVariables('blacklist', [blacklist, blacklisturl]);
+    return message.reply(Helper.wrap("'" + track.title + "' has been added to the blacklist, sir. (number " + blacklist.length + ")"));
+  });
 }
 
 Queue.prototype.removeFromBlacklist = function(track, message, number) {
