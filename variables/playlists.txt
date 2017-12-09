@@ -3,3 +3,5 @@ playlisturl(KaasknabbelⱡTest) = [1];
 
 playlist(KaasknabbelⱡTestplaylist) = [];
 playlisturl(KaasknabbelⱡTestplaylist) = [];
+playlist(KaasknabbelⱡSecondtest) = [];
+playlisturl(KaasknabbelⱡSecondtest) = [];
