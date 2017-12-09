@@ -32,9 +32,9 @@ exports.readVariables = function(name,cb) {
       var content = contentB64.toString();
       var contents = content.split("];\n");
       if (name == 'blacklist') {
-        var blacklistContent = contents[0].substring("Blacklist = [".length);
+        var blacklistContent = contents[0].substring("blacklist = [".length);
         var blacklist = blacklistContent.split(",");
-        var blacklisturlContent = contents[1].substring("Blacklisturl = ['".length);
+        var blacklisturlContent = contents[1].substring("blacklisturl = [".length);
         var blacklisturl = blacklisturlContent.split(",");
         cb(blacklist, blacklisturl);
       }
@@ -58,8 +58,8 @@ exports.updateVariables = function(name, content) {
       if (name == 'blacklist') {
         var blacklistArray = content[0].toString().split(",");
         var blacklisturlArray = content[1].toString().split(",");
-        var totalblContent = "  vm.blacklist = [";
-        var totalbluContent = "  vm.blacklisturl = [";
+        var totalblContent = "blacklist = [";
+        var totalbluContent = "blacklisturl = [";
         if (blacklistArray[0] != "") {
           for (var i = 0; i < blacklistArray.length; i++) {
             totalblContent +=  "'" + blacklistArray[i] + "'";
@@ -72,8 +72,8 @@ exports.updateVariables = function(name, content) {
         }
         totalblContent += "];";
         totalbluContent += "];";
-        splitContent[4] = totalblContent;
-        splitContent[5] = totalbluContent;
+        splitContent[0] = totalblContent;
+        splitContent[1] = totalbluContent;
       }
       var completeContent = "";
       for (var ii = 0; ii < splitContent.length; ii ++) {
