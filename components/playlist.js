@@ -15,7 +15,7 @@ Playlist.prototype.newPlaylist = function(name, message) {
       Github.updatePlaylist(user, name, "");
       message.reply(Helper.wrap("Playlist '" + name + "' has been created, feggit."));
     }
-    else message.reply(Helper.wrap("You already have a playlist with the name: '" + name + "'\nPlease give a unique name to your new playlist, feggit."));
+    else message.reply(Helper.wrap("You already have a playlist with the name '" + name + "'\nPlease give a unique name to your new playlist, feggit."));
   });
 }
 
@@ -27,7 +27,7 @@ Playlist.prototype.deletePlaylist = function(name, message) {
       Github.updatePlaylist(user, name, "-1");
       message.reply(Helper.wrap("Playlist '" + name + "' has been deleted, feggit."));
     }
-    else message.reply(Helper.wrap("You don't have a playlist with the name: '" + name + "', feggit."));
+    else message.reply(Helper.wrap("You don't have a playlist with the name '" + name + "', feggit."));
   });
 }
 
@@ -78,7 +78,7 @@ Playlist.prototype.showPlaylist = function(args, message) {
           }
           else message.reply(Helper.wrap(user + "'s playlist '" + name + "' is empty, feggit."));
         }
-        else message.reply(Helper.wrap(user + " has no playlist with the name: '" + name + "', feggit.\nCommand help: !playlist [user(optional)] [name(optional)]"));
+        else message.reply(Helper.wrap(user + " has no playlist with the name '" + name + "', feggit.\nCommand help: !playlist [user(optional)] [name(optional)]"));
       });
     }
     else {
@@ -94,4 +94,15 @@ Playlist.prototype.showPlaylist = function(args, message) {
       });
     }
   } 
+}
+
+Playlist.prototype.addSong = function(name, track, message) {
+  var vm = this;
+  var user = message.author.username;
+  Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
+    if (userPlaylists.includes(name)) {
+      Github.updatePlaylist(user, name, (track.title, track.url));
+    }
+    else message.reply(Helper.wrap("You don't have a playlist with the name '" + name + "', feggit.\nCommand help: !playlist.add [listname] [track]"));
+  });
 }
