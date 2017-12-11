@@ -414,8 +414,8 @@ function doQueuePlaylist(args, message) {
               message.reply(Helper.wrap(err));
             });
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
-            toReturn += "\n\nUse the '!list' command to see the complete queue.";
           }
+          toReturn += "\n\nUse the '!list' command to see the complete queue.";
           message.reply(Helper.wrap(toReturn));
         }
         else message.reply(Helper.wrap("Your playlist '" + args + "' is empty, feggit."));
