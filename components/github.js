@@ -204,8 +204,6 @@ exports.updatePlaylist = function(user,name,content) {
           }
         } 
         else {
-          console.log(content[0]);
-          console.log(content[1]);
           newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [" + content[0] + "];";
           newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [" + content[1] + "];";
           splitContent[listLine - 1] = newPlaylist;
