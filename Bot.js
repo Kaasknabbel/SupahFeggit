@@ -408,13 +408,7 @@ function doQueuePlaylist(args, message) {
         if (playlist[0] != "") {
           toReturn = "Your playlist '" + args + "' has been added to the queue:";
           for (var i = 0; i < playlist.length; i++) {
-            setTimeout(() => {
-              TrackHelper.getVideoFromUrl(playlisturl[0]).then(track => {
-                Queue.add(track, message, false);
-              }).catch(err => {
-                message.reply(Helper.wrap(err));
-              });
-            }, i * 1000);
+            addTrackUrlDelay(playlisturl[i], i, message);
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
           }
           toReturn += "\n\nUse the '!list' command to see the complete queue.";
@@ -435,13 +429,7 @@ function doQueuePlaylist(args, message) {
           if (playlist[0] != "") {
             toReturn = user + "'s playlist '" + name + "' has been added to the queue:";
             for (var i = 0; i < playlist.length; i++) {
-              setTimeout(() => {
-                TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
-                  Queue.add(track, message, false);
-                }).catch(err => {
-                  message.reply(Helper.wrap(err));
-                });
-              }, i * 1000);
+              addTrackUrlDelay(playlisturl[i], i, message);
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
             }
             toReturn += "\n\nUse the '!list' command to see the complete queue.";
@@ -454,6 +442,16 @@ function doQueuePlaylist(args, message) {
     }
     else message.reply(Helper.wrap("Please specify which playlist you want to queue from '" + user  + "', feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]"));
   }   
+}
+
+function addTrackUrlDelay(url, index, message) {
+  setTimeout(() => {
+    TrackHelper.getVideoFromUrl(url).then(track => {
+      Queue.add(track, message, false);
+    }).catch(err => {
+      message.reply(Helper.wrap(err));
+    });
+  }, index * 1000); 
 }
 
 function newPlaylist(args, message) {
