@@ -592,7 +592,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!q' && command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!playlist' && command != '!playlist.new' && command != '!playlist.delete' && command != '!playlist.add' && command != '!playlist.remove' && command != '!pl' && command != '!pl.new' && command != '!pl.delete' && command != '!pl.add' && command != '!pl.remove' && command != '!queue.playlist' && command != '!q.pl' && command != '!pl.help' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf') {
+        if (command != '!q' && command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!playlist' && command != '!playlist.new' && command != '!playlist.delete' && command != '!playlist.add' && command != '!playlist.remove' && command != '!playlist.help' && command != '!pl' && command != '!pl.new' && command != '!pl.delete' && command != '!pl.add' && command != '!pl.remove' && command != '!queue.playlist' && command != '!q.pl' && command != '!pl.help' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -608,13 +608,13 @@ function showMusic(args, message) {
     var toReturn = 'Available music commands:\n';
     for (var command in commands) {
       if (args == '-all' || args == '-a') {
-        if (command == '!queue' || command == '!q' || command == '!voteskip' || command == '!song' || command == '!list' || command == '!queue.playlist' || command == '!q.pl' || command == '!clear' || command == '!forward' || command == '!remove' || command == '!blacklist' || command == '!whitelist') {
+        if (command == '!queue' || command == '!q' || command == '!voteskip' || command == '!song' || command == '!list' || command == '!queue.playlist' || command == '!q.pl' || command == '!playlist.help' || command == '!pl.help' || command == '!clear' || command == '!forward' || command == '!remove' || command == '!blacklist' || command == '!whitelist') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }
       }
       else {
-        if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list' || command == '!queue.playlist' || command == '!blacklist') {
+        if (command == '!queue' || command == '!voteskip' || command == '!song' || command == '!list' || command == '!queue.playlist' || command == '!playlist.help' || command == '!blacklist') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }
