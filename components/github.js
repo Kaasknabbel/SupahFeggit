@@ -98,12 +98,15 @@ exports.readPlaylist = function(user,name,cb) {
     else {
       var contentB64 = new Buffer(b.content, 'base64')
       var content = contentB64.toString();
-      var contents = content.split("];\n");
+      var contents = content.split("\n");
       var userPlaylists = [];
       var playlist = [];
       var playlisturl = [];
       if (contents[0] != "") {
         for (var i = 0; i < contents.length; i += 2) {
+          if (contents[i].endsWith("];")) {
+            contents[i] = contents[i].substring(0, path.length() - 2);
+          }
           var playlistContent = contents[i].substring("playlist(".length);
           var playlistUser = playlistContent.split("ⱡ",2);
           if (playlistUser[0] == user) {
