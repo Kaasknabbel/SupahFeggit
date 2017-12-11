@@ -1,2 +1,0 @@
-playlist(KaasknabbelⱡTest) = [Nyan Cat 10 hours (original)];
-playlisturl(KaasknabbelⱡTest) = [https://www.youtube.com/watch?v=wZZ7oFKsKzY];
