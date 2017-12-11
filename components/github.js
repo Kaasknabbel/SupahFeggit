@@ -107,6 +107,9 @@ exports.readPlaylist = function(user,name,cb) {
           if (contents[i].endsWith("];")) {
             contents[i] = contents[i].substring(0, contents[i].length - 2);
           }
+          if (contents[i + 1].endsWith("];")) {
+            contents[i + 1] = contents[i + 1].substring(0, contents[i + 1].length - 2);
+          }
           var playlistContent = contents[i].substring("playlist(".length);
           var playlistUser = playlistContent.split("ⱡ",2);
           if (playlistUser[0] == user) {
@@ -151,6 +154,9 @@ exports.updatePlaylist = function(user,name,content) {
         for (var i = 0; i < splitContent.length; i += 2) {
           if (splitContent[i].endsWith("];")) {
             splitContent[i] = splitContent[i].substring(0, splitContent[i].length - 2);
+          }
+          if (splitContent[i + 1].endsWith("];")) {
+            splitContent[i + 1] = splitContent[i + 1].substring(0, splitContent[i + 1].length - 2);
           }
           var playlistContent = splitContent[i].substring("playlist(".length);
           var playlistUser = playlistContent.split("ⱡ",2);
