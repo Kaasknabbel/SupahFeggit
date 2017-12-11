@@ -110,6 +110,7 @@ Playlist.prototype.addSong = function(name, track, message) {
         playlisturl.push(track.url);
       }
       Github.updatePlaylist(user, name, [playlist, playlisturl]);
+      message.reply(Helper.wrap("'" + track.title + "' has been added to the list '" + name + "'"));
     }
     else message.reply(Helper.wrap("You don't have a playlist with the name '" + name + "', feggit.\nCommand help: !playlist.add [listname] [track]"));
   });
