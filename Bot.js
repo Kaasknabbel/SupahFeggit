@@ -384,8 +384,8 @@ function showPlaylist(args, message) {
 
 function addPlaylist(args, message) {
   var data = args.split(" ", 2);
-  if (data[1].length <= 0) {
-    return message.reply(Helper.wrap('Type of music need to be specified.'));
+  if (data[1] == undefined) {
+    return message.reply(Helper.wrap('The song that you want to add to a playlist needs to be specified.\nCommand help: !playlist.add [playlist] [song]'));
   }
 
   if (args.startsWith('http')) {
