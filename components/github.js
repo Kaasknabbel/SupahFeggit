@@ -113,16 +113,12 @@ exports.readPlaylist = function(user,name,cb) {
           var playlistContent = contents[i].substring("playlist(".length);
           var playlistUser = playlistContent.substring(0, playlistContent.indexOf("ⱡ"));
           playlistContent = playlistContent.substring(playlistContent.indexOf("ⱡ") + 1, playlistContent.length);
-          console.log(playlistContent);
-          console.log(playlistUser);
           if (playlistUser == user) {
             var playlistName = playlistContent.substring(0, playlistContent.indexOf(") = ["));
-            playlistContent = playlistContent.substring(playlistContent.indexOf(") = [") + 1, playlistContent.length);
+            playlistContent = playlistContent.substring(playlistContent.indexOf(") = [") + 5, playlistContent.length);
             userPlaylists.push(playlistName);
             if (playlistName == name) {
               playlist = playlistContent.split("ⱡ");
-              console.log(playlist);
-              console.log(playlistContent);
               var playlistPath = "playlisturl(" + playlistUser + "ⱡ" + playlistName + ") = [";
               var playlisturlContent = contents[i + 1].substring(playlistPath.length);
               playlisturl = playlisturlContent.split("ⱡ");
@@ -165,17 +161,14 @@ exports.updatePlaylist = function(user,name,content) {
             splitContent[i + 1] = splitContent[i + 1].substring(0, splitContent[i + 1].length - 2);
           }
           var playlistContent = splitContent[i].substring("playlist(".length);
-          var playlistUser = playlistContent.split("ⱡ",2);
-          if (playlistUser[0] == user) {
-            var playlistName = playlistUser[1].split(") = [",2);
-            userPlaylists.push(playlistName[0]);
-            if (playlistName[0] == name) {
+          var playlistUser = playlistContent.substring(0, playlistContent.indexOf("ⱡ"));
+          playlistContent = playlistContent.substring(playlistContent.indexOf("ⱡ") + 1, playlistContent.length);
+          if (playlistUser == user) {
+            var playlistName = playlistContent.substring(0, playlistContent.indexOf(") = ["));
+            userPlaylists.push(playlistName);
+            if (playlistName == name) {
               listExists = true;
               listLine = i + 1;
-              playlist = playlistName[1].split("ⱡ");
-              var playlistPath = "playlisturl(" + playlistUser[0] + "ⱡ" + playlistName[0] + ") = [";
-              var playlisturlContent = splitContent[i + 1].substring(playlistPath.length);
-              playlisturl = playlisturlContent.split("ⱡ");
             }
           }
         }
