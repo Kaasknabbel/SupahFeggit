@@ -110,8 +110,29 @@ Playlist.prototype.addSong = function(name, track, message) {
         playlisturl.push(track.url);
       }
       Github.updatePlaylist(user, name, [playlist, playlisturl]);
-      message.reply(Helper.wrap("'" + track.title + "' has been added to the list '" + name + "'."));
+      message.reply(Helper.wrap("'" + track.title + "' has been added to your playlist '" + name + "'."));
     }
-    else message.reply(Helper.wrap("You don't have a playlist with the name '" + name + "', feggit.\nCommand help: !playlist.add [listname] [track]"));
+    else message.reply(Helper.wrap("You don't have a playlist with the name '" + name + "', feggit.\nCommand help: !playlist.add [playlist] [song]"));
+  });
+}
+
+Playlist.prototype.removeSong = function(name, track, message) {
+  var vm = this;
+  var user = message.author.username;
+  Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
+    if (userPlaylists.includes(name)) {
+      if (playlist.includes(track.title)) {
+        for (var i = 0; i < playlist.length; i++) {
+          if (playlisturl[i] == track.url) {
+            playlist.splice(i, 1);
+            playlisturl.splice(i, 1);
+            Github.updatePlaylist(user, name, [playlist, playlisturl]);
+            return message.reply(Helper.wrap("'" + track.title + "' has been removed from your playlist '" + name + "'."));
+          }
+        }
+      }
+      else message.reply(Helper.wrap("'" + track.title + "' is not on your playlist '" + name + "', feggit."));
+    }
+    else message.reply(Helper.wrap("You don't have a playlist with the name '" + name + "', feggit.\nCommand help: !playlist.remove [playlist] [song]"));
   });
 }
