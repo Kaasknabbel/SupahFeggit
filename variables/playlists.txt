@@ -1,2 +1,2 @@
-playlist(KaasknabbelⱡTest2) = [];
-playlisturl(KaasknabbelⱡTest2) = [];
+playlist(KaasknabbelⱡTest2) = [,the ting go skraa full song with lyrics - original - mans not hot];
+playlisturl(KaasknabbelⱡTest2) = [];,https://www.youtube.com/watch?v=KZgjdQwuUb8];
