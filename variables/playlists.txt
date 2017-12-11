@@ -1,2 +1,2 @@
-playlist(KaasknabbelⱡGeneral) = [SAIL - AWOLNATION (Unofficial Video)ⱡImagine Dragons: Warriors | Worlds 2014 - League of Legends];
-playlisturl(KaasknabbelⱡGeneral) = [https://www.youtube.com/watch?v=JaAWdljhD5oⱡhttps://www.youtube.com/watch?v=fmI_Ndrxy14];
+playlist(KaasknabbelⱡGeneral) = [Imagine Dragons: Warriors | Worlds 2014 - League of Legends];
+playlisturl(KaasknabbelⱡGeneral) = [https://www.youtube.com/watch?v=fmI_Ndrxy14];
