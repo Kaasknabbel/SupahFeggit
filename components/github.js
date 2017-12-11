@@ -117,6 +117,8 @@ exports.readPlaylist = function(user,name,cb) {
             userPlaylists.push(playlistName[0]);
             if (playlistName[0] == name) {
               playlist = playlistName[1].split("ⱡ");
+              console.log(playlist);
+              console.log(playlistName[1]);
               var playlistPath = "playlisturl(" + playlistUser[0] + "ⱡ" + playlistName[0] + ") = [";
               var playlisturlContent = contents[i + 1].substring(playlistPath.length);
               playlisturl = playlisturlContent.split("ⱡ");
