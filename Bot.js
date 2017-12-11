@@ -45,6 +45,14 @@ var commands = {
     execute: doQueueInfo,
     description: 'Short command of: !queue'
   },
+  '!queue.playlist': {
+    execute: doQueuePlaylist,
+    description: 'Queue a playlist [Short command: !q.pl]'
+  },
+  '!q.pl': {
+    execute: doQueuePlaylist,
+    description: 'Short command of: !queue.playlist'
+  },
   '!voteskip': {
     execute: voteSkip,
     description: 'Vote to skip the current song'
@@ -75,21 +83,41 @@ var commands = {
   },
   '!playlist': {
     execute: showPlaylist,
-    description: 'Show your own or others playlists'
+    description: 'Show your own or others playlists [Short command: !pl]'
   },
   '!playlist.new': {
     execute: newPlaylist,
-    description: 'Create a new playlist'
+    description: 'Create a new playlist [Short command: !pl.new]'
   },
   '!playlist.delete': {
     execute: deletePlaylist,
-    description: 'Delete an existing playlist'
+    description: 'Delete an existing playlist [Short command: !pl.delete]'
   },
   '!playlist.add': {
     execute: addPlaylist,
-    description: 'Add a song to one of your playlists'
+    description: 'Add a song to one of your playlists [Short command: !pl.add]'
   },
   '!playlist.remove': {
+    execute: removePlaylist,
+    description: 'Remove a song from one of your playlists [Short command: !pl.remove]'
+  },
+  '!pl': {
+    execute: showPlaylist,
+    description: 'Show your own or others playlists'
+  },
+  '!pl.new': {
+    execute: newPlaylist,
+    description: 'Create a new playlist'
+  },
+  '!pl.delete': {
+    execute: deletePlaylist,
+    description: 'Delete an existing playlist'
+  },
+  '!pl.add': {
+    execute: addPlaylist,
+    description: 'Add a song to one of your playlists'
+  },
+  '!pl.remove': {
     execute: removePlaylist,
     description: 'Remove a song from one of your playlists'
   },
@@ -368,6 +396,62 @@ function whitelist(args, message) {
   else message.reply(Helper.wrap('You need to be an admin to remove a song from the blacklist, feggit.'));
 }
 
+function doQueuePlaylist(args, message) {
+  var user = message.author.username;
+  var toReturn = "";
+  if (args == "") {
+    return message.reply(Helper.wrap('Please specify the playlist that you want to queue, feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]'));
+  }  
+  else if (message.mentions.users.size === 0) {
+    Github.readPlaylist(user, args, (userPlaylists,playlist,playlisturl) => {
+      if (userPlaylists.includes(args)) {
+        if (playlist[0] != "") {
+          toReturn = "Your playlist '" + args + "' has been added to the queue:";
+          for (var i = 0; i < playlist.length; i++) {
+            TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
+              Queue.add(track, message, false);
+            }).catch(err => {
+              message.reply(Helper.wrap(err));
+            });
+            toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+            toReturn += "\n\nUse the '!list' command to see the complete queue.";
+          }
+          message.reply(Helper.wrap(toReturn));
+        }
+        else message.reply(Helper.wrap("Your playlist '" + args + "' is empty, feggit."));
+      }
+      else message.reply(Helper.wrap("You don't have a playlist with the name: '" + args + "', feggit."));
+    });
+  }
+  else {
+    user = message.guild.member(message.mentions.users.first()).user.username;
+    var argsArray = args.split(" ");
+    if (argsArray[1] != undefined) {
+      var name = argsArray.slice(1).join(" ");
+      Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
+        if (userPlaylists.includes(name)) {
+          if (playlist[0] != "") {
+            toReturn = user + "'s playlist '" + name + "' has been added to the queue:";
+            for (var i = 0; i < playlist.length; i++) {
+              TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
+                Queue.add(track, message, false);
+              }).catch(err => {
+                message.reply(Helper.wrap(err));
+              });
+              toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+            }
+            toReturn += "\n\nUse the '!list' command to see the complete queue.";
+            message.reply(Helper.wrap(toReturn));
+          }
+          else message.reply(Helper.wrap(user + "'s playlist '" + name + "' is empty, feggit."));
+        }
+        else message.reply(Helper.wrap(user + " has no playlist with the name '" + name + "', feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]"));
+      });
+    }
+    else message.reply(Helper.wrap("Please specify which playlist you want to queue from '" + user  + "', feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]"));
+  }   
+}
+
 function newPlaylist(args, message) {
   if (args == "") {
     return message.reply(Helper.wrap('Please give a name for the new playlist, feggit.\nCommand help: !playlist.new [name]'));
@@ -605,9 +689,9 @@ function isNormalInteger(str) {
 function init() {
   Helper.keys('apikeys', ['discord']).then(keys => {
     Bot.login(keys.discord);
-    Queue = registerService(Queue, ['!queue','!q', '!voteskip', '!song', '!clear', '!admin', '!skraa', '!whatislove', '!gaaay', '!krakaka', '!moeder', '!nomoney', '!personal']);
-    Playlist = registerService(Playlist, ['!playlist.new', '!playlist.delete', '!playlist', '!playlist.add', '!playlist.remove']);
-    TrackHelper = registerService(TrackHelper, ['!queue','!q', '!video']);
+    Queue = registerService(Queue, ['!queue', '!q', '!queue.playlist', '!q.pl', '!voteskip', '!song', '!clear', '!admin', '!skraa', '!whatislove', '!gaaay', '!krakaka', '!moeder', '!nomoney', '!personal']);
+    Playlist = registerService(Playlist, ['!playlist.new', '!playlist.delete', '!playlist', '!playlist.add', '!playlist.remove', '!pl.new', '!pl.delete', '!pl', '!pl.add', '!pl.remove']);
+    TrackHelper = registerService(TrackHelper, ['!queue', '!q', '!queue.playlist', '!q.pl', '!video']);
     WordService = registerService(WordService, ['!words']);
     WeatherService = registerService(WeatherService, ['!weather']);
     Dumpert = registerService(Dumpert, ['!dumpert']);
