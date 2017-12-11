@@ -111,9 +111,10 @@ exports.readPlaylist = function(user,name,cb) {
             contents[i + 1] = contents[i + 1].substring(0, contents[i + 1].length - 2);
           }
           var playlistContent = contents[i].substring("playlist(".length);
-          var playlistUser = playlistContent.split("ⱡ",1);
+          var playlistUser = playlistContent.split("ⱡ",2);
+          console.log(playlistUser);
           if (playlistUser[0] == user) {
-            var playlistName = playlistUser[1].split(") = [",1);
+            var playlistName = playlistUser[1].split(") = [",2);
             userPlaylists.push(playlistName[0]);
             if (playlistName[0] == name) {
               playlist = playlistName[1].split("ⱡ");
@@ -161,9 +162,9 @@ exports.updatePlaylist = function(user,name,content) {
             splitContent[i + 1] = splitContent[i + 1].substring(0, splitContent[i + 1].length - 2);
           }
           var playlistContent = splitContent[i].substring("playlist(".length);
-          var playlistUser = playlistContent.split("ⱡ",1);
+          var playlistUser = playlistContent.split("ⱡ",2);
           if (playlistUser[0] == user) {
-            var playlistName = playlistUser[1].split(") = [",1);
+            var playlistName = playlistUser[1].split(") = [",2);
             userPlaylists.push(playlistName[0]);
             if (playlistName[0] == name) {
               listExists = true;
