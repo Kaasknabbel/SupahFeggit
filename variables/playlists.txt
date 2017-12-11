@@ -1,2 +1,2 @@
-playlist(KaasknabbelⱡGeneral) = [Imagine Dragons: Warriors | Worlds 2014 - League of LegendsⱡAests - FIGHT!ⱡSAIL - AWOLNATION (Unofficial Video)ⱡFall Out Boy - Centuries (Official Video)ⱡFoster The People - Pumped up Kicks];
-playlisturl(KaasknabbelⱡGeneral) = [https://www.youtube.com/watch?v=fmI_Ndrxy14ⱡhttps://www.youtube.com/watch?v=DBXTRtm07RAⱡhttps://www.youtube.com/watch?v=JaAWdljhD5oⱡhttps://www.youtube.com/watch?v=LBr7kECsjcQⱡhttps://www.youtube.com/watch?v=SDTZ7iX4vTQ];
+playlist(KaasknabbelⱡGeneral) = [Imagine Dragons: Warriors | Worlds 2014 - League of LegendsⱡAests - FIGHT!ⱡSAIL - AWOLNATION (Unofficial Video)ⱡFall Out Boy - Centuries (Official Video)];
+playlisturl(KaasknabbelⱡGeneral) = [https://www.youtube.com/watch?v=fmI_Ndrxy14ⱡhttps://www.youtube.com/watch?v=DBXTRtm07RAⱡhttps://www.youtube.com/watch?v=JaAWdljhD5oⱡhttps://www.youtube.com/watch?v=LBr7kECsjcQ];
