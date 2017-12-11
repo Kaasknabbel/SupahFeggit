@@ -409,12 +409,12 @@ function doQueuePlaylist(args, message) {
           toReturn = "Your playlist '" + args + "' has been added to the queue:";
           for (var i = 0; i < playlist.length; i++) {
             setTimeout(() => {
-              TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
+              TrackHelper.getVideoFromUrl(playlisturl[0]).then(track => {
                 Queue.add(track, message, false);
               }).catch(err => {
                 message.reply(Helper.wrap(err));
               });
-            },i * 1000);
+            }, i * 1000);
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
           }
           toReturn += "\n\nUse the '!list' command to see the complete queue.";
@@ -441,7 +441,7 @@ function doQueuePlaylist(args, message) {
                 }).catch(err => {
                   message.reply(Helper.wrap(err));
                 });
-              },i * 1000);
+              }, i * 1000);
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
             }
             toReturn += "\n\nUse the '!list' command to see the complete queue.";
