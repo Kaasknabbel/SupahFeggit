@@ -149,6 +149,9 @@ exports.updatePlaylist = function(user,name,content) {
       var completeContent = "";
       if (splitContent[0] != "") {
         for (var i = 0; i < splitContent.length; i += 2) {
+          if (splitContent[i].endsWith("];")) {
+            splitContent[i] = splitContent[i].substring(0, splitContent[i].length - 2);
+          }
           var playlistContent = splitContent[i].substring("playlist(".length);
           var playlistUser = playlistContent.split("ⱡ",2);
           if (playlistUser[0] == user) {
