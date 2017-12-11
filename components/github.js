@@ -204,8 +204,20 @@ exports.updatePlaylist = function(user,name,content) {
           }
         } 
         else {
-          newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [" + content[0] + "];";
-          newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [" + content[1] + "];";
+          var newPlaylistContent = content[0];
+          var newPlaylisturlContent = content[1];
+          var totalPlaylistContent = "";
+          var totalPlaylisturlContent = "";
+          for (var i = 0; i < newPlaylistContent.length; i++) {
+            totalPlaylistContent += newPlaylistContent[i];
+            totalPlaylisturlContent += newPlaylisturlContent[i];
+            if (i != newPlaylistContent.length - 1){
+              totalPlaylistContent += "ⱡ";
+              totalPlaylisturlContent += "ⱡ";
+            }
+          }
+          newPlaylist = "playlist(" + user + "ⱡ" + name + ") = [" + totalPlaylistContent + "];";
+          newPlaylisturl = "playlisturl(" + user + "ⱡ" + name + ") = [" + totalPlaylisturlContent + "];";
           splitContent[listLine - 1] = newPlaylist;
           splitContent[listLine] = newPlaylisturl;
           for (var ii = 0; ii < splitContent.length; ii ++) {
