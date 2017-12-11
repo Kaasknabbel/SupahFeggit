@@ -408,11 +408,13 @@ function doQueuePlaylist(args, message) {
         if (playlist[0] != "") {
           toReturn = "Your playlist '" + args + "' has been added to the queue:";
           for (var i = 0; i < playlist.length; i++) {
-            TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
-              Queue.add(track, message, false);
-            }).catch(err => {
-              message.reply(Helper.wrap(err));
-            });
+            setTimeout(() => {
+              TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
+                Queue.add(track, message, false);
+              }).catch(err => {
+                message.reply(Helper.wrap(err));
+              });
+            },i * 1000);
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
           }
           toReturn += "\n\nUse the '!list' command to see the complete queue.";
@@ -433,11 +435,13 @@ function doQueuePlaylist(args, message) {
           if (playlist[0] != "") {
             toReturn = user + "'s playlist '" + name + "' has been added to the queue:";
             for (var i = 0; i < playlist.length; i++) {
-              TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
-                Queue.add(track, message, false);
-              }).catch(err => {
-                message.reply(Helper.wrap(err));
-              });
+              setTimeout(() => {
+                TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
+                  Queue.add(track, message, false);
+                }).catch(err => {
+                  message.reply(Helper.wrap(err));
+                });
+              },i * 1000);
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
             }
             toReturn += "\n\nUse the '!list' command to see the complete queue.";
