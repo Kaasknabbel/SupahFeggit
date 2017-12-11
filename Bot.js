@@ -89,6 +89,10 @@ var commands = {
     execute: addPlaylist,
     description: 'Add a song to one of your playlists'
   },
+  '!playlist.remove': {
+    execute: removePlaylist,
+    description: 'Remove a song from one of your playlists'
+  },
   '!sounds': {
     execute: showSounds,
     description: 'Get a list of the available sound samples'
@@ -387,8 +391,7 @@ function addPlaylist(args, message) {
   if (data[1] == undefined) {
     return message.reply(Helper.wrap('The song that you want to add to a playlist needs to be specified.\nCommand help: !playlist.add [playlist] [song]'));
   }
-
-  if (args.startsWith('http')) {
+  if (data[1].startsWith('http')) {
     TrackHelper.getVideoFromUrl(data[1]).then(track => {
       Playlist.addSong(data[0], track, message);
     }).catch(err => {
@@ -397,6 +400,26 @@ function addPlaylist(args, message) {
   } else {
     TrackHelper.getFirstTrack(data[1], 1).then(track => {
       Playlist.addSong(data[0], track, message);
+    }).catch(err => {
+      message.reply(Helper.wrap(err));
+    });
+  }  
+}
+
+function removePlaylist(args, message) {
+  var data = args.split(" ", 2);
+  if (data[1] == undefined) {
+    return message.reply(Helper.wrap('The song that you want to add to a playlist needs to be specified.\nCommand help: !playlist.add [playlist] [song]'));
+  }
+  if (data[1].startsWith('http')) {
+    TrackHelper.getVideoFromUrl(data[1]).then(track => {
+      Playlist.removeSong(data[0], track, message);
+    }).catch(err => {
+      message.reply(Helper.wrap(err));
+    });
+  } else {
+    TrackHelper.getFirstTrack(data[1], 1).then(track => {
+      Playlist.removeSong(data[0], track, message);
     }).catch(err => {
       message.reply(Helper.wrap(err));
     });
@@ -577,7 +600,7 @@ function init() {
   Helper.keys('apikeys', ['discord']).then(keys => {
     Bot.login(keys.discord);
     Queue = registerService(Queue, ['!queue','!q', '!voteskip', '!song', '!clear', '!admin', '!skraa', '!whatislove', '!gaaay', '!krakaka', '!moeder', '!nomoney', '!personal']);
-    Playlist = registerService(Playlist, ['!playlist.new', '!playlist.delete', '!playlist']);
+    Playlist = registerService(Playlist, ['!playlist.new', '!playlist.delete', '!playlist', '!playlist.add', '!playlist.remove']);
     TrackHelper = registerService(TrackHelper, ['!queue','!q', '!video']);
     WordService = registerService(WordService, ['!words']);
     WeatherService = registerService(WeatherService, ['!weather']);
