@@ -387,6 +387,9 @@ function showPlaylist(args, message) {
 }
 
 function addPlaylist(args, message) {
+  if (args == "") {
+    return message.reply(Helper.wrap('You need to give the playlist and the song that you want to add to it, feggit.\nCommand help: !playlist.add [playlist] [song]'));
+  }
   var data = args.split(" ", 2);
   if (data[1] == undefined) {
     return message.reply(Helper.wrap('The song that you want to add to a playlist needs to be specified.\nCommand help: !playlist.add [playlist] [song]'));
@@ -407,9 +410,12 @@ function addPlaylist(args, message) {
 }
 
 function removePlaylist(args, message) {
+  if (args == "") {
+    return message.reply(Helper.wrap('You need to give the playlist and the song that you want to remove from it, feggit.\nCommand help: !playlist.remove [playlist] [song]'));
+  }
   var data = args.split(" ", 2);
   if (data[1] == undefined) {
-    return message.reply(Helper.wrap('The song that you want to add to a playlist needs to be specified.\nCommand help: !playlist.add [playlist] [song]'));
+    return message.reply(Helper.wrap('The song that you want to remove from a playlist needs to be specified.\nCommand help: !playlist.remove [playlist] [song]'));
   }
   if (data[1].startsWith('http')) {
     TrackHelper.getVideoFromUrl(data[1]).then(track => {
