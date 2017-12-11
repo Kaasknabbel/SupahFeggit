@@ -111,17 +111,19 @@ exports.readPlaylist = function(user,name,cb) {
             contents[i + 1] = contents[i + 1].substring(0, contents[i + 1].length - 2);
           }
           var playlistContent = contents[i].substring("playlist(".length);
-          var playlistUser = playlistContent.split("ⱡ",2);
+          var playlistUser = playlistContent.substring(0, playlistContent.indexOf("ⱡ"));
+          playlistContent = playlistContent.substring(playlistContent.indexOf("ⱡ") + 1, playlistContent.length);
           console.log(playlistContent);
           console.log(playlistUser);
-          if (playlistUser[0] == user) {
-            var playlistName = playlistUser[1].split(") = [",2);
-            userPlaylists.push(playlistName[0]);
-            if (playlistName[0] == name) {
-              playlist = playlistName[1].split("ⱡ");
+          if (playlistUser == user) {
+            var playlistName = playlistContent.substring(0, playlistContent.indexOf(") = ["));
+            playlistContent = playlistContent.substring(playlistContent.indexOf(") = [") + 1, playlistContent.length);
+            userPlaylists.push(playlistName);
+            if (playlistName == name) {
+              playlist = playlistContent.split("ⱡ");
               console.log(playlist);
-              console.log(playlistName[1]);
-              var playlistPath = "playlisturl(" + playlistUser[0] + "ⱡ" + playlistName[0] + ") = [";
+              console.log(playlistContent);
+              var playlistPath = "playlisturl(" + playlistUser + "ⱡ" + playlistName + ") = [";
               var playlisturlContent = contents[i + 1].substring(playlistPath.length);
               playlisturl = playlisturlContent.split("ⱡ");
             }
