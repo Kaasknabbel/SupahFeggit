@@ -101,12 +101,14 @@ Playlist.prototype.addSong = function(name, track, message) {
   var user = message.author.username;
   Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
     if (userPlaylists.includes(name)) {
-      console.log(playlist);
-      console.log(playlisturl);
-      playlist.push(track.title);
-      playlisturl.push(track.url);
-      console.log(playlist);
-      console.log(playlisturl);
+      if (playlist[0] == "") {
+        playlist[0] = track.title;
+        playlisturl[0] = track.url;
+      }
+      else {
+        playlist.push(track.title);
+        playlisturl.push(track.url);
+      }
       Github.updatePlaylist(user, name, [playlist, playlisturl]);
     }
     else message.reply(Helper.wrap("You don't have a playlist with the name '" + name + "', feggit.\nCommand help: !playlist.add [listname] [track]"));
