@@ -86,7 +86,7 @@ var commands = {
     description: 'Show your own or others playlists [Short command: !pl]'
   },
   '!playlist.help': {
-    execute: showPlaylist,
+    execute: helpPlaylist,
     description: 'Get more info about the available playlist commands [Short command: !pl.help]'
   },
   '!playlist.new': {
@@ -110,7 +110,7 @@ var commands = {
     description: 'Show your own or others playlists'
   },
   '!pl.help': {
-    execute: showPlaylist,
+    execute: helpPlaylist,
     description: 'Get more info about the available playlist commands'
   },
   '!pl.new': {
@@ -638,7 +638,7 @@ function showSounds(args, message) {
   message.reply(Helper.wrap(toReturn)); 
 }
 
-function showPlaylist(args, message) {
+function helpPlaylist(args, message) {
   var toReturn = 'No commands to run!';
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available playlist commands:\n';
