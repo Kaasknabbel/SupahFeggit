@@ -161,6 +161,10 @@ var commands = {
     execute: gandalf,
     description: 'Gandalf, we must turn back!'
   },
+  '!oceanman': {
+    execute: oceanman,
+    description: 'Ocean man, take me by the hand!'
+  },
   '!personal': {
     execute: personalQuote,
     description: 'Get your own personal message'
@@ -605,7 +609,7 @@ function showHelp(args, message) {
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
       else {
-        if (command != '!q' && command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!playlist' && command != '!playlist.new' && command != '!playlist.delete' && command != '!playlist.add' && command != '!playlist.remove' && command != '!playlist.help' && command != '!pl' && command != '!pl.new' && command != '!pl.delete' && command != '!pl.add' && command != '!pl.remove' && command != '!queue.playlist' && command != '!q.pl' && command != '!pl.help' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf') {
+        if (command != '!q' && command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!playlist' && command != '!playlist.new' && command != '!playlist.delete' && command != '!playlist.add' && command != '!playlist.remove' && command != '!playlist.help' && command != '!pl' && command != '!pl.new' && command != '!pl.delete' && command != '!pl.add' && command != '!pl.remove' && command != '!queue.playlist' && command != '!q.pl' && command != '!pl.help' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf' && command != '!oceanman') {
           data = commands[command];
           toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
         }        
@@ -642,7 +646,7 @@ function showSounds(args, message) {
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Available sound samples:\n';
     for (var command in commands) {
-      if (command == '!skraa' || command == '!whatislove' || command == '!gaaay' || command == '!krakaka' || command == '!moeder' || command == '!nomoney' || command == '!gandalf') {
+      if (command == '!skraa' || command == '!whatislove' || command == '!gaaay' || command == '!krakaka' || command == '!moeder' || command == '!nomoney' || command == '!gandalf' || command == '!oceanman') {
         data = commands[command];
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }        
