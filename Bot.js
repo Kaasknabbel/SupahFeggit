@@ -278,13 +278,7 @@ function gandalf(args, message) {
 
 function oceanman(args, message) {
   if (soundEnabled) {
-    doQueue("https://www.youtube.com/watch?v=4RSUuu_FqHo", message, false);
-    setTimeout(() => {
-      var song = Queue.queue[0];
-      if (song)
-        if (song.url == "https://www.youtube.com/watch?v=4RSUuu_FqHo")
-          Queue.currentDispatcher.end();
-    }, 14000);
+    doQueue("https://www.youtube.com/watch?v=V5QodUp32oA", message, false);
   }
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));  
 }
