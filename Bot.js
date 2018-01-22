@@ -272,6 +272,13 @@ function gandalf(args, message) {
   else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));  
 }
 
+function oceanman(args, message) {
+  if (soundEnabled) {
+    doQueue("https://www.youtube.com/watch?v=4RSUuu_FqHo", message, false);
+  }
+  else message.reply(Helper.wrap('Music and sounds have been disabled, feggit. Please ask an admin to enable sound.'));  
+}
+
 function rickroll(args, message) {
   var channel = Queue.getAuthorVoiceChannel(message);
   if (Queue.isEmpty() && soundEnabled && channel) {
