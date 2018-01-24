@@ -1,2 +1,2 @@
-blacklist = [Bizzey - Traag ft. Jozo & Kraantje Pappie (prod. Ramiks & Bizzey)ⱡFamkelouise - LIT ft . LouiVos ( prod. $HOOT2KILL )ⱡPuddi Puddi 10 hours];
-blacklisturl = [https://www.youtube.com/watch?v=1z8NpmCqvZEⱡhttps://www.youtube.com/watch?v=GetZfPGQKqUⱡhttps://www.youtube.com/watch?v=7LKHpM1UeDA];
+blacklist = [Bizzey - Traag ft. Jozo & Kraantje Pappie (prod. Ramiks & Bizzey)ⱡFamkelouise - LIT ft . LouiVos ( prod. $HOOT2KILL )ⱡPuddi Puddi 10 hoursⱡDjango Wagner - Kali (Officiële Videoclip)];
+blacklisturl = [https://www.youtube.com/watch?v=1z8NpmCqvZEⱡhttps://www.youtube.com/watch?v=GetZfPGQKqUⱡhttps://www.youtube.com/watch?v=7LKHpM1UeDAⱡhttps://www.youtube.com/watch?v=xxMNhzsa4xQ];
