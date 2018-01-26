@@ -503,7 +503,7 @@ function doQueuePlaylistRandom(args, message) {
   var user = message.author.username;
   var toReturn = "";
   if (args == "") {
-    return message.reply(Helper.wrap('Please specify the playlist that you want to queue, feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]'));
+    return message.reply(Helper.wrap('Please specify the playlist that you want to queue, feggit.\nCommand help: !queue.playlist.random [user(optional)] [playlist]'));
   }  
   else if (message.mentions.users.size === 0) {
     Github.readPlaylist(user, args, (userPlaylists,playlist,playlisturl) => {
@@ -544,7 +544,7 @@ function doQueuePlaylistRandom(args, message) {
         if (userPlaylists.includes(name)) {
           if (playlist[0] != "") {
             var amountOfSongs = 0;
-            toReturn = user + "'s playlist '" + name + "' has been added to the queue:";
+            toReturn = user + "'s playlist '" + name + "' has been added to the queue randomly:";
             for (var i = 0; i < playlist.length; i++) {
               TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
                 Queue.add(track, message, false);
@@ -566,10 +566,10 @@ function doQueuePlaylistRandom(args, message) {
           }
           else message.reply(Helper.wrap(user + "'s playlist '" + name + "' is empty, feggit."));
         }
-        else message.reply(Helper.wrap(user + " has no playlist with the name '" + name + "', feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]"));
+        else message.reply(Helper.wrap(user + " has no playlist with the name '" + name + "', feggit.\nCommand help: !queue.playlist.random [user(optional)] [playlist]"));
       });
     }
-    else message.reply(Helper.wrap("Please specify which playlist you want to queue from '" + user  + "', feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]"));
+    else message.reply(Helper.wrap("Please specify which playlist you want to queue from '" + user  + "', feggit.\nCommand help: !queue.playlist.random [user(optional)] [playlist]"));
   }   
 }
 
