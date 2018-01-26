@@ -38,13 +38,16 @@ Playlist.prototype.showPlaylist = function(args, message) {
   if (args == "") {
     Github.readPlaylist(user, undefined, (userPlaylists,playlist,playlisturl) => {
       if (userPlaylists[0] != undefined) {
+        var amountOfPlaylists = 0;
         toReturn = "Your playlists:";
         for (var i = 0; i < userPlaylists.length; i++) {
           toReturn += "\n[" + (i + 1) + "]  " + userPlaylists[i];
-          if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150) {
+          amountOfPlaylists++;
+          if (amountOfPlaylists == 30) {
             if (i < (userPlaylists.length - 1)) {
               message.reply(Helper.wrap(toReturn));
               toReturn = '';
+              amountOfPlaylists = 0;
             }
           }
         }
@@ -57,13 +60,16 @@ Playlist.prototype.showPlaylist = function(args, message) {
     Github.readPlaylist(user,args, (userPlaylists,playlist,playlisturl) => {
       if (userPlaylists.includes(args)) {
         if (playlist[0] != "") {
+          var amountOfSongs = 0;
           toReturn = "Your playlist '" + args + "':";
           for (var i = 0; i < playlist.length; i++) {
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
-            if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150) {
+            amountOfSongs++;
+            if (amountOfSongs == 30) {
               if (i < (playlist.length - 1)) {
                 message.reply(Helper.wrap(toReturn));
                 toReturn = '';
+                amountOfSongs = 0;
               }
             }
           }
@@ -82,13 +88,16 @@ Playlist.prototype.showPlaylist = function(args, message) {
       Github.readPlaylist(user,name, (userPlaylists,playlist,playlisturl) => {
         if (userPlaylists.includes(name)) {
           if (playlist[0] != "") {
+            var amountOfSongs = 0;
             toReturn = user + "'s playlist '" + name + "':";
             for (var i = 0; i < playlist.length; i++) {
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
-              if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150) {
+              amountOfSongs++;
+              if (amountOfSongs == 30) {
                 if (i < (playlist.length - 1)) {
                   message.reply(Helper.wrap(toReturn));
                   toReturn = '';
+                  amountOfSongs = 0;
                 }
               }
             }
@@ -102,13 +111,16 @@ Playlist.prototype.showPlaylist = function(args, message) {
     else {
       Github.readPlaylist(user, undefined, (userPlaylists,playlist,playlisturl) => {
         if (userPlaylists[0] != undefined) {
+          var amountOfPlaylists = 0
           toReturn = user + "'s playlists:";
           for (var i = 0; i < userPlaylists.length; i++) {
             toReturn += "\n[" + (i + 1) + "]  " + userPlaylists[i];
-            if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150) {
+            amountOfPlaylists++;
+            if (amountOfPlaylists == 30) {
               if (i < (userPlaylists.length - 1)) {
                 message.reply(Helper.wrap(toReturn));
                 toReturn = '';
+                amountOfPlaylists = 0;
               }
             }
           }
