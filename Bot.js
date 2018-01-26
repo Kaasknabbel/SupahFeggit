@@ -433,14 +433,17 @@ function doQueuePlaylist(args, message) {
     Github.readPlaylist(user, args, (userPlaylists,playlist,playlisturl) => {
       if (userPlaylists.includes(args)) {
         if (playlist[0] != "") {
+          var amountOfSongs = 0;
           toReturn = "Your playlist '" + args + "' has been added to the queue:";
           for (var i = 0; i < playlist.length; i++) {
             addTrackUrlDelay(playlisturl[i], i, message);
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
-            if (i == 29 || i == 58 || i == 87 || i == 116 || i == 145) {
+            amountOfSongs++;
+            if (amountOfSongs == 30) {
               if (i < (playlist.length - 1)) {
                 message.reply(Helper.wrap(toReturn));
                 toReturn = '';
+                amountOfSongs++;
               }
             }
           }
@@ -460,14 +463,17 @@ function doQueuePlaylist(args, message) {
       Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
         if (userPlaylists.includes(name)) {
           if (playlist[0] != "") {
+            var amountOfSongs = 0;
             toReturn = user + "'s playlist '" + name + "' has been added to the queue:";
             for (var i = 0; i < playlist.length; i++) {
               addTrackUrlDelay(playlisturl[i], i, message);
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
-              if (i == 29 || i == 58 || i == 87 || i == 116 || i == 145) {
+              amountOfSongs++;
+              if (amountOfSongs == 30) {
                 if (i < (playlist.length - 1)) {
                   message.reply(Helper.wrap(toReturn));
                   toReturn = '';
+                  amountOfSongs = 0;
                 }
               }
             }
@@ -503,6 +509,7 @@ function doQueuePlaylistRandom(args, message) {
     Github.readPlaylist(user, args, (userPlaylists,playlist,playlisturl) => {
       if (userPlaylists.includes(args)) {
         if (playlist[0] != "") {
+          var amountOfSongs = 0;
           toReturn = "Your playlist '" + args + "' has been added to the queue randomly:";
           for (var i = 0; i < playlist.length; i++) {
             TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
@@ -511,10 +518,12 @@ function doQueuePlaylistRandom(args, message) {
               message.reply(Helper.wrap(err));
             });
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
-            if (i == 29 || i == 58 || i == 87 || i == 116 || i == 145) {
+            amountOfSongs++;
+            if (amountOfSongs == 30) {
               if (i < (playlist.length - 1)) {
                 message.reply(Helper.wrap(toReturn));
                 toReturn = '';
+                amountOfSongs = 0;
               }
             }
           }
@@ -534,6 +543,7 @@ function doQueuePlaylistRandom(args, message) {
       Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
         if (userPlaylists.includes(name)) {
           if (playlist[0] != "") {
+            var amountOfSongs = 0;
             toReturn = user + "'s playlist '" + name + "' has been added to the queue:";
             for (var i = 0; i < playlist.length; i++) {
               TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
@@ -542,10 +552,12 @@ function doQueuePlaylistRandom(args, message) {
                 message.reply(Helper.wrap(err));
               });
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
-              if (i == 29 || i == 58 || i == 87 || i == 116 || i == 145) {
+              amountOfSongs++;
+              if (amountOfSongs == 30) {
                 if (i < (playlist.length - 1)) {
                   message.reply(Helper.wrap(toReturn));
                   toReturn = '';
+                  amountOfSongs = 0;
                 }
               }
             }
