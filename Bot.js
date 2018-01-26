@@ -495,19 +495,22 @@ function addPlaylist(args, message) {
   if (args == "") {
     return message.reply(Helper.wrap('You need to give the playlist and the song that you want to add to it, feggit.\nCommand help: !playlist.add [playlist] [song]'));
   }
-  var data = args.split(" ", 2);
-  if (data[1] == undefined) {
+  var data = args.split(" ");
+  var list = data[0];
+  data.shift();
+  var song = string.join(" ", data);
+  if (song == undefined) {
     return message.reply(Helper.wrap('The song that you want to add to a playlist needs to be specified.\nCommand help: !playlist.add [playlist] [song]'));
   }
-  if (data[1].startsWith('http')) {
-    TrackHelper.getVideoFromUrl(data[1]).then(track => {
-      Playlist.addSong(data[0], track, message);
+  if (song.startsWith('http')) {
+    TrackHelper.getVideoFromUrl(song).then(track => {
+      Playlist.addSong(list, track, message);
     }).catch(err => {
       message.reply(Helper.wrap(err));
     });
   } else {
-    TrackHelper.getFirstTrack(data[1], 1).then(track => {
-      Playlist.addSong(data[0], track, message);
+    TrackHelper.getFirstTrack(song, 1).then(track => {
+      Playlist.addSong(list, track, message);
     }).catch(err => {
       message.reply(Helper.wrap(err));
     });
