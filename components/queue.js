@@ -55,6 +55,12 @@ Queue.prototype.getList = function(args, message) {
     var toReturn = 'Current queue:\n';
     for (var song = 0; song < vm.queue.length; song++) {
       toReturn += '[' + (song + 1) + ']  ' + vm.queue[song].title + '\n';
+      if (song == 30 || song == 60 || song == 90 || song == 120 || song == 150) {
+        if (song < (vm.queue.length - 1)) {
+          message.reply(Helper.wrap(toReturn));
+          toReturn = '';
+        }
+      }
     }
     return message.reply(Helper.wrap(toReturn));
   }
