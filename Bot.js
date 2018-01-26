@@ -49,9 +49,17 @@ var commands = {
     execute: doQueuePlaylist,
     description: 'Queue a playlist [Short command: !q.pl]'
   },
+  '!queue.playlist.random': {
+    execute: doQueuePlaylistRandom,
+    description: 'Queue a playlist [Short command: !q.plr]'
+  },
   '!q.pl': {
     execute: doQueuePlaylist,
     description: 'Short command of: !queue.playlist'
+  },
+  '!q.plr': {
+    execute: doQueuePlaylistRandom,
+    description: 'Short command of: !queue.playlist.random'
   },
   '!voteskip': {
     execute: voteSkip,
@@ -429,6 +437,12 @@ function doQueuePlaylist(args, message) {
           for (var i = 0; i < playlist.length; i++) {
             addTrackUrlDelay(playlisturl[i], i, message);
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+            if (i == 29 || i == 58 || i == 87 || i == 116 || i == 145) {
+              if (i < (playlist.length - 1)) {
+                message.reply(Helper.wrap(toReturn));
+                toReturn = '';
+              }
+            }
           }
           toReturn += "\n\nUse the '!list' command to see the complete queue.";
           message.reply(Helper.wrap(toReturn));
@@ -450,6 +464,12 @@ function doQueuePlaylist(args, message) {
             for (var i = 0; i < playlist.length; i++) {
               addTrackUrlDelay(playlisturl[i], i, message);
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+              if (i == 29 || i == 58 || i == 87 || i == 116 || i == 145) {
+                if (i < (playlist.length - 1)) {
+                  message.reply(Helper.wrap(toReturn));
+                  toReturn = '';
+                }
+              }
             }
             toReturn += "\n\nUse the '!list' command to see the complete queue.";
             message.reply(Helper.wrap(toReturn));
@@ -471,6 +491,74 @@ function addTrackUrlDelay(url, index, message) {
       message.reply(Helper.wrap(err));
     });
   }, index * 1000); 
+}
+
+function doQueuePlaylistRandom(args, message) {
+  var user = message.author.username;
+  var toReturn = "";
+  if (args == "") {
+    return message.reply(Helper.wrap('Please specify the playlist that you want to queue, feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]'));
+  }  
+  else if (message.mentions.users.size === 0) {
+    Github.readPlaylist(user, args, (userPlaylists,playlist,playlisturl) => {
+      if (userPlaylists.includes(args)) {
+        if (playlist[0] != "") {
+          toReturn = "Your playlist '" + args + "' has been added to the queue:";
+          for (var i = 0; i < playlist.length; i++) {
+            TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
+              Queue.add(track, message, false);
+            }).catch(err => {
+              message.reply(Helper.wrap(err));
+            });
+            toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+            if (i == 29 || i == 58 || i == 87 || i == 116 || i == 145) {
+              if (i < (playlist.length - 1)) {
+                message.reply(Helper.wrap(toReturn));
+                toReturn = '';
+              }
+            }
+          }
+          toReturn += "\n\nUse the '!list' command to see the complete queue.";
+          message.reply(Helper.wrap(toReturn));
+        }
+        else message.reply(Helper.wrap("Your playlist '" + args + "' is empty, feggit."));
+      }
+      else message.reply(Helper.wrap("You don't have a playlist with the name: '" + args + "', feggit."));
+    });
+  }
+  else {
+    user = message.guild.member(message.mentions.users.first()).user.username;
+    var argsArray = args.split(" ");
+    if (argsArray[1] != undefined) {
+      var name = argsArray.slice(1).join(" ");
+      Github.readPlaylist(user, name, (userPlaylists,playlist,playlisturl) => {
+        if (userPlaylists.includes(name)) {
+          if (playlist[0] != "") {
+            toReturn = user + "'s playlist '" + name + "' has been added to the queue:";
+            for (var i = 0; i < playlist.length; i++) {
+              TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
+                Queue.add(track, message, false);
+              }).catch(err => {
+                message.reply(Helper.wrap(err));
+              });
+              toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+              if (i == 29 || i == 58 || i == 87 || i == 116 || i == 145) {
+                if (i < (playlist.length - 1)) {
+                  message.reply(Helper.wrap(toReturn));
+                  toReturn = '';
+                }
+              }
+            }
+            toReturn += "\n\nUse the '!list' command to see the complete queue.";
+            message.reply(Helper.wrap(toReturn));
+          }
+          else message.reply(Helper.wrap(user + "'s playlist '" + name + "' is empty, feggit."));
+        }
+        else message.reply(Helper.wrap(user + " has no playlist with the name '" + name + "', feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]"));
+      });
+    }
+    else message.reply(Helper.wrap("Please specify which playlist you want to queue from '" + user  + "', feggit.\nCommand help: !queue.playlist [user(optional)] [playlist]"));
+  }   
 }
 
 function newPlaylist(args, message) {
