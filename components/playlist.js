@@ -41,6 +41,12 @@ Playlist.prototype.showPlaylist = function(args, message) {
         toReturn = "Your playlists:";
         for (var i = 0; i < userPlaylists.length; i++) {
           toReturn += "\n[" + (i + 1) + "]  " + userPlaylists[i];
+          if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150) {
+            if (i < (userPlaylists.length - 1)) {
+              message.reply(Helper.wrap(toReturn));
+              toReturn = '';
+            }
+          }
         }
         message.reply(Helper.wrap(toReturn));
       }
@@ -54,6 +60,12 @@ Playlist.prototype.showPlaylist = function(args, message) {
           toReturn = "Your playlist '" + args + "':";
           for (var i = 0; i < playlist.length; i++) {
             toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+            if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150) {
+              if (i < (playlist.length - 1)) {
+                message.reply(Helper.wrap(toReturn));
+                toReturn = '';
+              }
+            }
           }
           message.reply(Helper.wrap(toReturn));
         }
@@ -73,6 +85,12 @@ Playlist.prototype.showPlaylist = function(args, message) {
             toReturn = user + "'s playlist '" + name + "':";
             for (var i = 0; i < playlist.length; i++) {
               toReturn += "\n[" + (i + 1) + "]  " + playlist[i];
+              if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150) {
+                if (i < (playlist.length - 1)) {
+                  message.reply(Helper.wrap(toReturn));
+                  toReturn = '';
+                }
+              }
             }
             message.reply(Helper.wrap(toReturn));
           }
@@ -87,6 +105,12 @@ Playlist.prototype.showPlaylist = function(args, message) {
           toReturn = user + "'s playlists:";
           for (var i = 0; i < userPlaylists.length; i++) {
             toReturn += "\n[" + (i + 1) + "]  " + userPlaylists[i];
+            if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150) {
+              if (i < (userPlaylists.length - 1)) {
+                message.reply(Helper.wrap(toReturn));
+                toReturn = '';
+              }
+            }
           }
           message.reply(Helper.wrap(toReturn));
         }
