@@ -612,11 +612,17 @@ function release(args, message) {
 function showHelp(args, message) {
   var toReturn = 'No commands to run!';
   if (Object.keys(commands).length > 1) {
+    var amountOfCommands = 0;
     var toReturn = 'Available commands:\n';
     for (var command in commands) {
       if (args == '-all' || args == '-a') {
         data = commands[command];
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
+        amountOfCommands++;
+        if (amountOfCommands == 30 || amountOfCommands == 60 || amountOfCommands == 90) {
+          message.reply(Helper.wrap(toReturn));
+          toReturn = '';
+        }
       }
       else {
         if (command != '!q' && command != '!help' && command != '!clear' && command != '!togglesound' && command != '!video' && command != '!queue' && command != '!playlist' && command != '!playlist.new' && command != '!playlist.delete' && command != '!playlist.add' && command != '!playlist.remove' && command != '!playlist.help' && command != '!pl' && command != '!pl.new' && command != '!pl.delete' && command != '!pl.add' && command != '!pl.remove' && command != '!queue.playlist' && command != '!q.pl' && command != '!pl.help' && command != '!voteskip' && command != '!song' && command != '!list' && command != '!forward' && command != '!remove' && command != '!blacklist' && command != '!whitelist' && command != '!prison' && command != '!release' && command != '!skraa' && command != '!whatislove' && command != '!gaaay' && command != '!krakaka' && command != '!moeder' && command != '!nomoney' && command != '!gandalf' && command != '!oceanman') {
