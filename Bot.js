@@ -529,6 +529,7 @@ function removePlaylist(args, message) {
   var data = args.split(" ");
   var list = data[0];
   data.shift();
+  var song = "";
   for (var i = 0; i < data.length; i++) {
     song += data[i];
     if (i < (data.length - 1))
