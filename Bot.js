@@ -503,7 +503,7 @@ function doQueuePlaylistRandom(args, message) {
     Github.readPlaylist(user, args, (userPlaylists,playlist,playlisturl) => {
       if (userPlaylists.includes(args)) {
         if (playlist[0] != "") {
-          toReturn = "Your playlist '" + args + "' has been added to the queue:";
+          toReturn = "Your playlist '" + args + "' has been added to the queue randomly:";
           for (var i = 0; i < playlist.length; i++) {
             TrackHelper.getVideoFromUrl(playlisturl[i]).then(track => {
               Queue.add(track, message, false);
