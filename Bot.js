@@ -498,8 +498,13 @@ function addPlaylist(args, message) {
   var data = args.split(" ");
   var list = data[0];
   data.shift();
-  var song = string.join(" ", data);
-  if (song == undefined) {
+  var song = "";
+  for (var i = 0; i < data.length; i++) {
+    song += data[i];
+    if (i < (data.length - 1))
+      song += " ";
+  }
+  if (song == "") {
     return message.reply(Helper.wrap('The song that you want to add to a playlist needs to be specified.\nCommand help: !playlist.add [playlist] [song]'));
   }
   if (song.startsWith('http')) {
@@ -524,8 +529,12 @@ function removePlaylist(args, message) {
   var data = args.split(" ");
   var list = data[0];
   data.shift();
-  var song = string.join(" ", data);
-  if (song == undefined) {
+  for (var i = 0; i < data.length; i++) {
+    song += data[i];
+    if (i < (data.length - 1))
+      song += " ";
+  }
+  if (song == "") {
     return message.reply(Helper.wrap('The song that you want to remove from a playlist needs to be specified.\nCommand help: !playlist.remove [playlist] [song]'));
   }
   if (song.startsWith('http')) {
