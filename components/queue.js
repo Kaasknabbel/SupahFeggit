@@ -95,10 +95,10 @@ Queue.prototype.play = function(message, info) {
       console.log(error);
     });
 
-    //vm.currentDispatcher.on('end', event => {
-      //if(vm.isEmpty()) connection.disconnect();
-      //vm.remove(message, info);
-    //});
+    vm.currentDispatcher.on('end', event => {
+      if(vm.isEmpty()) connection.disconnect();
+      vm.remove(message, info);
+    });
 
     vm.currentDispatcher.on('error', err => {
       connection.disconnect();
