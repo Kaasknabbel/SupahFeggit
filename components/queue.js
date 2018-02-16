@@ -88,8 +88,6 @@ Queue.prototype.play = function(message, info) {
   channel.join().then(connection => {
     var stream = toPlay.stream();
     
-    console.log(toPlay);
-    
     vm.currentDispatcher = connection.playStream(stream, {
       seek: 0,
       volume: 0.2
