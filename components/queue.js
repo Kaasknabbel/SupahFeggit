@@ -88,7 +88,7 @@ Queue.prototype.play = function(message, info) {
   channel.join().then(connection => {
     var stream = toPlay.stream();
     
-    message.channel.sendMessage(Helper.wrap(stream));
+    console.log(stream);
     
     vm.currentDispatcher = connection.playStream(stream, {
       seek: 0,
