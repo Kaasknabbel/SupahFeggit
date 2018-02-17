@@ -88,14 +88,16 @@ Queue.prototype.play = function(message, info) {
   channel.join().then(connection => {
     var stream = toPlay.stream();
     
+    message.channel.sendMessage(Helper.wrap(stream));
+    
     vm.currentDispatcher = connection.playStream(stream, {
       seek: 0,
       volume: 0.2
     }, error => {
-      console.log(event);
+      console.log(error);
     });
 
-    vm.currentDispatcher.on('end', (event, err) => {
+    vm.currentDispatcher.on('end', event => {
       if(vm.isEmpty()) connection.disconnect();
       vm.remove(message, info);
       console.log(event);
