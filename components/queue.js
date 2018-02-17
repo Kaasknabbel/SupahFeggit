@@ -95,15 +95,17 @@ Queue.prototype.play = function(message, info) {
       console.log(error);
     });
 
-    vm.currentDispatcher.on('end', event => {
+    vm.currentDispatcher.on('end', (event, reason) => {
       if(vm.isEmpty()) connection.disconnect();
       vm.remove(message, info);
+      console.log(reason);
     });
 
     vm.currentDispatcher.on('error', err => {
       connection.disconnect();
       message.channel.sendMessage(Helper.wrap('An error occured while playing the song.'));
       vm.remove(message, info);
+      console.log(err);
     });
 
     vm.skipVotes = [];
