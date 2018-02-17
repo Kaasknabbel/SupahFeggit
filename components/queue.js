@@ -96,10 +96,7 @@ Queue.prototype.play = function(message, info) {
     });
 
     vm.currentDispatcher.on('end', event => {
-      if(vm.isEmpty()) {
-        connection.disconnect();
-        channel.leave();
-      }
+      if(vm.isEmpty()) channel.leave();
       vm.remove(message, info);
     });
 
