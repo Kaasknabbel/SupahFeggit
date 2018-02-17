@@ -10,9 +10,7 @@ module.exports = Track = function(video) {
 
 Track.prototype.stream = function() {
   return ytdl(this.url, {
-    filter: format => {
-      return format.container === 'mp4';
-    },
+    filter: 'audioonly',
     quality: 'lowest'
   });
 }
