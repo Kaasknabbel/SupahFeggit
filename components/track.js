@@ -7,3 +7,9 @@ module.exports = Track = function(video) {
   this.url = video.url;
   this.title = video.title;
 }
+
+Track.prototype.stream = function() {
+  return ytdl(this.url, {
+    filter: 'audioonly'
+  });
+}
