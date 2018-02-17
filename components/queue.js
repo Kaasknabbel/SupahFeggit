@@ -91,15 +91,15 @@ Queue.prototype.play = function(message, info) {
     vm.currentDispatcher = connection.playStream(stream, {
       seek: 0,
       volume: 0.2
-    }, error => {
-      console.log(error);
+    }, (error, event) => {
+      if (error) console.log(error);
+      else console.log(event);
     });
 
     vm.currentDispatcher.on('end', (event, err) => {
       if(vm.isEmpty()) connection.disconnect();
       vm.remove(message, info);
       console.log(event);
-      console.log(err);
     });
 
     vm.currentDispatcher.on('error', err => {
