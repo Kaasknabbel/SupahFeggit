@@ -91,9 +91,8 @@ Queue.prototype.play = function(message, info) {
     vm.currentDispatcher = connection.playStream(stream, {
       seek: 0,
       volume: 0.2
-    }, (error, event) => {
-      if (error) console.log(error);
-      else console.log(event);
+    }, error => {
+      console.log(event);
     });
 
     vm.currentDispatcher.on('end', (event, err) => {
