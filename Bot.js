@@ -39,9 +39,11 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     pauseCmd: 'pause',
     resumeCmd: 'play',
     clearCmd: 'clear',
+    disableSet: 'true',
+    disableOwner: 'true',
     volumeCmd: 'volume',     // Sets the name for the 'volume' command.
     leaveCmd: 'leave',      // Sets the name for the 'leave' command.
-    disableLoop: true        // Disable the loop command.
+    disableLoop: false        // Disable the loop command.
   });
   }).catch(err => {
     console.log(err);
