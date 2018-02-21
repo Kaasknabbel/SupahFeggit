@@ -12,13 +12,14 @@ var Github = require('./components/github.js');
 var Music = require('discord.js-musicbot-addon');
 
 var soundEnabled = true;
-var youtubeApi;
+
+function setKey(key)
+    var youtubeApi = key;
 
 Helper.keys('apikeys', ['youtube']).then(function(keys) {
-    youtubeApi = keys.youtube;
+    setKey(keys.youtube);
   }).catch(err => {
     console.log(err);
-    vm.hasUnmetDepedencies = true;
 });
 
 const music = new Music(Bot, {
