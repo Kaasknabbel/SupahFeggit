@@ -15,17 +15,32 @@ var soundEnabled = true;
 
 Helper.keys('apikeys', ['youtube']).then(function(keys) {
   const music = new Music(Bot, {
-  youtubeKey: keys.youtube,  // youtube api key
-  prefix: ".",             // Prefix for the commands.
-  global: true,            // Non-server-specific queues.
-  maxQueueSize: 50,        // Maximum queue size of 25.
-  clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.
-  helpCmd: 'mhelp',        // Sets the name for the help command.
-  playCmd: 'music',        // Sets the name for the 'play' command.
-  volumeCmd: 'adjust',     // Sets the name for the 'volume' command.
-  leaveCmd: 'begone',      // Sets the name for the 'leave' command.
-  disableLoop: true        // Disable the loop command.
-});
+    youtubeKey: keys.youtube,  // youtube api key
+    botAdmins: Helper.jh, // set admins 
+    prefix: '!',             // Prefix for the commands.
+    thumbnailType: 'medium',
+    global: true,            // Non-server-specific queues.
+    maxQueueSize: 50,        // Maximum queue size of 25.
+    defVolume: 20,
+    anyoneCanSkip: false,
+    anyoneCanAdjust: false,
+    ownerOverMember: true,
+    botOwner: Helper.jh,
+    logging: false,
+    enableAliveMessage: false,
+    requesterName: false,
+    clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.
+    helpCmd: 'mhelp',        // Sets the name for the help command.
+    playCmd: 'queue',        // Sets the name for the 'play' command.
+    skipCmd: 'skip',
+    queueCmd: 'list',
+    pauseCmd: 'pause',
+    resumeCmd: 'play',
+    clearCmd: 'clear',
+    volumeCmd: 'volume',     // Sets the name for the 'volume' command.
+    leaveCmd: 'leave',      // Sets the name for the 'leave' command.
+    disableLoop: true        // Disable the loop command.
+  });
   }).catch(err => {
     console.log(err);
 });
@@ -51,7 +66,7 @@ var commands = {
     execute: countWordsByUser,
     description: 'Get the most popular words for user of the given username, defaults to your username'
   },
-  '!music': {
+/*'!music': {
     execute: showMusic,
     description: 'Get a list of available music commands'
   },
@@ -190,7 +205,7 @@ var commands = {
   '!oceanman': {
     execute: oceanman,
     description: 'Ocean man, take me by the hand!'
-  },
+  },*/
   '!personal': {
     execute: personalQuote,
     description: 'Get your own personal message'
@@ -203,14 +218,14 @@ var commands = {
     execute: rickroll,
     description: 'Give yourself admin privileges'
   },
-  '!togglesound': {
+/*'!togglesound': {
     execute: toggleSound,
     description: 'Admin only - enable or disable bot sound/music commands'
   },
   '!clear': {
     execute: clearQueue,
     description: 'Admin only - clear the current music queue'
-  },
+  },*/
   '!prison': {
     execute: prison,
     description: 'Admin only - move a user to the prison for a certain amount of time'
