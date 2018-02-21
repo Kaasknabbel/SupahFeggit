@@ -1,5 +1,5 @@
 const MusicAddon = require('discord.js-musicbot-addon');
-const Helper = require('helper.js');
+const Helper = require('./helper.js');
 
 var exports = {};
 
