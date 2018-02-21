@@ -30,7 +30,7 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     enableAliveMessage: false,
     requesterName: true,
     clearInvoker: false,      // If permissions applicable, allow the bot to delete the messages that invoke it.
-    inlineEmbeds: true,
+    inlineEmbeds: false,
     helpCmd: 'mhelp',        // Sets the name for the help command.
     playCmd: 'queue',        // Sets the name for the 'play' command.
     playAlt: ["q"],
@@ -40,7 +40,7 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     resumeCmd: 'play',
     clearCmd: 'clear',
     disableSet: 'true',
-    disableOwner: 'true',
+    disableOwnerCmd: 'true',
     volumeCmd: 'volume',     // Sets the name for the 'volume' command.
     leaveCmd: 'leave',      // Sets the name for the 'leave' command.
     disableLoop: false        // Disable the loop command.
