@@ -26,7 +26,7 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     anyoneCanAdjust: false,
     ownerOverMember: true,
     botOwner: Helper.jh,
-    logging: false,
+    logging: true,
     enableAliveMessage: false,
     requesterName: true,
     clearInvoker: false,      // If permissions applicable, allow the bot to delete the messages that invoke it.
