@@ -9,9 +9,21 @@ var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
 var Prison = require('./components/prison.js');
 var Github = require('./components/github.js');
-var Music = require('./components/musicV2.js');
+var Music = require('discord.js-musicbot-addon');
 
 var soundEnabled = true;
+
+const music = new Music(Bot, {
+  prefix: ".", // Prefix for the commands.
+  global: true,            // Non-server-specific queues.
+  maxQueueSize: 50,        // Maximum queue size of 25.
+  clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.
+  helpCmd: 'mhelp',        // Sets the name for the help command.
+  playCmd: 'music',        // Sets the name for the 'play' command.
+  volumeCmd: 'adjust',     // Sets the name for the 'volume' command.
+  leaveCmd: 'begone',      // Sets the name for the 'leave' command.
+  disableLoop: true        // Disable the loop command.
+});
 
 var commands = {
   '!video': {
