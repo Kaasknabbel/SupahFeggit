@@ -18,7 +18,7 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     youtubeKey: keys.youtube,  // youtube api key
     botAdmins: Helper.jh, // set admins 
     prefix: '!',             // Prefix for the commands.
-    thumbnailType: 'medium',
+    thumbnailType: 'high',
     global: true,            // Non-server-specific queues.
     maxQueueSize: 50,        // Maximum queue size of 25.
     defVolume: 20,
@@ -28,10 +28,12 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     botOwner: Helper.jh,
     logging: false,
     enableAliveMessage: false,
-    requesterName: false,
-    clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.
+    requesterName: true,
+    clearInvoker: false,      // If permissions applicable, allow the bot to delete the messages that invoke it.
+    inlineEmbeds: true,
     helpCmd: 'mhelp',        // Sets the name for the help command.
     playCmd: 'queue',        // Sets the name for the 'play' command.
+    playAlt: 'q',
     skipCmd: 'skip',
     queueCmd: 'list',
     pauseCmd: 'pause',
