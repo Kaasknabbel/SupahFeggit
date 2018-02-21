@@ -7,7 +7,7 @@ module.exports = Music = function() {
   var vm = this;
 
   const music = new Music(client, {
-    prefix: '-', // Prefix for the commands.
+    prefix: settings.prefix, // Prefix for the commands.
     global: true,            // Non-server-specific queues.
     maxQueueSize: 50,        // Maximum queue size of 25.
     clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.
