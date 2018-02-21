@@ -13,18 +13,9 @@ var Music = require('discord.js-musicbot-addon');
 
 var soundEnabled = true;
 
-function setKey(key) {
-    var youtubeApi = key;
-}
-
 Helper.keys('apikeys', ['youtube']).then(function(keys) {
-    setKey(keys.youtube);
-  }).catch(err => {
-    console.log(err);
-});
-
-const music = new Music(Bot, {
-  youtubeKey: youtubeApi,  // youtube api key
+  const music = new Music(Bot, {
+  youtubeKey: keys.youtube,  // youtube api key
   prefix: ".",             // Prefix for the commands.
   global: true,            // Non-server-specific queues.
   maxQueueSize: 50,        // Maximum queue size of 25.
@@ -34,6 +25,9 @@ const music = new Music(Bot, {
   volumeCmd: 'adjust',     // Sets the name for the 'volume' command.
   leaveCmd: 'begone',      // Sets the name for the 'leave' command.
   disableLoop: true        // Disable the loop command.
+});
+  }).catch(err => {
+    console.log(err);
 });
 
 var commands = {
