@@ -13,8 +13,9 @@ var Music = require('discord.js-musicbot-addon');
 
 var soundEnabled = true;
 
-function setKey(key)
+function setKey(key) {
     var youtubeApi = key;
+}
 
 Helper.keys('apikeys', ['youtube']).then(function(keys) {
     setKey(keys.youtube);
