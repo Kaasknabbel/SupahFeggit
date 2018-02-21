@@ -9,26 +9,8 @@ var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
 var Prison = require('./components/prison.js');
 var Github = require('./components/github.js');
-var Music = require('discord.js-musicbot-addon');
 
 var soundEnabled = true;
-
-Helper.keys('apikeys', ['youtube']).then(function(keys) {
-  const music = new Music(Bot, {
-  youtubeKey: keys.youtube,  // youtube api key
-  prefix: ".",             // Prefix for the commands.
-  global: true,            // Non-server-specific queues.
-  maxQueueSize: 50,        // Maximum queue size of 25.
-  clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.
-  helpCmd: 'mhelp',        // Sets the name for the help command.
-  playCmd: 'music',        // Sets the name for the 'play' command.
-  volumeCmd: 'adjust',     // Sets the name for the 'volume' command.
-  leaveCmd: 'begone',      // Sets the name for the 'leave' command.
-  disableLoop: true        // Disable the loop command.
-});
-  }).catch(err => {
-    console.log(err);
-});
 
 var commands = {
   '!video': {
