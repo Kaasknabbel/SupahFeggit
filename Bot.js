@@ -12,9 +12,18 @@ var Github = require('./components/github.js');
 var Music = require('discord.js-musicbot-addon');
 
 var soundEnabled = true;
+var youtubeApi;
+
+Helper.keys('apikeys', ['youtube']).then(function(keys) {
+    youtubeApi = keys.youtube;
+  }).catch(err => {
+    console.log(err);
+    vm.hasUnmetDepedencies = true;
+});
 
 const music = new Music(Bot, {
-  prefix: ".", // Prefix for the commands.
+  youtubeKey: youtubeApi,  // youtube api key
+  prefix: ".",             // Prefix for the commands.
   global: true,            // Non-server-specific queues.
   maxQueueSize: 50,        // Maximum queue size of 25.
   clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.
