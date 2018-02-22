@@ -1,5 +1,6 @@
 var Helper = require('./helper.js');
 var Github = require('./github.js');
+const ytStream = require('youtube-audio-stream')
 
 var exports = {};
 
@@ -86,11 +87,11 @@ Queue.prototype.play = function(message, info) {
   }
 
   channel.join().then(connection => {
-    var stream = toPlay.stream();
+    var stream = toPlay.url;
     
     console.log(stream);
     
-    vm.currentDispatcher = connection.playStream(stream, {
+    vm.currentDispatcher = connection.playStream(ytStream(stream), {
       seek: 0,
       volume: 0.2
     }, error => {
