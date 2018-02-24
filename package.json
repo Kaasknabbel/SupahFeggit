@@ -1,12 +1,12 @@
 {
-  "name": "Supah-Bot",
+  "name": "SupahFeggit",
   "version": "1.0.0",
-  "description": "Cool playback bot with other awesome features.",
+  "description": "A supah feggit that is customized for the author and his feggits.",
   "main": "Bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Rasmus Kockum",
+  "author": "Kaasknabbel",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.3.0",
