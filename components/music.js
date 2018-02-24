@@ -769,7 +769,7 @@ module.exports = function(client, options) {
         console.log(musicbot.aliveMessage);
       }, musicbot.aliveMessageTime);
     };
-    var startmsg = `------- ${client.user.username} -------\n> version: ${PACKAGE.version}\n> ytdl version: ${ytdl.version} (0.20.1 and up recommended)\n> Extra logging disabled.\n> Global queues are disabled.\n> node: ${process.version}\n------- ${client.user.username} -------`;
+    var startmsg = `------- ${client.user.username} -------\n> version: ${PACKAGE.version}\n> ytdl version: I dont fcking know (0.20.1 and up recommended)\n> Extra logging disabled.\n> Global queues are disabled.\n> node: ${process.version}\n------- ${client.user.username} -------`;
     if (musicbot.logging) startmsg = startmsg.replace("Extra logging disabled.", "Extra logging enabled.");
     if (musicbot.global) startmsg = startmsg.replace("Global queues are disabled.", "Global queues are enabled.");
     console.log(startmsg);
@@ -904,6 +904,7 @@ module.exports = function(client, options) {
     };
     if (!state) return musicbot.loops[server].looping = false;
     if (state) return musicbot.loops[server].looping = true;
+    console.log('[Looping] Set to: ${musicbot.loops[server].looping}');
   };
 
   /**
