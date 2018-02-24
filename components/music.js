@@ -902,7 +902,7 @@ module.exports = function(client, options) {
         last: null
       };
     };
-    console.log('[Looping] Set to: ${musicbot.loops[server].looping}');
+    console.log(`[loopingSet] Set to: ${musicbot.loops[server].looping}`);
     if (!state) return musicbot.loops[server].looping = false;
     if (state) return musicbot.loops[server].looping = true;
   };
