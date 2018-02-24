@@ -29,7 +29,7 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     logging: true,
     enableAliveMessage: false,
     requesterName: true,
-    clearInvoker: false,      // If permissions applicable, allow the bot to delete the messages that invoke it.
+    clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.
     inlineEmbeds: false,
     enableQueueStat: true,
     helpCmd: 'mhelp',        // Sets the name for the help command.
