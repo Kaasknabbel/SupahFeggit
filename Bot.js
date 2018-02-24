@@ -9,7 +9,7 @@ var WeatherService = require('./components/weatherservice.js');
 var Dumpert = require('./components/dumpert.js');
 var Prison = require('./components/prison.js');
 var Github = require('./components/github.js');
-var Music = require('./music.js');
+var Music = require('./components/music.js');
 
 var soundEnabled = true;
 
