@@ -19,7 +19,7 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     botAdmins: Helper.jh, // set admins 
     prefix: '!',             // Prefix for the commands.
     thumbnailType: 'default',
-    global: true,            // Non-server-specific queues.
+    global: false,            // Non-server-specific queues.
     maxQueueSize: 50,        // Maximum queue size of 25.
     defVolume: 20,
     anyoneCanSkip: false,
