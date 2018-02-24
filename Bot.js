@@ -34,6 +34,7 @@ Helper.keys('apikeys', ['youtube']).then(function(keys) {
     enableQueueStat: true,
     helpCmd: 'mhelp',        // Sets the name for the help command.
     playCmd: 'q',        // Sets the name for the 'play' command.
+    playAtl: ['queue'],
     npCmd: 'song',
     skipCmd: 'skip',
     queueCmd: 'list',
