@@ -15,6 +15,7 @@ Prison.prototype.moveToPrison = function(args, message) {
   if (Helper.admins.includes(prisonMember.id))
     return message.reply(Helper.wrap('You cannot imprison an admin, feggit.'));
   const prisonRole = message.guild.roles.find("name", "Prison");
+  console.log(prisonRole);
   if (prisonMember.roles.has(prisonRole.id))
     return message.reply(Helper.wrap("'" + prisonMember.user.username + "' is already in prison, sir."));
   var prisonerChannel = checkVoicePrisoner(message, prisonMember);
@@ -40,7 +41,9 @@ Prison.prototype.moveToPrison = function(args, message) {
     }).catch(console.error);
   }
   else {
+    console.log("Adding prison role");
     prisonMember.addRole(prisonRole).then(member => {
+      console.log("Done");
       if (prisonerChannel) {
         message.guild.member(prisonMember).setVoiceChannel(prisonChannel);
       }
