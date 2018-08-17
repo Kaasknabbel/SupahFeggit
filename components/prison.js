@@ -32,18 +32,20 @@ Prison.prototype.moveToPrison = function(args, message) {
         message.guild.member(prisonMember).setVoiceChannel(prisonerChannel);
       }
     }, amountOfTime * 1000);
-    prisonMember.addRole(prisonRole).catch(console.error);
-    if (prisonerChannel) {
-      message.guild.member(prisonMember).setVoiceChannel(prisonChannel);
-    }
-    return message.reply(Helper.wrap("'" + prisonMember.user.username + "' has been moved to the prison for " + amountOfTime + " seconds, sir."));
+    prisonMember.addRole(prisonRole).then(member => {
+      if (prisonerChannel) {
+        message.guild.member(prisonMember).setVoiceChannel(prisonChannel);
+      }
+      return message.reply(Helper.wrap("'" + member.user.username + "' has been moved to the prison for " + amountOfTime + " seconds, sir."));
+    }).catch(console.error);
   }
   else {
-    prisonMember.addRole(prisonRole).catch(console.error);
-    if (prisonerChannel) {
-      message.guild.member(prisonMember).setVoiceChannel(prisonChannel);
-    }
-    return message.reply(Helper.wrap("'" + prisonMember.user.username + "' has been moved to the prison for unlimited time, sir."));
+    prisonMember.addRole(prisonRole).then(member => {
+      if (prisonerChannel) {
+        message.guild.member(prisonMember).setVoiceChannel(prisonChannel);
+      }
+      return message.reply(Helper.wrap("'" + member.user.username + "' has been moved to the prison for unlimited time, sir."));
+    }).catch(console.error);
   }
 }
 
@@ -54,8 +56,9 @@ Prison.prototype.releaseFromPrison = function(args, message) {
   var prisonMember = message.guild.member(message.mentions.users.first());
   var prisonRole = message.guild.roles.find("name", "Prison");
   if (prisonMember.roles.has(prisonRole.id)) {
-    prisonMember.removeRole(prisonRole).catch(console.error);
-    return message.reply(Helper.wrap("'" + prisonMember.user.username + "' has been released from the prison, sir."));
+    prisonMember.removeRole(prisonRole).then(member => {
+      return message.reply(Helper.wrap("'" + member.user.username + "' has been released from the prison, sir."));
+    }).catch(console.error);
   }
   else return message.reply(Helper.wrap("'" + prisonMember.user.username + "' is currently not imprisoned, sir."));
 }
