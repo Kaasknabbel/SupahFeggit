@@ -14,7 +14,7 @@ Prison.prototype.moveToPrison = function(args, message) {
   var prisonMember = message.guild.member(message.mentions.users.first());
   if (Helper.admins.includes(prisonMember.id))
     return message.reply(Helper.wrap('You cannot imprison an admin, feggit.'));
-  var prisonRole = message.guild.roles.find("name", "Prison");
+  const prisonRole = message.guild.roles.find("name", "Prison");
   if (prisonMember.roles.has(prisonRole.id))
     return message.reply(Helper.wrap("'" + prisonMember.user.username + "' is already in prison, sir."));
   var prisonerChannel = checkVoicePrisoner(message, prisonMember);
@@ -54,7 +54,7 @@ Prison.prototype.releaseFromPrison = function(args, message) {
   if (message.mentions.users.size === 0) 
     return message.reply(Helper.wrap('Please mention a user to release from the prison, sir.'));
   var prisonMember = message.guild.member(message.mentions.users.first());
-  var prisonRole = message.guild.roles.find("name", "Prison");
+  const prisonRole = message.guild.roles.find("name", "Prison");
   if (prisonMember.roles.has(prisonRole.id)) {
     prisonMember.removeRole(prisonRole).then(member => {
       return message.reply(Helper.wrap("'" + member.user.username + "' has been released from the prison, sir."));
