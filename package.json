@@ -28,6 +28,6 @@
     "youtube-playlist-info": "^0.1.0"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": "10.9.0"
   }
 }
