@@ -1,5 +1,5 @@
 var Discord = require('discord.js');
-var Bot = new Discord.Client().catch(console.error);
+var Bot = new Discord.Client();
 var Helper = require('./components/helper.js');
 var Queue = require('./components/queue.js');
 var Playlist = require('./components/playlist.js');
