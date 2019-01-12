@@ -26,6 +26,6 @@
     "discord.js-musicbot-addon": "1.10.2"
   },
   "engines": {
-    "node": ">=10.3.0"
+    "node": "10.3.0"
   }
 }
