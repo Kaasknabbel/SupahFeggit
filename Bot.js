@@ -1,5 +1,5 @@
 var Discord = require('discord.js');
-var Bot = new Discord.Client();
+var Bot = new Discord.Client().catch(console.error);
 var Helper = require('./components/helper.js');
 var Queue = require('./components/queue.js');
 var Playlist = require('./components/playlist.js');
@@ -248,7 +248,7 @@ Bot.on('message', message => {
   if (isBotCommand(message)) {
     execute(message.content, message);
   }
-}).catch(console.error);;
+});
 
 function showSong(args, message) {
   Queue.showSong(message);
