@@ -248,7 +248,7 @@ Bot.on('message', message => {
   if (isBotCommand(message)) {
     execute(message.content, message);
   }
-});
+}).catch(console.error);;
 
 function showSong(args, message) {
   Queue.showSong(message);
