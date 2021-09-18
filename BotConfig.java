@@ -15,6 +15,7 @@
  */
 package com.jagrosh.jmusicbot;
 
+import System
 import com.jagrosh.jmusicbot.entities.Prompt;
 import com.jagrosh.jmusicbot.utils.FormatUtil;
 import com.jagrosh.jmusicbot.utils.OtherUtil;
@@ -76,7 +77,7 @@ public class BotConfig
             Config config = ConfigFactory.load();
             
             // set values
-            token = config.getString("token");
+            token = System.getenv("MY_VAR_DISCORD")
             prefix = config.getString("prefix");
             altprefix = config.getString("altprefix");
             helpWord = config.getString("help");
