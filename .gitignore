@@ -1,3 +1,7 @@
-node_modules
-keystore.yml
-.DS_Store
+/nbproject/
+/target/
+/Playlists/
+/test/
+*.json
+*.txt
+nb*.xml
