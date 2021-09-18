@@ -1,1 +1,1 @@
-worker: java JMusicBot
+worker: java com.jagrosh.jmusicbot
